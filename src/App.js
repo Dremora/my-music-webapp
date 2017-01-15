@@ -1,10 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import Match from 'react-router/Match';
 import styled from 'styled-components';
+
 import logo from './logo.svg';
-import Search from './Search';
-import Album from './Album';
-import { search } from './actions';
+import Library from './library';
+import Album from './album';
 
 const Header = styled.header`
   background-color: #222;
@@ -20,29 +20,14 @@ const Logo = styled.img`
   height: 60px;
 `;
 
-const Contents = styled.div`
-  display: flex;
-  flex-direction: column;
-  max-width: 800px;
-  padding: 0 10px;
-  margin: 0 auto;
-`;
-
-const mapStateToProps = state =>
-  ({ searchText: state.get('searchText'), albums: state.get('albums') });
-
-export default connect(mapStateToProps)(({ dispatch, searchText, albums }) => {
+export default () => {
   return (
     <div>
       <Header>
         <Logo src={logo} alt="logo" />
       </Header>
-      <Contents>
-        <Search value={searchText} onChange={text => dispatch(search(text))} />
-        <div>
-          {albums.map(album => <Album key={album.id} album={album} />)}
-        </div>
-      </Contents>
+      <Match exactly pattern="/" component={Library} />
+      <Match exactly pattern="/albums/:id" component={Album} />
     </div>
   );
-})
+}

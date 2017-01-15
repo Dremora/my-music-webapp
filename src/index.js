@@ -2,8 +2,10 @@ import 'whatwg-fetch';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import Router from 'react-router/BrowserRouter';
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
+
 import todoApp from './reducers';
 import saga from './sagas';
 import App from './App';
@@ -17,7 +19,9 @@ sagaMiddleware.run(saga);
 ReactDOM.render(
   (
     <Provider store={store}>
-      <App />
+      <Router>
+        <App />
+      </Router>
     </Provider>
   ),
   document.getElementById('root')
