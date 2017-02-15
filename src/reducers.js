@@ -6,7 +6,7 @@ export default function todoApp(state = initialState, action) {
   switch (action.type) {
     case 'SEARCH':
       return state.set('searchText', action.text);
-    case 'UPDATE_ALBUMS':
+    case 'UPDATE_SOURCE_RESULTS':
       return state.set('albums', action.albums);
     default:
       return state;

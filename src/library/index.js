@@ -15,7 +15,10 @@ const Contents = styled.div`
 `;
 
 const mapStateToProps = state =>
-  ({ searchText: state.get('searchText'), albums: state.get('albums') });
+  ({
+    searchText: state.app.get('searchText'),
+    albums: state.app.get('albums')
+  });
 
 export default connect(mapStateToProps)(({ dispatch, searchText, albums }) => {
   return (

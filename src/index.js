@@ -3,7 +3,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import Router from 'react-router/BrowserRouter';
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form';
 
 import enhancer from './enhancer';
 import DevTools from './ReduxDevTools';
@@ -13,7 +14,8 @@ import sagaMiddleware from './saga-middleware';
 import App from './App';
 import './index.css';
 
-const store = createStore(appReducer, enhancer);
+const reducer = combineReducers({ app: appReducer, form: formReducer });
+const store = createStore(reducer, enhancer);
 sagaMiddleware.run(saga);
 
 ReactDOM.render(
