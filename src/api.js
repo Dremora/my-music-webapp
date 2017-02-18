@@ -1,4 +1,5 @@
 import { stringify } from 'query-string';
+import { fetch } from 'redux-auth';
 
 function fetchJSON(url, options = {}) {
   return fetch(url, {
@@ -8,9 +9,9 @@ function fetchJSON(url, options = {}) {
 }
 
 export function search(query) {
-  return fetchJSON(`/api/albums?${stringify({ query })}`);
+  return fetchJSON(`/albums?${stringify({ query })}`);
 }
 
 export function getAlbum(id) {
-  return fetchJSON(`/api/albums/${id}`);
+  return fetchJSON(`/albums/${id}`);
 }
