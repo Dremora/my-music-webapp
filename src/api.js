@@ -1,6 +1,9 @@
+// @flow
+
 import { stringify } from 'query-string';
 import { fetch } from 'redux-auth';
-import { Album, Albums } from './records';
+import { Album } from './records';
+import { List } from 'immutable';
 
 function fetchJSON(url, options = {}) {
   return fetch(url, {
@@ -9,13 +12,11 @@ function fetchJSON(url, options = {}) {
   }).then(response => response.json());
 }
 
-export function search(query) {
+export function search(query: string) {
   return fetchJSON(`/albums?${stringify({ query })}`).then(albums =>
-    Albums(albums.albums));
+    List(albums.albums.map(Album)));
 }
 
-export function getAlbum(id) {
-  return fetchJSON(`/albums/${id}`).then(data => {
-    return Album(data.album);
-  });
+export function getAlbum(id: string) {
+  return fetchJSON(`/albums/${id}`).then(data => Album(data.album));
 }

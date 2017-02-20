@@ -1,3 +1,5 @@
+// @flow
+
 import { applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 

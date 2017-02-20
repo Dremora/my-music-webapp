@@ -1,8 +1,11 @@
+// @flow
+
 import React from 'react';
 import styled from 'styled-components';
 import Link from 'react-router/Link';
 
 import formatFirstPlayed from '../format-first-played';
+import { Album } from '../records';
 
 const Anchor = styled.a`
   text-decoration: none;
@@ -70,28 +73,26 @@ const Added = styled.span`
   text-transform: uppercase;
 `;
 
-export default ({ album: { id, title, artist, year, first_played } }) => {
-  const firstPlayedFormatted = formatFirstPlayed(first_played);
+export default ({ album }: { album: Album }) => {
+  const firstPlayedFormatted = formatFirstPlayed(album.first_played);
   return (
-    <Link to={`/albums/${id}`}>
+    <Link to={`/albums/${album.id}`}>
       {({ onClick, href }) => (
-          <Anchor href={href} onClick={onClick}>
-            <Column1>
-              <Date>{year}</Date>
-            </Column1>
-            <Column2>
-              <Title>{title}</Title>
-              <Artist>{artist}</Artist>
-            </Column2>
-            <FirstPlayed>
-              {
-                firstPlayedFormatted
-                  ? <span><Added>Added: </Added>{firstPlayedFormatted}</span>
-                  : null
-              }
-            </FirstPlayed>
-          </Anchor>
-        )}
+        <Anchor href={href} onClick={onClick}>
+          <Column1>
+            <Date>{album.year}</Date>
+          </Column1>
+          <Column2>
+            <Title>{album.title}</Title>
+            <Artist>{album.artist}</Artist>
+          </Column2>
+          <FirstPlayed>
+            {firstPlayedFormatted
+              ? <span><Added>Added: </Added>{firstPlayedFormatted}</span>
+              : null}
+          </FirstPlayed>
+        </Anchor>
+      )}
     </Link>
   );
-}
+};

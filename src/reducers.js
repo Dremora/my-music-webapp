@@ -1,10 +1,23 @@
-import { AppState, LoadingAlbum, AlbumError } from './records';
+// @flow
+
+import { AppState, LoadingAlbum, AlbumError, Album } from './records';
+import type { Albums } from './records';
 
 export const initialState = AppState({
   album: LoadingAlbum()
 });
 
-export default function todoApp(state = initialState, action) {
+type Action =
+  | { type: 'SEARCH', text: string }
+  | { type: 'UPDATE_SOURCE_RESULTS', albums: Albums }
+  | { type: 'GET_ALBUM' }
+  | { type: 'ALBUM_RECEIVED', album: Album }
+  | { type: 'ALBUM_REQUEST_FAILED', error: AlbumError };
+
+export default function todoApp(
+  state: AppState = initialState,
+  action: Action
+) {
   switch (action.type) {
     case 'SEARCH':
       return state.set('searchText', action.text);
@@ -15,7 +28,7 @@ export default function todoApp(state = initialState, action) {
     case 'ALBUM_RECEIVED':
       return state.set('album', action.album);
     case 'ALBUM_REQUEST_FAILED':
-      return state.update('album', AlbumError({ error: action.error }));
+      return state.set('album', AlbumError({ error: action.error }));
     default:
       return state;
   }

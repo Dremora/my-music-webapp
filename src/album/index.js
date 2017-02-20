@@ -1,3 +1,5 @@
+// @flow
+
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
@@ -14,7 +16,7 @@ const Form = reduxForm({ form: 'album' })(() => {
 });
 
 const mapStateToProps = ({ app }) => ({
-  data: app.get('album')
+  album: app.album
 })
 
 export default connect(mapStateToProps)(
@@ -25,11 +27,10 @@ export default connect(mapStateToProps)(
     }
 
     render() {
-      console.log(this.props.data)
-      if (this.props.data instanceof LoadingAlbum) {
+      if (this.props.album instanceof LoadingAlbum) {
         return <div>Loading...</div>
       } else {
-        const album = this.props.data;
+        const album = this.props.album;
         return (
           <div>
             ID: {album.id}

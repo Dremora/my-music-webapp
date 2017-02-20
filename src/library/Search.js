@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react';
 import styled from 'styled-components';
 import searchImage from './search.svg';
@@ -28,7 +30,9 @@ const Input = styled.input`
   color: #918F8F;
 `;
 
-export default ({ value, onChange }) => (
+export default (
+  { value, onChange }: { value: string, onChange: (string) => void }
+) => (
   <Root>
     <Image src={searchImage} />
     <Input
@@ -37,4 +41,4 @@ export default ({ value, onChange }) => (
       onChange={e => onChange(e.target.value)}
     />
   </Root>
-)
+);

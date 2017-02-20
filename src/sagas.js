@@ -1,8 +1,10 @@
+// @flow
+
 import { delay } from 'redux-saga';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import * as api from './api';
 
-export function* search({ text }) {
+export function* search({ text }: { text: string }): mixed {
   if (!text) {
     yield put({ type: 'UPDATE_SOURCE_RESULTS', albums: [] });
     return;
@@ -16,7 +18,7 @@ export function* search({ text }) {
   }
 }
 
-export function* getAlbum({ id }) {
+export function* getAlbum({ id }: { id: string }): mixed {
   try {
     const album = yield call(api.getAlbum, id);
     yield put({ type: 'ALBUM_RECEIVED', album });
@@ -25,7 +27,7 @@ export function* getAlbum({ id }) {
   }
 }
 
-export default function* watchIncrementAsync() {
+export default function* watchIncrementAsync(): mixed {
   yield takeLatest('SEARCH', search);
   yield takeLatest('GET_ALBUM', getAlbum);
 }

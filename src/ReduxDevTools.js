@@ -1,5 +1,7 @@
+// @flow
+
 if (process.env.NODE_ENV === 'production') {
-  module.exports = null;
+  module.exports = () => null;
 } else {
-  module.exports = require('./ReduxDevTools.dev');
+  module.exports = require('./ReduxDevTools.dev').default;
 }

@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
@@ -16,8 +18,8 @@ const Contents = styled.div`
 
 const mapStateToProps = state =>
   ({
-    searchText: state.app.get('searchText'),
-    albums: state.app.get('albums')
+    searchText: state.app.searchText,
+    albums: state.app.albums
   });
 
 export default connect(mapStateToProps)(({ dispatch, searchText, albums }) => {

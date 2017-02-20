@@ -1,4 +1,7 @@
-import { Record, List, Union, Maybe } from 'typed-immutable';
+// @flow
+
+import { Record, Maybe, Union } from 'typed-immutable';
+import { List } from 'immutable';
 
 export const Album = Record({
   artist: String,
@@ -15,11 +18,11 @@ export const AlbumError = Record({
 
 export const LoadingAlbum = Record({ loading: Boolean(true) });
 
-export const Albums = List(Album);
+export type Albums = List<Album>;
 
 export const AppState = Record({
-  albums: Albums,
+  albums: List(),
   searchText: String(''),
-  album: Union(AlbumError, LoadingAlbum, Album)
+  album: Union(LoadingAlbum, Album, AlbumError)
 });
 
