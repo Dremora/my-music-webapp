@@ -9,7 +9,7 @@ export function* search({ text }) {
   }
   yield delay(200);
   try {
-    const { albums } = yield call(api.search, text);
+    const albums = yield call(api.search, text);
     yield put({ type: 'UPDATE_SOURCE_RESULTS', albums });
   } catch (e) {
     yield put({ type: 'UPDATE_SOURCE_RESULTS_FAILED', message: e.message });
@@ -18,10 +18,10 @@ export function* search({ text }) {
 
 export function* getAlbum({ id }) {
   try {
-    const { album } = yield call(api.getAlbum, id);
+    const album = yield call(api.getAlbum, id);
     yield put({ type: 'ALBUM_RECEIVED', album });
   } catch (e) {
-    yield put({ type: 'ALBUM_REQUEST_FAILED', message: e.message });
+    yield put({ type: 'ALBUM_REQUEST_FAILED', error: e.message });
   }
 }
 

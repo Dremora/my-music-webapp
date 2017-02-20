@@ -1,5 +1,6 @@
 import { stringify } from 'query-string';
 import { fetch } from 'redux-auth';
+import { Album, Albums } from './records';
 
 function fetchJSON(url, options = {}) {
   return fetch(url, {
@@ -9,9 +10,12 @@ function fetchJSON(url, options = {}) {
 }
 
 export function search(query) {
-  return fetchJSON(`/albums?${stringify({ query })}`);
+  return fetchJSON(`/albums?${stringify({ query })}`).then(albums =>
+    Albums(albums.albums));
 }
 
 export function getAlbum(id) {
-  return fetchJSON(`/albums/${id}`);
+  return fetchJSON(`/albums/${id}`).then(data => {
+    return Album(data.album);
+  });
 }

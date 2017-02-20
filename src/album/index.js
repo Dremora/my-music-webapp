@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { getAlbum } from '../actions';
+import { LoadingAlbum } from '../records';
 
 const Form = reduxForm({ form: 'album' })(() => {
   return (
@@ -12,20 +13,30 @@ const Form = reduxForm({ form: 'album' })(() => {
   );
 });
 
-export default connect()(
+const mapStateToProps = ({ app }) => ({
+  data: app.get('album')
+})
+
+export default connect(mapStateToProps)(
   class Album extends Component {
-    componentWillReceiveProps({ id, dispatch }) {
-      dispatch(getAlbum(id));
+    componentWillMount() {
+      const { params: { id }, dispatch } = this.props;
+      dispatch(getAlbum(id))
     }
 
     render() {
-      const params = this.props.params;
-      return (
-        <div>
-           ID: {params.id}
-          <Form />
-        </div>
-      );
+      console.log(this.props.data)
+      if (this.props.data instanceof LoadingAlbum) {
+        return <div>Loading...</div>
+      } else {
+        const album = this.props.data;
+        return (
+          <div>
+            ID: {album.id}
+            <Form album={album}/>
+          </div>
+        );
+      }
     }
   }
-)
+);
