@@ -14,6 +14,7 @@ export function* search({ text }: { text: string }): mixed {
     const albums = yield call(api.search, text);
     yield put({ type: 'UPDATE_SOURCE_RESULTS', albums });
   } catch (e) {
+    console.error(e);
     yield put({ type: 'UPDATE_SOURCE_RESULTS_FAILED', message: e.message });
   }
 }
@@ -23,6 +24,7 @@ export function* getAlbum({ id }: { id: string }): mixed {
     const album = yield call(api.getAlbum, id);
     yield put({ type: 'ALBUM_RECEIVED', album });
   } catch (e) {
+    console.error(e);
     yield put({ type: 'ALBUM_REQUEST_FAILED', error: e.message });
   }
 }
