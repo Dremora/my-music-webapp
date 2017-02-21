@@ -74,7 +74,7 @@ const Added = styled.span`
 `;
 
 export default ({ album }: { album: Album }) => {
-  const firstPlayedFormatted = formatFirstPlayed(album.first_played);
+  const firstPlayedFormatted = formatFirstPlayed(album.firstPlayed);
   return (
     <Link to={`/albums/${album.id}`}>
       {({ onClick, href }) => (
