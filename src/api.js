@@ -2,12 +2,20 @@
 
 import { stringify } from 'query-string';
 import { fetch } from 'redux-auth';
-import { Album, AlbumsC } from './records';
+import { Album, AlbumsC, Source } from './records';
 
 function deserializeAlbum(album: any): Album {
   album.firstPlayed = album.first_played;
   delete album.first_played;
+  album.sources = album.sources.map(deserializeSource);
   return Album(album);
+}
+
+function deserializeSource(source: any): Source {
+  source.accurateRip = source.accurate_rip;
+  source.cueIssues = source.cue_issues;
+  source.tagIssues = source.tag_issues;
+  return Source(source);
 }
 
 function fetchJSON(url, options = {}) {
