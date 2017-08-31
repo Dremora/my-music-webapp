@@ -36,5 +36,5 @@
     "eject": "react-scripts eject",
     "flow": "flow"
   },
-  "proxy": "http://localhost:4200"
+  "proxy": "http://localhost:4200/api"
 }
