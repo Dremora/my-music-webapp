@@ -1,5 +1,6 @@
 // @flow
 
+import './index.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -14,7 +15,6 @@ import appReducer from './reducers';
 import saga from './sagas';
 import sagaMiddleware from './saga-middleware';
 import App from './App';
-import './index.css';
 
 const reducer = combineReducers({
   auth: authStateReducer,

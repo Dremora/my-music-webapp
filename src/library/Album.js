@@ -29,6 +29,8 @@ const Column2 = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  flex-shrink: 1;
+  margin-right: 10px;
 `;
 
 const Title = styled.div`
@@ -38,6 +40,9 @@ const Title = styled.div`
   font-weight: 300;
   letter-spacing: 0.5px;
   line-height: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 `;
 
 const Artist = styled.div`
@@ -49,6 +54,9 @@ const Artist = styled.div`
   letter-spacing: 0.5px;
   line-height: 1;
   text-transform: uppercase;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 `;
 
 const Date = styled.div`
