@@ -1,10 +1,9 @@
 // @flow
 
-import React, { Component } from 'react';
+import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { connect } from 'react-redux';
-import { getAlbum } from '../actions';
-import { LoadingAlbum } from '../records';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 
 const Form = reduxForm({ form: 'album' })(() => {
   return (
@@ -15,29 +14,29 @@ const Form = reduxForm({ form: 'album' })(() => {
   );
 });
 
-const mapStateToProps = ({ app }) => ({
-  album: app.album
-})
-
-export default connect(mapStateToProps)(
-  class Album extends Component {
-    componentWillMount() {
-      const { params: { id }, dispatch } = this.props;
-      dispatch(getAlbum(id))
-    }
-
-    render() {
-      if (this.props.album instanceof LoadingAlbum) {
-        return <div>Loading...</div>
-      } else {
-        const album = this.props.album;
-        return (
-          <div>
-            ID: {album.id}
-            <Form album={album}/>
-          </div>
-        );
-      }
+const GetAlbum = gql`
+  query GetAlbum($id: BinaryId) {
+    album(id: $id) {
+      id, artist, title, year, firstPlayed
     }
   }
-);
+`;
+
+const Album = props => {
+  if (props.data.loading) {
+    return <div>Loading...</div>
+  } else if (!props.data.error) {
+    const album = props.data.album;
+    return (
+      <div>
+        ID: {album.id}
+        <Form album={album}/>
+      </div>
+    );
+  }
+};
+
+export default graphql(GetAlbum, {
+  options: ({ params: { id } }) => ({ variables: { id } }),
+})(Album);
+

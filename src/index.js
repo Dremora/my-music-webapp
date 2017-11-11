@@ -8,6 +8,10 @@ import { configure, authStateReducer } from 'redux-auth';
 import Router from 'react-router/BrowserRouter';
 import { createStore, combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
+import { ApolloProvider } from 'react-apollo';
+import { ApolloClient } from 'apollo-client';
+import { HttpLink } from 'apollo-link-http';
+import { InMemoryCache } from 'apollo-cache-inmemory';
 
 import enhancer from './enhancer';
 import DevTools from './ReduxDevTools';
@@ -15,6 +19,14 @@ import appReducer from './reducers';
 import saga from './sagas';
 import sagaMiddleware from './saga-middleware';
 import App from './App';
+
+
+const client = new ApolloClient({
+  // By default, this client will send queries to the
+  //  `/graphql` endpoint on the same host
+  link: new HttpLink(),
+  cache: new InMemoryCache()
+});
 
 const reducer = combineReducers({
   auth: authStateReducer,
@@ -35,13 +47,15 @@ const reduxAuthConfig = {
 store.dispatch(configure(reduxAuthConfig, { clientOnly: true }));
 
 ReactDOM.render(
-  <Provider store={store}>
-    <div>
-      <Router>
-        <App />
-      </Router>
-      {window.devToolsExtension ? null : <DevTools />}
-    </div>
-  </Provider>,
+  <ApolloProvider client={client}>
+    <Provider store={store}>
+      <div>
+        <Router>
+          <App />
+        </Router>
+        {window.devToolsExtension ? null : <DevTools />}
+      </div>
+    </Provider>
+  </ApolloProvider>,
   document.getElementById('root')
 );

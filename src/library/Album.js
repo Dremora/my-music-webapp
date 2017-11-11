@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import Link from 'react-router/Link';
 
 import formatFirstPlayed from '../format-first-played';
-import { Album } from '../records';
 
 const Anchor = styled.a`
   text-decoration: none;
@@ -81,7 +80,7 @@ const Added = styled.span`
   text-transform: uppercase;
 `;
 
-export default ({ album }: { album: Album }) => {
+export default ({ album }) => {
   const firstPlayedFormatted = formatFirstPlayed(album.firstPlayed);
   return (
     <Link to={`/albums/${album.id}`}>

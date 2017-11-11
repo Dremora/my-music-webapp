@@ -1,12 +1,12 @@
 // @flow
 
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from 'react';
 import styled from 'styled-components';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 
 import Search from './Search';
 import Album from './Album';
-import { search } from '../actions';
 
 const Contents = styled.div`
   display: flex;
@@ -16,19 +16,46 @@ const Contents = styled.div`
   margin: 0 auto;
 `;
 
-const mapStateToProps = state =>
-  ({
-    searchText: state.app.searchText,
-    albums: state.app.albums
-  });
+export default class Library extends Component {
+  constructor() {
+    super();
+    this.state = {
+      searchText: ''
+    };
 
-export default connect(mapStateToProps)(({ dispatch, searchText, albums }) => {
-  return (
-    <Contents>
-      <Search value={searchText} onChange={text => dispatch(search(text))} />
+    this.setSearchText = this.setSearchText.bind(this);
+  }
+
+  setSearchText(searchText : string) {
+    this.setState({ searchText })
+  }
+
+  render() {
+    return <Contents>
+      <Search value={this.state.searchText} onChange={this.setSearchText} />
       <div>
-        {albums.map(album => <Album key={album.id} album={album} />)}
+        <AlbumListContainer searchText={this.state.searchText}/>
       </div>
     </Contents>
-  );
-})
+  }
+}
+
+const AlbumList = props =>
+  <div>
+    {props.data && !props.data.loading && !props.data.error && props.data.albums ?
+      props.data.albums.map(album => <Album key={album.id} album={album} />)
+    : ''}
+  </div>;
+
+const FindAlbums = gql`
+  query FindAlbums($query: String) {
+    albums(query: $query) {
+      id, artist, title, year, firstPlayed
+    }
+  }
+`;
+
+const AlbumListContainer = graphql(FindAlbums, {
+  options: ({ searchText }) => ({ variables: { query: searchText } }),
+  skip: ({ searchText }) => !searchText
+})(AlbumList);
