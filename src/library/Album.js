@@ -42,10 +42,10 @@ const Title = styled.div`
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  padding-bottom: 10px;
 `;
 
 const Artist = styled.div`
-  margin-top: 10px;
   color: #5B5B5B;
   font-family: 'Lato';
   font-size: 14px;
