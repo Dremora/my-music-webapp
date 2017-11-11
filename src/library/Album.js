@@ -50,7 +50,7 @@ const Artist = styled.div`
   color: #5B5B5B;
   font-family: 'Lato';
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: 0.5px;
   line-height: 1;
   text-transform: uppercase;
