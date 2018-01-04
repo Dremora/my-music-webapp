@@ -7,7 +7,6 @@ import { Provider } from 'react-redux';
 import { configure, authStateReducer } from 'redux-auth';
 import Router from 'react-router/BrowserRouter';
 import { createStore, combineReducers } from 'redux';
-import { reducer as formReducer } from 'redux-form';
 import { ApolloProvider } from 'react-apollo';
 import { ApolloClient } from 'apollo-client';
 import { HttpLink } from 'apollo-link-http';
@@ -20,7 +19,6 @@ import saga from './sagas';
 import sagaMiddleware from './saga-middleware';
 import App from './App';
 
-
 const client = new ApolloClient({
   // By default, this client will send queries to the
   //  `/graphql` endpoint on the same host
@@ -30,8 +28,7 @@ const client = new ApolloClient({
 
 const reducer = combineReducers({
   auth: authStateReducer,
-  app: appReducer,
-  form: formReducer
+  app: appReducer
 });
 const store = createStore(reducer, enhancer);
 sagaMiddleware.run(saga);

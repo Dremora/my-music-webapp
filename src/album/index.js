@@ -1,42 +1,39 @@
-// @flow
-
-import React from 'react';
-import { Field, reduxForm } from 'redux-form';
 import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
 
-const Form = reduxForm({ form: 'album' })(() => {
-  return (
-    <div>
-      <label htmlFor="title">Title</label>
-      <Field name="title" component="input" type="text" />
-    </div>
-  );
-});
+import View from './View';
 
-const GetAlbum = gql`
-  query GetAlbum($id: BinaryId) {
-    album(id: $id) {
-      id, artist, title, year, firstPlayed
-    }
-  }
-`;
-
-const Album = props => {
-  if (props.data.loading) {
-    return <div>Loading...</div>
-  } else if (!props.data.error) {
-    const album = props.data.album;
-    return (
-      <div>
-        ID: {album.id}
-        <Form album={album}/>
-      </div>
-    );
-  }
-};
+import GetAlbum from './query';
+import UpdateAlbum from './mutation';
 
 export default graphql(GetAlbum, {
-  options: ({ params: { id } }) => ({ variables: { id } }),
-})(Album);
-
+  options: ({ params: { id } }) => ({ variables: { id } })
+})(
+  graphql(UpdateAlbum, {
+    props: ({ mutate }) => ({
+      submit: ({ id, title, artist, comments, sources, year, firstPlayed }) =>
+        mutate({
+          variables: {
+            id,
+            title,
+            artist,
+            comments,
+            year,
+            firstPlayed,
+            sources: sources.map(source => ({
+              accurateRip: source.accurateRip,
+              comments: source.comments,
+              cueIssues: source.cueIssues,
+              discs: source.discs,
+              download: source.download,
+              edition: source.edition,
+              format: source.format,
+              location: source.location,
+              mbid: source.mbid,
+              tagIssues: source.tagIssues,
+              __typename: 'SourceInput'
+            }))
+          }
+        })
+    })
+  })(View)
+);
