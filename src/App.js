@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Match from 'react-router/Match';
+import { Route } from 'react-router-dom';
 import styled from 'styled-components';
 import { oAuthSignIn, signOut } from 'redux-auth';
 
@@ -36,8 +36,10 @@ const FacebookSignInButton = connect(({ auth }) => ({ auth }))(
     };
 
     endpoint() {
-      return this.props.auth.getIn(['configure', 'currentEndpointKey']) ||
-        this.props.auth.getIn(['configure', 'defaultEndpointKey']);
+      return (
+        this.props.auth.getIn(['configure', 'currentEndpointKey']) ||
+        this.props.auth.getIn(['configure', 'defaultEndpointKey'])
+      );
     }
 
     render() {
@@ -48,13 +50,10 @@ const FacebookSignInButton = connect(({ auth }) => ({ auth }))(
       const disabled = loading || firstLoading;
 
       return (
-        <button
-          disabled={disabled}
-          onClick={isSignedIn ? this.signOut : this.signIn}
-        >
-          {firstLoading ? 'Loading...' : (isSignedIn
-            ? loading ? 'Signing out...' : 'Log out'
-            : loading ? 'Signing in...' : 'Log in')}
+        <button disabled={disabled} onClick={isSignedIn ? this.signOut : this.signIn}>
+          {firstLoading
+            ? 'Loading...'
+            : isSignedIn ? (loading ? 'Signing out...' : 'Log out') : loading ? 'Signing in...' : 'Log in'}
         </button>
       );
     }
@@ -68,8 +67,8 @@ export default () => {
         <Logo src={logo} alt="logo" />
         <FacebookSignInButton />
       </Header>
-      <Match exactly pattern="/" component={Library} />
-      <Match exactly pattern="/albums/:id" component={Album} />
+      <Route exact path="/" component={Library} />
+      <Route exact path="/albums/:id" component={Album} />
     </div>
   );
 };

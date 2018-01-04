@@ -26,31 +26,38 @@ export default class Library extends Component {
     this.setSearchText = this.setSearchText.bind(this);
   }
 
-  setSearchText(searchText : string) {
-    this.setState({ searchText })
+  setSearchText(searchText: string) {
+    this.setState({ searchText });
   }
 
   render() {
-    return <Contents>
-      <Search value={this.state.searchText} onChange={this.setSearchText} />
-      <div>
-        <AlbumListContainer searchText={this.state.searchText}/>
-      </div>
-    </Contents>
+    return (
+      <Contents>
+        <Search value={this.state.searchText} onChange={this.setSearchText} />
+        <div>
+          <AlbumListContainer searchText={this.state.searchText} />
+        </div>
+      </Contents>
+    );
   }
 }
 
-const AlbumList = props =>
+const AlbumList = props => (
   <div>
-    {props.data && !props.data.loading && !props.data.error && props.data.albums ?
-      props.data.albums.map(album => <Album key={album.id} album={album} />)
-    : ''}
-  </div>;
+    {props.data && !props.data.loading && !props.data.error && props.data.albums
+      ? props.data.albums.map(album => <Album key={album.id} album={album} />)
+      : ''}
+  </div>
+);
 
 const FindAlbums = gql`
   query FindAlbums($query: String) {
     albums(query: $query) {
-      id, artist, title, year, firstPlayed
+      id
+      artist
+      title
+      year
+      firstPlayed
     }
   }
 `;

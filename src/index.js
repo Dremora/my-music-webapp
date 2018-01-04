@@ -5,7 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { configure, authStateReducer } from 'redux-auth';
-import Router from 'react-router/BrowserRouter';
+import { BrowserRouter } from 'react-router-dom';
 import { createStore, combineReducers } from 'redux';
 import { ApolloProvider } from 'react-apollo';
 import { ApolloClient } from 'apollo-client';
@@ -47,9 +47,9 @@ ReactDOM.render(
   <ApolloProvider client={client}>
     <Provider store={store}>
       <div>
-        <Router>
+        <BrowserRouter>
           <App />
-        </Router>
+        </BrowserRouter>
         {window.devToolsExtension ? null : <DevTools />}
       </div>
     </Provider>

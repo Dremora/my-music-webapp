@@ -2,11 +2,11 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import Link from 'react-router/Link';
+import { Link } from 'react-router-dom';
 
 import formatFirstPlayed from '../format-first-played';
 
-const Anchor = styled.a`
+const Anchor = styled(Link)`
   text-decoration: none;
   display: flex;
   flex-direction: row;
@@ -33,7 +33,7 @@ const Column2 = styled.div`
 `;
 
 const Title = styled.div`
-  color: #5F5F5F;
+  color: #5f5f5f;
   font-family: 'Lato';
   font-size: 20px;
   font-weight: 300;
@@ -46,7 +46,7 @@ const Title = styled.div`
 `;
 
 const Artist = styled.div`
-  color: #5B5B5B;
+  color: #5b5b5b;
   font-family: 'Lato';
   font-size: 14px;
   font-weight: 700;
@@ -59,7 +59,7 @@ const Artist = styled.div`
 `;
 
 const Date = styled.div`
-  color: #A3A3A3;
+  color: #a3a3a3;
   font-family: 'Lato';
   font-size: 30px;
   font-weight: 300;
@@ -83,23 +83,22 @@ const Added = styled.span`
 export default ({ album }) => {
   const firstPlayedFormatted = formatFirstPlayed(album.firstPlayed);
   return (
-    <Link to={`/albums/${album.id}`}>
-      {({ onClick, href }) => (
-        <Anchor href={href} onClick={onClick}>
-          <Column1>
-            <Date>{album.year}</Date>
-          </Column1>
-          <Column2>
-            <Title>{album.title}</Title>
-            <Artist>{album.artist}</Artist>
-          </Column2>
-          <FirstPlayed>
-            {firstPlayedFormatted
-              ? <span><Added>Added: </Added>{firstPlayedFormatted}</span>
-              : null}
-          </FirstPlayed>
-        </Anchor>
-      )}
-    </Link>
+    <Anchor to={`/albums/${album.id}`}>
+      <Column1>
+        <Date>{album.year}</Date>
+      </Column1>
+      <Column2>
+        <Title>{album.title}</Title>
+        <Artist>{album.artist}</Artist>
+      </Column2>
+      <FirstPlayed>
+        {firstPlayedFormatted ? (
+          <span>
+            <Added>Added: </Added>
+            {firstPlayedFormatted}
+          </span>
+        ) : null}
+      </FirstPlayed>
+    </Anchor>
   );
 };

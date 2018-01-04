@@ -6,7 +6,7 @@ import GetAlbum from './query';
 import UpdateAlbum from './mutation';
 
 export default graphql(GetAlbum, {
-  options: ({ params: { id } }) => ({ variables: { id } })
+  options: ({ match: { params: { id } } }) => ({ variables: { id } })
 })(
   graphql(UpdateAlbum, {
     props: ({ mutate }) => ({
