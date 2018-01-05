@@ -1,7 +1,15 @@
 // @flow
 
-if (process.env.NODE_ENV === 'production') {
-  module.exports = require('./enhancer.prod');
-} else {
-  module.exports = require('./enhancer.dev');
-}
+import { applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+// import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
+
+import { composeWithDevTools } from 'redux-devtools-extension';
+
+import sagaMiddleware from './saga-middleware';
+
+const middleware = applyMiddleware(sagaMiddleware, thunk);
+
+export default (process.browser && process.env['NODE_ENV'] === 'development'
+  ? composeWithDevTools(middleware)
+  : middleware);

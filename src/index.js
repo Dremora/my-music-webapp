@@ -13,7 +13,6 @@ import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
 import enhancer from './enhancer';
-import DevTools from './ReduxDevTools';
 import appReducer from './reducers';
 import saga from './sagas';
 import sagaMiddleware from './saga-middleware';
@@ -46,12 +45,9 @@ store.dispatch(configure(reduxAuthConfig, { clientOnly: true }));
 ReactDOM.render(
   <ApolloProvider client={client}>
     <Provider store={store}>
-      <div>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-        {window.devToolsExtension ? null : <DevTools />}
-      </div>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </Provider>
   </ApolloProvider>,
   document.getElementById('root')
