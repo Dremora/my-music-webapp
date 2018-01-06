@@ -1,20 +1,20 @@
 // @flow
 
-import moment from 'moment';
+import { DateTime } from 'luxon';
 
 export default function formatFirstPlayed(val: Array<number> | number | null): string {
   if (Array.isArray(val)) {
     if (val.length === 1) {
-      return moment.utc([val[0]]).format('YYYY');
+      return DateTime.utc(val[0]).toFormat('yyyy');
     } else if (val.length === 2) {
-      return moment.utc([val[0], val[1] - 1]).format('MMM YYYY');
+      return DateTime.utc(val[0], val[1]).toFormat('MMM yyyy');
     } else if (val.length === 3) {
-      return moment.utc([val[0], val[1] - 1, val[2]]).format('DD MMM YYYY');
+      return DateTime.utc(val[0], val[1], val[2]).toFormat('d MMM yyyy');
     } else {
       return '';
     }
   } else if (typeof val === 'number') {
-    return moment.utc(val).format('DD MMM YYYY HH:mm');
+    return DateTime.fromMillis(val, { zone: 'utc' }).toFormat('d MMM yyyy HH:mm');
   } else {
     return '';
   }
