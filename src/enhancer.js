@@ -6,9 +6,7 @@ import thunk from 'redux-thunk';
 
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-import sagaMiddleware from './saga-middleware';
-
-const middleware = applyMiddleware(sagaMiddleware, thunk);
+const middleware = applyMiddleware(thunk);
 
 export default (process.browser && process.env['NODE_ENV'] === 'development'
   ? composeWithDevTools(middleware)

@@ -14,8 +14,6 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 
 import enhancer from './enhancer';
 import appReducer from './reducers';
-import saga from './sagas';
-import sagaMiddleware from './saga-middleware';
 import Application from './routes/Application';
 
 const client = new ApolloClient({
@@ -30,7 +28,6 @@ const reducer = combineReducers({
   app: appReducer
 });
 const store = createStore(reducer, enhancer);
-sagaMiddleware.run(saga);
 
 const reduxAuthConfig = {
   apiUrl: '',
