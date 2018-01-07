@@ -1,31 +1,8 @@
-// @flow
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route } from 'react-router-dom';
-import styled from 'styled-components';
 import { oAuthSignIn, signOut } from 'redux-auth';
 
-import logo from './logo.svg';
-import Library from './library';
-import Album from './album';
-
-const Header = styled.header`
-  background-color: #222;
-  height: 80px;
-  padding: 20px;
-  color: white;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const Logo = styled.img`
-  height: 60px;
-`;
-
-const FacebookSignInButton = connect(({ auth }) => ({ auth }))(
+export default connect(({ auth }) => ({ auth }))(
   class FacebookSignInButton extends Component {
     signIn = () => {
       this.props.dispatch(oAuthSignIn({ provider: 'facebook' }));
@@ -59,16 +36,3 @@ const FacebookSignInButton = connect(({ auth }) => ({ auth }))(
     }
   }
 );
-
-export default () => {
-  return (
-    <div>
-      <Header>
-        <Logo src={logo} alt="logo" />
-        <FacebookSignInButton />
-      </Header>
-      <Route exact path="/" component={Library} />
-      <Route exact path="/albums/:id" component={Album} />
-    </div>
-  );
-};

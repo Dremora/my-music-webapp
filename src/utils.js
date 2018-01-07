@@ -2,7 +2,7 @@
 
 import { DateTime } from 'luxon';
 
-export default function formatFirstPlayed(val: Array<number> | number | null): string {
+export function formatFirstPlayed(val: Array<number> | number | null): string {
   if (Array.isArray(val)) {
     if (val.length === 1) {
       return DateTime.utc(val[0]).toFormat('yyyy');

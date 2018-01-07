@@ -16,7 +16,7 @@ import enhancer from './enhancer';
 import appReducer from './reducers';
 import saga from './sagas';
 import sagaMiddleware from './saga-middleware';
-import App from './App';
+import Application from './routes/Application';
 
 const client = new ApolloClient({
   // By default, this client will send queries to the
@@ -46,7 +46,7 @@ ReactDOM.render(
   <ApolloProvider client={client}>
     <Provider store={store}>
       <BrowserRouter>
-        <App />
+        <Application />
       </BrowserRouter>
     </Provider>
   </ApolloProvider>,

@@ -2,13 +2,11 @@ import React from 'react';
 
 import { Formik, Field, FieldArray, Form } from 'formik';
 
-import Input from '../components/Input';
-import Select from '../components/Select';
-import Textarea from '../components/Textarea';
+import Input from '../../../components/Input';
+import Textarea from '../../../components/Textarea';
+import Source from '../../../components/Source';
 
-import Source from '../components/Source';
-
-const Album = ({ data, submit }) => {
+export default ({ data, submit }) => {
   if (data.loading) {
     return <div>Loading...</div>;
   } else if (!data.error) {
@@ -43,5 +41,3 @@ const Album = ({ data, submit }) => {
     );
   }
 };
-
-export default Album;
