@@ -9,7 +9,7 @@ import Index from '../Index';
 import Album from '../Albums/Album';
 import FacebookSignInButton from '../../components/FacebookSignInButton';
 
-import { Header, Logo, global } from './styles';
+import { Contents, Header, Logo, global } from './styles';
 
 injectGlobal`${global}`;
 
@@ -20,8 +20,10 @@ export default () => {
         <Logo src={logo} alt="logo" />
         <FacebookSignInButton />
       </Header>
-      <Route exact path="/" component={Index} />
-      <Route exact path="/albums/:id" component={Album} />
+      <Contents>
+        <Route exact path="/" component={Index} />
+        <Route exact path="/albums/:id" component={Album} />
+      </Contents>
     </div>
   );
 };
