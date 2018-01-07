@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Header = styled.header`
   background-color: #222;
@@ -13,4 +13,20 @@ export const Header = styled.header`
 
 export const Logo = styled.img`
   height: 60px;
+`;
+
+export const global = css`
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+  }
+
+  *,
+  *:before,
+  *:after {
+    box-sizing: border-box;
+    flex-shrink: 0;
+    min-width: 0;
+  }
 `;
