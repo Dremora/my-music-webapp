@@ -1,0 +1,9 @@
+{
+  "extends": "react-app",
+  "plugins": [
+    "import"
+  ],
+  "rules": {
+    "import/no-unresolved": ["error", { "commonjs": true, "caseSensitive": true }]
+  }
+}

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "eslint-plugin-import": "^2.8.0",
     "flow-bin": "^0.62.0",
     "react-scripts": "^1.0.17",
     "redux-devtools-extension": "^2.13.2",
