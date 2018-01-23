@@ -12,7 +12,6 @@ export default ({ data, submit }) => {
   if (data.loading) {
     return <div>Loading...</div>;
   } else if (!data.error) {
-    const album = data.album;
     return (
       <Formik initialValues={data.album}>
         {({ isSubmitting, values }) => (

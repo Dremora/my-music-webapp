@@ -1,21 +1,17 @@
 import styled, { css } from 'styled-components';
+import { h1 } from '../../styles/fonts';
 
 export const Header = styled.header`
-  background-color: #222;
-  height: 80px;
-  padding: 20px;
-  color: white;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  padding: 20px 50px;
 `;
 
-export const Logo = styled.img`
-  height: 60px;
+export const H1 = styled.h1`
+  ${h1};
+  margin: 0;
+  font-weight: 700;
 `;
 
-export const Contents = styled.div`
+export const Section = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 800px;

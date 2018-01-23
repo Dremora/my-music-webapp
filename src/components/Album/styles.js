@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { base, small, large } from '../../styles/fonts';
 
 export const Anchor = styled(Link)`
   text-decoration: none;
   display: flex;
   flex-direction: row;
-  padding: 7px;
+  padding: 5px 10px;
   cursor: pointer;
 
   &:hover {
@@ -14,63 +15,48 @@ export const Anchor = styled(Link)`
 `;
 
 export const Column1 = styled.div`
-  width: 90px;
-  display: flex;
-  align-items: center;
+  width: 40px;
+  padding-top: 9px;
+  padding-right: 10px;
+  flex-shrink: 0;
 `;
 
 export const Column2 = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+`;
+
+export const Column3 = styled.div`
+  display: flex;
+  flex-direction: column;
   flex-shrink: 1;
-  margin-right: 10px;
 `;
 
 export const Title = styled.div`
+  ${large};
   color: #5f5f5f;
-  font-family: 'Lato';
-  font-size: 20px;
-  font-weight: 300;
-  letter-spacing: 0.5px;
-  line-height: 1;
+  font-weight: 600;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  padding-bottom: 10px;
 `;
 
 export const Artist = styled.div`
+  ${base};
   color: #5b5b5b;
-  font-family: 'Lato';
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  line-height: 1;
-  text-transform: uppercase;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 `;
 
 export const Date = styled.div`
+  ${small};
   color: #a3a3a3;
-  font-family: 'Lato';
-  font-size: 30px;
-  font-weight: 300;
-  line-height: 1;
 `;
 
 export const FirstPlayed = styled.div`
-  margin-top: 3px;
-  color: #666666;
-  font-family: 'Lato';
-  font-size: 12px;
-  font-weight: 300;
-  line-height: 1;
-`;
-
-export const Added = styled.span`
-  color: #bbb;
-  text-transform: uppercase;
+  ${small};
+  color: #a3a3a3;
+  padding-top: 9px;
 `;

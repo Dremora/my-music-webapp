@@ -4,7 +4,7 @@ import React from 'react';
 
 import { formatFirstPlayed } from '../../utils';
 
-import { Added, Anchor, Artist, Column1, Column2, Date, FirstPlayed, Title } from './styles';
+import { Anchor, Artist, Column1, Column2, Column3, Date, FirstPlayed, Title } from './styles';
 
 export default ({ album }) => {
   const firstPlayedFormatted = formatFirstPlayed(album.firstPlayed);
@@ -15,16 +15,13 @@ export default ({ album }) => {
       </Column1>
       <Column2>
         <Title>{album.title}</Title>
+
         <Artist>{album.artist}</Artist>
       </Column2>
-      <FirstPlayed>
-        {firstPlayedFormatted ? (
-          <span>
-            <Added>Added: </Added>
-            {firstPlayedFormatted}
-          </span>
-        ) : null}
-      </FirstPlayed>
+
+      <Column3>
+        <FirstPlayed>{firstPlayedFormatted ? <span>ADDED: {firstPlayedFormatted}</span> : null}</FirstPlayed>
+      </Column3>
     </Anchor>
   );
 };
