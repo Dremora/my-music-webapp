@@ -17,16 +17,16 @@ export default ({ data, submit }) => {
         {({ isSubmitting, values }) => (
           <Form>
             <FormField label="Title">
-              <Field placeholder="Title" name="title" component={Input} />
+              <Field name="title" render={({ field }) => <Input {...field} placeholder="Title" />} />
             </FormField>
             <FormField label="Artist">
-              <Field placeholder="Artist" name="artist" component={Input} />
+              <Field name="artist" render={({ field }) => <Input {...field} placeholder="Artist" />} />
             </FormField>
             <FormField label="Year">
-              <Field placeholder="Year" name="year" component={Input} />
+              <Field name="year" render={({ field }) => <Input {...field} placeholder="Year" />} />
             </FormField>
             <FormField label="Comments">
-              <Field placeholder="Comments" name="comments" component={Textarea} />
+              <Field name="comments" render={({ field }) => <Textarea {...field} placeholder="Comments" />} />
             </FormField>
             <FieldArray
               name="sources"

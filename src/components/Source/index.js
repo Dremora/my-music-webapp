@@ -27,44 +27,56 @@ const formats = [
 export default ({ source, i, onRemove }) => (
   <Fragment>
     <FormField label="Location">
-      <Field placeholder="Location" name={`sources.${i}.location`} component={Select}>
-        {locations.map(location => (
-          <option value={location.id} key={location.id}>
-            {location.label}
-          </option>
-        ))}
-      </Field>
+      <Field
+        name={`sources.${i}.location`}
+        render={({ field }) => (
+          <Select {...field} placeholder="Location">
+            {locations.map(location => (
+              <option value={location.id} key={location.id}>
+                {location.label}
+              </option>
+            ))}
+          </Select>
+        )}
+      />
     </FormField>
     <FormField label="MBID">
-      <Field placeholder="MBID" name={`sources.${i}.mbid`} component={Input} />
+      <Field name={`sources.${i}.mbid`} render={({ field }) => <Input {...field} placeholder="MBID" />} />
     </FormField>
     <FormField label="Comments">
-      <Field placeholder="Comments" name={`sources.${i}.comments`} component={Textarea} />
+      <Field name={`sources.${i}.comments`} render={({ field }) => <Textarea {...field} placeholder="Comments" />} />
     </FormField>
     {source.location !== 'SPOTIFY' && (
       <FormField label="Tag issues">
-        <Field placeholder="Tag issues" name={`sources.${i}.tagIssues`} component={Input} />
+        <Field name={`sources.${i}.tagIssues`} render={({ field }) => <Input {...field} placeholder="Tag issues" />} />
       </FormField>
     )}
     {source.location === 'FOOBAR2000' && (
       <Fragment>
         <FormField label="Accurate rip">
-          <Field placeholder="Accurate rip" name={`sources.${i}.accurateRip`} component={Input} />
+          <Field
+            name={`sources.${i}.accurateRip`}
+            render={({ field }) => <Input {...field} placeholder="Accurate rip" />}
+          />
         </FormField>
         <FormField label="Cue issues">
-          <Field placeholder="Cue issues" name={`sources.${i}.cueIssues`} component={Input} />
+          <Field
+            name={`sources.${i}.cueIssues`}
+            render={({ field }) => <Input {...field} />}
+            placeholder="Cue issues"
+          />
         </FormField>
         <FormField label="Discs">
-          <Field placeholder="Discs" name={`sources.${i}.discs`} component={Input} />
+          <Field name={`sources.${i}.discs`} render={({ field }) => <Input {...field} placeholder="Discs" />} />
         </FormField>
         <FormField label="Download">
-          <Field placeholder="Download" name={`sources.${i}.download`} component={Input} />
+          <Field name={`sources.${i}.download`} render={({ field }) => <Input {...field} placeholder="Download" />} />
         </FormField>
         <FormField label="Edition">
-          <Field placeholder="Edition" name={`sources.${i}.edition`} component={Input} />
+          <Field name={`sources.${i}.edition`} render={({ field }) => <Input {...field} placeholder="Edition" />} />
         </FormField>
         <FormField label="Format">
-          <Field placeholder="Format" name={`sources.${i}.format`} component={Select}>
+          <Field name={`sources.${i}.format`} render={({ field }) => <Select {...field} placeholder="Format" />}>
             {formats.map(format => (
               <option value={format.id} key={format.id}>
                 {format.label}
