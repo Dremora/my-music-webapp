@@ -6,7 +6,6 @@ import { Route } from 'react-router-dom';
 
 import Index from '../Index';
 import Album from '../Albums/Album';
-import FacebookSignInButton from '../../components/FacebookSignInButton';
 
 import { Section, Header, H1, global } from './styles';
 
