@@ -4,7 +4,6 @@ import { Field } from 'formik';
 
 import Input from '../../components/Input';
 import Select from '../../components/Select';
-import Textarea from '../../components/Textarea';
 import FormField from '../../components/FormField';
 import Button from '../../components/Button';
 
@@ -44,7 +43,10 @@ export default ({ source, i, onRemove }) => (
       <Field name={`sources.${i}.mbid`} render={({ field }) => <Input {...field} placeholder="MBID" />} />
     </FormField>
     <FormField label="Comments">
-      <Field name={`sources.${i}.comments`} render={({ field }) => <Textarea {...field} placeholder="Comments" />} />
+      <Field
+        name={`sources.${i}.comments`}
+        render={({ field }) => <Input multiline {...field} placeholder="Comments" />}
+      />
     </FormField>
     {source.location !== 'SPOTIFY' && (
       <FormField label="Tag issues">

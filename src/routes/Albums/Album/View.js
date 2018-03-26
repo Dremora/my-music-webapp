@@ -3,7 +3,6 @@ import React, { Fragment } from 'react';
 import { Formik, Field, FieldArray, Form } from 'formik';
 
 import Input from '../../../components/Input';
-import Textarea from '../../../components/Textarea';
 import Source from '../../../components/Source';
 import FormField from '../../../components/FormField';
 import Button from '../../../components/Button';
@@ -26,7 +25,7 @@ export default ({ data, submit }) => {
               <Field name="year" render={({ field }) => <Input {...field} placeholder="Year" />} />
             </FormField>
             <FormField label="Comments">
-              <Field name="comments" render={({ field }) => <Textarea {...field} placeholder="Comments" />} />
+              <Field name="comments" render={({ field }) => <Input multiline {...field} placeholder="Comments" />} />
             </FormField>
             <FieldArray
               name="sources"

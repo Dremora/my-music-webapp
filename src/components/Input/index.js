@@ -1,6 +1,7 @@
 import React from 'react';
-import StyledInput from './styles';
+import { Input as StyledInput, Textarea } from './styles';
 
-const Input = ({ value, form, ...props }) => <StyledInput type="text" value={value || ''} {...props} />;
+const Input = ({ value, form, multiline = false, ...props }) =>
+  multiline ? <Textarea value={value || ''} {...props} /> : <StyledInput type="text" value={value || ''} {...props} />;
 
 export default Input;

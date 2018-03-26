@@ -31,6 +31,7 @@ export const large = css`
 export const medium = css`
   ${common};
   font-size: 18px;
+  line-height: 26px;
   font-weight: 400;
 `;
 

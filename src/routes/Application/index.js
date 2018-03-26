@@ -17,7 +17,6 @@ export default () => {
       <Section>
         <Header>
           <H1>My Music</H1>
-          {/* <FacebookSignInButton /> */}
         </Header>
       </Section>
       <Section>

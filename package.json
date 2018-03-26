@@ -16,6 +16,7 @@
     "graphql-tag": "^2.6.1",
     "luxon": "^0.2.11",
     "normalize.css": "^7.0.0",
+    "polished": "^1.9.2",
     "react": "^16.2.0",
     "react-apollo": "^2.0.4",
     "react-dom": "^16.2.0",
