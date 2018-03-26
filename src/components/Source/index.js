@@ -78,13 +78,18 @@ export default ({ source, i, onRemove }) => (
           <Field name={`sources.${i}.edition`} render={({ field }) => <Input {...field} placeholder="Edition" />} />
         </FormField>
         <FormField label="Format">
-          <Field name={`sources.${i}.format`} render={({ field }) => <Select {...field} placeholder="Format" />}>
-            {formats.map(format => (
-              <option value={format.id} key={format.id}>
-                {format.label}
-              </option>
-            ))}
-          </Field>
+          <Field
+            name={`sources.${i}.format`}
+            render={({ field }) => (
+              <Select {...field} placeholder="Format">
+                {formats.map(format => (
+                  <option value={format.id} key={format.id}>
+                    {format.label}
+                  </option>
+                ))}
+              </Select>
+            )}
+          />
         </FormField>
       </Fragment>
     )}
