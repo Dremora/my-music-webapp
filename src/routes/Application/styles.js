@@ -5,7 +5,7 @@ import { whiteSmoke } from '../../styles/colors';
 export const Header = styled.header`
   padding: 20px 0 20px 50px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 `;
 
@@ -13,6 +13,7 @@ export const H1 = styled.h1`
   ${h1};
   margin: 0;
   font-weight: 700;
+  margin-left: 10px;
 `;
 
 export const Section = styled.div`

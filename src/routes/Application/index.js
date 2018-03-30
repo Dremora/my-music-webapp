@@ -8,6 +8,7 @@ import Index from '../Index';
 import Album from '../Albums/Album';
 
 import { Section, Header, H1, global } from './styles';
+import logo from './logo.svg';
 
 injectGlobal`${global}`;
 
@@ -16,6 +17,7 @@ export default () => {
     <div>
       <Section>
         <Header>
+          <img alt="Logo" src={logo} height={48} />
           <H1>My Music</H1>
         </Header>
       </Section>
