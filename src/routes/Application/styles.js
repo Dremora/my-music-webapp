@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { h1 } from '../../styles/fonts';
-import { whiteSmoke } from '../../styles/colors';
+import { whiteSmoke, vermilion } from '../../styles/colors';
 
 export const Header = styled.header`
   padding: 20px 0 20px 50px;
@@ -14,6 +14,7 @@ export const H1 = styled.h1`
   margin: 0;
   font-weight: 700;
   margin-left: 10px;
+  color: ${vermilion};
 `;
 
 export const Section = styled.div`
@@ -30,6 +31,7 @@ export const global = css`
     padding: 0;
     font-family: sans-serif;
     background-color: ${whiteSmoke};
+    color: white;
   }
 
   *,

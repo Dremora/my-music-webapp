@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { grey, lighterGrey, platinum } from '../../styles/colors';
 import { base, small, large } from '../../styles/fonts';
 
 export const Anchor = styled(Link)`
@@ -11,7 +12,7 @@ export const Anchor = styled(Link)`
   flex-wrap: wrap;
 
   &:hover {
-    background-color: #eee;
+    background-color: ${platinum};
   }
 
   @media (min-width: 600px) {
@@ -54,23 +55,23 @@ export const Column3 = styled.div`
 
 export const Title = styled.div`
   ${large};
-  color: #5f5f5f;
+  color: ${grey};
   font-weight: 600;
 `;
 
 export const Artist = styled.div`
   ${base};
-  color: #5b5b5b;
+  color: ${grey};
 `;
 
 export const Date = styled.div`
   ${small};
-  color: #a3a3a3;
+  color: ${lighterGrey};
 `;
 
 export const FirstPlayed = styled.div`
   ${small};
-  color: #a3a3a3;
+  color: ${lighterGrey};
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;

@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { darken } from 'polished';
-import { vermilion, platinum } from '../../styles/colors';
+import { vermilion, darkerPlatinum } from '../../styles/colors';
 import { medium } from '../../styles/fonts';
 
 export default styled.button`
@@ -23,7 +22,7 @@ export default styled.button`
   ${props =>
     props.disabled
       ? css`
-          background-color: ${darken(0.2, platinum)};
+          background-color: ${darkerPlatinum};
         `
       : css`
           cursor: pointer;

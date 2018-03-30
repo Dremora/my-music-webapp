@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components';
-import { darken } from 'polished';
 
-import { platinum } from '../../styles/colors';
+import { platinum, darkPlatinum, darkerPlatinum } from '../../styles/colors';
 
 const styles = css`
   border: 2px solid ${platinum};
@@ -13,13 +12,13 @@ const styles = css`
   width: 100%;
   flex-grow: 1;
   flex-shrink: 1;
-  color: ${darken(0.6, platinum)};
+  color: ${darkPlatinum};
   transition: all 0.2s;
   background: white;
 
   &:focus {
     outline: none;
-    border-color: ${darken(0.2, platinum)};
+    border-color: ${darkerPlatinum};
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.09);
   }
 `;

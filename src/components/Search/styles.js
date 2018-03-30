@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
+import { grey, lightGrey } from '../../styles/colors';
 import { h2 } from '../../styles/fonts';
 
 export const Root = styled.div`
-  border-bottom: 1px solid #dddddd;
+  border-bottom: 1px solid ${lightGrey};
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -22,6 +23,6 @@ export const Input = styled.input`
   width: 100%;
   outline: none;
   font-weight: 600;
-  color: #918f8f;
+  color: ${grey};
   background-color: transparent;
 `;

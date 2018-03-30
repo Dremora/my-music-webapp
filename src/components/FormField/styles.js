@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { grey } from '../../styles/colors';
+
 export const Container = styled.div`
   display: flex;
   align-items: flex-start;
@@ -14,6 +16,7 @@ export const Label = styled.span`
   font-family: 'Lato';
   text-align: right;
   padding: 3px 20px 3px 0;
+  color: ${grey};
 `;
 
 export const Contents = styled.div`
