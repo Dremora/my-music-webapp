@@ -21,16 +21,16 @@ export default ({ data, submit }) => {
         {({ isSubmitting, values }) => (
           <Form>
             <FormField label="Title">
-              <Field name="title" render={({ field }) => <Input {...field} placeholder="Title" />} />
+              <Field name="title" render={({ field }) => <Input {...field} />} />
             </FormField>
             <FormField label="Artist">
-              <Field name="artist" render={({ field }) => <Input {...field} placeholder="Artist" />} />
+              <Field name="artist" render={({ field }) => <Input {...field} />} />
             </FormField>
             <FormField label="Year">
-              <Field name="year" render={({ field }) => <Input {...field} placeholder="Year" />} />
+              <Field name="year" render={({ field }) => <Input {...field} />} />
             </FormField>
             <FormField label="Comments">
-              <Field name="comments" render={({ field }) => <Input multiline {...field} placeholder="Comments" />} />
+              <Field name="comments" render={({ field }) => <Input multiline {...field} />} />
             </FormField>
             <FieldArray
               name="sources"
