@@ -8,7 +8,8 @@ export const Root = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin: 10px;
+  margin: 10px 0;
+  padding: 0 10px;
 `;
 
 export const Image = styled.img`
