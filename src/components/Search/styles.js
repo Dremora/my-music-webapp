@@ -4,7 +4,7 @@ import { grey, lightGrey } from '../../styles/colors';
 import { h2 } from '../../styles/fonts';
 
 export const Root = styled.div`
-  border-bottom: 1px solid ${lightGrey};
+  border-bottom: 2px solid ${lightGrey};
   display: flex;
   flex-direction: row;
   align-items: center;
