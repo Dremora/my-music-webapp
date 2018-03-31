@@ -7,6 +7,8 @@ import Select from '../../components/Select';
 import FormField from '../../components/FormField';
 import Button from '../../components/Button';
 
+import { Hr } from './styles';
+
 const locations = [
   { id: 'APPLE_MUSIC', label: 'Apple Music' },
   { id: 'GOOGLE_MUSIC', label: 'Google Music' },
@@ -25,6 +27,7 @@ const formats = [
 
 export default ({ source, i, onRemove }) => (
   <Fragment>
+    <Hr />
     <FormField label="Location">
       <Field
         name={`sources.${i}.location`}
