@@ -12,4 +12,5 @@ export const whiteSmoke = `#f4f4f8`;
 
 export const grey = '#5f5f5f';
 export const lighterGrey = '#a3a3a3';
-export const lightGrey = '#dddddd';
+export const lightGrey = '#dcd4d4';
+export const white = '#ffffff';
