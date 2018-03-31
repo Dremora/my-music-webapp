@@ -1,18 +1,13 @@
 import styled from 'styled-components';
 
-import { grey } from '../../styles/colors';
-
 export const Container = styled.label`
   display: flex;
-  align-items: flex-start;
-  margin: 5px 0;
+  flex-direction: column;
+  margin: 10px 0;
 `;
 
 export const Label = styled.div`
-  width: 25%;
-  text-align: right;
-  padding: 8px 20px 8px 0;
-  color: ${grey};
+  padding-bottom: 10px;
 `;
 
 export const Contents = styled.div`

@@ -7,9 +7,7 @@ import { Container, Label, Contents } from './styles';
 export default ({ label, children }) => (
   <Container>
     <Label>
-      <Text color="grey" weight="bold">
-        {label}
-      </Text>
+      <Text color="darkPlatinum">{label}</Text>
     </Label>
     <Contents>{children}</Contents>
   </Container>
