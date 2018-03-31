@@ -15,7 +15,7 @@ export const Root = styled.div`
 
 export const Image = styled.img`
   background-color: transparent;
-  margin: 0 10px;
+  margin: 0 20px 0 10px;
 `;
 
 export const Input = styled.input`
@@ -25,6 +25,7 @@ export const Input = styled.input`
   width: 100%;
   outline: none;
   color: ${grey};
+  padding: 0;
   background-color: transparent;
   flex-shrink: 1;
 `;

@@ -20,7 +20,7 @@ export const Anchor = styled(Link)`
 `;
 
 export const Column1 = styled.div`
-  width: 40px;
+  width: 52px;
   padding-top: 9px;
   padding-right: 10px;
   flex-shrink: 0;
@@ -31,7 +31,7 @@ export const Column2 = styled.div`
   flex-direction: column;
   flex-grow: 1;
   flex-shrink: 1;
-  width: calc(100% - 50px);
+  width: calc(100% - 52px);
 
   @media (min-width: 600px) {
     width: auto;
@@ -43,7 +43,7 @@ export const Column3 = styled.div`
   flex-direction: column;
   flex-shrink: 0;
   width: 100%;
-  padding-left: 40px;
+  padding-left: 52px;
   padding-top: 4px;
 
   @media (min-width: 600px) {

@@ -3,7 +3,7 @@ import { h1 } from '../../styles/fonts';
 import { whiteSmoke, vermilion } from '../../styles/colors';
 
 export const Header = styled.header`
-  padding: 20px 0 20px 50px;
+  padding: 20px 0 20px 4px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
