@@ -8,7 +8,6 @@ export default styled.button`
   ${medium};
   padding: 7px 20px;
   display: block;
-  font-family: 'Lato';
   font-weight: 700;
   color: white;
   background-color: ${vermilion};

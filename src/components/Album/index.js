@@ -4,23 +4,33 @@ import React from 'react';
 
 import { formatFirstPlayed } from '../../utils';
 
-import { Anchor, Artist, Column1, Column2, Column3, Date, FirstPlayed, Title } from './styles';
+import Text from '../Text';
+
+import { Anchor, Column1, Column2, Column3, FirstPlayed } from './styles';
 
 export default ({ album }) => {
   const firstPlayedFormatted = formatFirstPlayed(album.firstPlayed);
   return (
     <Anchor to={`/albums/${album.id}`}>
       <Column1>
-        <Date>{album.year}</Date>
+        <Text color="lighterGrey" size="small">
+          {album.year}
+        </Text>
       </Column1>
       <Column2>
-        <Title>{album.title}</Title>
+        <Text color="grey" size="large" weight="semiBold">
+          {album.title}
+        </Text>
 
-        <Artist>{album.artist}</Artist>
+        <Text color="grey">{album.artist}</Text>
       </Column2>
 
       <Column3>
-        <FirstPlayed>{firstPlayedFormatted ? <span>ADDED: {firstPlayedFormatted}</span> : null}</FirstPlayed>
+        <FirstPlayed>
+          <Text color="lighterGrey" size="small">
+            {firstPlayedFormatted ? <span>ADDED: {firstPlayedFormatted}</span> : null}
+          </Text>
+        </FirstPlayed>
       </Column3>
     </Anchor>
   );

@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
 import { platinum, darkPlatinum, darkerPlatinum } from '../../styles/colors';
+import { base } from '../../styles/fonts';
 
 export default styled.select`
+  ${base};
   border: 2px solid ${platinum};
-  font-size: 16px;
   line-height: 2;
   padding: 2px 10px;
   display: block;
-  font-family: 'Lato';
   width: 100%;
   flex-grow: 1;
   flex-shrink: 1;

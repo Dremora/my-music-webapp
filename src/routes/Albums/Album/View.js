@@ -2,14 +2,19 @@ import React, { Fragment } from 'react';
 
 import { Formik, Field, FieldArray, Form } from 'formik';
 
+import Button from '../../../components/Button';
+import FormField from '../../../components/FormField';
 import Input from '../../../components/Input';
 import Source from '../../../components/Source';
-import FormField from '../../../components/FormField';
-import Button from '../../../components/Button';
+import Text from '../../../components/Text';
 
 export default ({ data, submit }) => {
   if (data.loading) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <Text color="grey">Loading...</Text>
+      </div>
+    );
   } else if (!data.error) {
     return (
       <Formik initialValues={data.album}>
