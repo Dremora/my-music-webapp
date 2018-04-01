@@ -21,6 +21,10 @@ const styles = css`
     border-color: ${darkerPlatinum};
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.09);
   }
+
+  &:disabled {
+    background-color: ${platinum};
+  }
 `;
 
 export const Input = styled.input`

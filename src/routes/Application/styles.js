@@ -2,6 +2,14 @@ import styled, { css } from 'styled-components';
 import { h1 } from '../../styles/fonts';
 import { whiteSmoke, vermilion } from '../../styles/colors';
 
+export const Page = styled.div`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+`;
+
 export const Header = styled.header`
   padding: 20px 0 20px 4px;
   display: flex;
@@ -23,6 +31,7 @@ export const Section = styled.div`
   max-width: 800px;
   padding: 0 10px;
   margin: 0 auto;
+  width: 100%;
 `;
 
 export const global = css`
