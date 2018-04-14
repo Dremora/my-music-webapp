@@ -35,23 +35,25 @@ export default ({ data, error, isSubmitting, loading, submit, submitError }) => 
           {({ values }) => (
             <Form>
               <FormField label="Title">
-                <Field name="title" render={({ field }) => <Input {...field} />} />
+                <Field name="title" render={({ field }) => <Input disabled={isSubmitting} {...field} />} />
               </FormField>
               <FormField label="Artist">
-                <Field name="artist" render={({ field }) => <Input {...field} />} />
+                <Field name="artist" render={({ field }) => <Input disabled={isSubmitting} {...field} />} />
               </FormField>
               <FormField label="Year">
-                <Field name="year" render={({ field }) => <Input {...field} />} />
+                <Field name="year" render={({ field }) => <Input disabled={isSubmitting} {...field} />} />
               </FormField>
               <FormField label="Comments">
-                <Field name="comments" render={({ field }) => <Input multiline {...field} />} />
+                <Field name="comments" render={({ field }) => <Input disabled={isSubmitting} multiline {...field} />} />
               </FormField>
               <FieldArray
                 name="sources"
                 render={({ remove, push }) => (
                   <Fragment>
                     {values.sources
-                      ? values.sources.map((source, i) => <Source key={i} i={i} source={source} onRemove={remove} />)
+                      ? values.sources.map((source, i) => (
+                          <Source key={i} disabled={isSubmitting} i={i} source={source} onRemove={remove} />
+                        ))
                       : null}
                     <Button onClick={() => push({ location: 'APPLE_MUSIC' })}>Add source</Button>
                   </Fragment>

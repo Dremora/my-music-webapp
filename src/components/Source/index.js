@@ -27,14 +27,14 @@ const formats = [
   { id: 'Mixed', label: 'Mixed' }
 ];
 
-export default ({ source, i, onRemove }) => (
+export default ({ disabled, source, i, onRemove }) => (
   <Fragment>
     <Hr />
     <FormField label="Location">
       <Field
         name={`sources.${i}.location`}
         render={({ field }) => (
-          <Select {...field}>
+          <Select disabled={disabled} {...field}>
             {locations.map(location => (
               <option value={location.id} key={location.id}>
                 {location.label}
@@ -45,38 +45,41 @@ export default ({ source, i, onRemove }) => (
       />
     </FormField>
     <FormField label="MBID">
-      <Field name={`sources.${i}.mbid`} render={({ field }) => <Input {...field} />} />
+      <Field name={`sources.${i}.mbid`} render={({ field }) => <Input disabled={disabled} {...field} />} />
     </FormField>
     <FormField label="Comments">
-      <Field name={`sources.${i}.comments`} render={({ field }) => <Input multiline {...field} />} />
+      <Field
+        name={`sources.${i}.comments`}
+        render={({ field }) => <Input disabled={disabled} multiline {...field} />}
+      />
     </FormField>
     {source.location !== 'SPOTIFY' && (
       <FormField label="Tag issues">
-        <Field name={`sources.${i}.tagIssues`} render={({ field }) => <Input {...field} />} />
+        <Field name={`sources.${i}.tagIssues`} render={({ field }) => <Input disabled={disabled} {...field} />} />
       </FormField>
     )}
     {source.location === 'FOOBAR2000' && (
       <Fragment>
         <FormField label="Accurate rip">
-          <Field name={`sources.${i}.accurateRip`} render={({ field }) => <Input {...field} />} />
+          <Field name={`sources.${i}.accurateRip`} render={({ field }) => <Input disabled={disabled} {...field} />} />
         </FormField>
         <FormField label="Cue issues">
-          <Field name={`sources.${i}.cueIssues`} render={({ field }) => <Input {...field} />} />
+          <Field name={`sources.${i}.cueIssues`} render={({ field }) => <Input disabled={disabled} {...field} />} />
         </FormField>
         <FormField label="Discs">
-          <Field name={`sources.${i}.discs`} render={({ field }) => <Input {...field} />} />
+          <Field name={`sources.${i}.discs`} render={({ field }) => <Input disabled={disabled} {...field} />} />
         </FormField>
         <FormField label="Download">
-          <Field name={`sources.${i}.download`} render={({ field }) => <Input {...field} />} />
+          <Field name={`sources.${i}.download`} render={({ field }) => <Input disabled={disabled} {...field} />} />
         </FormField>
         <FormField label="Edition">
-          <Field name={`sources.${i}.edition`} render={({ field }) => <Input {...field} />} />
+          <Field name={`sources.${i}.edition`} render={({ field }) => <Input disabled={disabled} {...field} />} />
         </FormField>
         <FormField label="Format">
           <Field
             name={`sources.${i}.format`}
             render={({ field }) => (
-              <Select {...field}>
+              <Select disabled={disabled} {...field}>
                 {formats.map(format => (
                   <option value={format.id} key={format.id}>
                     {format.label}
