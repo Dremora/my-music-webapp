@@ -10,18 +10,29 @@ import Text from '../../../components/Text';
 
 import { Form as StyledForm } from './styles';
 
-export default ({ data, submit }) => {
-  if (data.loading) {
+export default ({ data, error, isSubmitting, loading, submit, submitError }) => {
+  const handleSubmit = ({ sources, ...rest }) => {
+    submit({
+      variables: {
+        sources: sources.map(({ __typename, ...rest }) => rest),
+        ...rest
+      }
+    });
+  };
+
+  if (loading) {
     return (
       <div>
         <Text color="grey">Loading...</Text>
       </div>
     );
-  } else if (!data.error) {
+  } else if (error) {
+    return 'error';
+  } else {
     return (
       <StyledForm>
-        <Formik initialValues={data.album}>
-          {({ isSubmitting, values }) => (
+        <Formik initialValues={data.album} onSubmit={handleSubmit}>
+          {({ values }) => (
             <Form>
               <FormField label="Title">
                 <Field name="title" render={({ field }) => <Input {...field} />} />
@@ -46,9 +57,10 @@ export default ({ data, submit }) => {
                   </Fragment>
                 )}
               />
-              <button type="submit" disabled={isSubmitting}>
+              <Button type="submit" disabled={isSubmitting}>
                 Submit
-              </button>
+              </Button>
+              {submitError && <Text color="vermilion">{submitError.message}</Text>}
             </Form>
           )}
         </Formik>
