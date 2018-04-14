@@ -2,6 +2,10 @@
   "name": "webapp-react",
   "version": "0.1.0",
   "private": true,
+  "now": {
+    "name": "my-music",
+    "alias": "my-music.dremora.com"
+  },
   "devDependencies": {
     "eslint-plugin-import": "^2.8.0",
     "flow-bin": "^0.62.0",
@@ -23,6 +27,7 @@
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "recompose": "^0.26.0",
+    "serve": "^6.5.5",
     "styled-components": "^2.4.0"
   },
   "scripts": {
@@ -30,6 +35,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
+    "now-start": "serve -s build",
+    "deploy": "now && now alias",
     "flow": "flow"
   },
   "proxy": "http://localhost:4000"
