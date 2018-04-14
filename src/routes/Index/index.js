@@ -1,29 +1,28 @@
 // @flow
 
-import React, { Component } from 'react';
-import { graphql } from 'react-apollo';
+import React, { Fragment } from 'react';
+import { Query } from 'react-apollo';
+import { Value } from 'react-powerplug';
 
 import FindAlbums from './query';
-import View from './View';
+import Album from '../../components/Album';
+import Search from '../../components/Search';
 
-export default class Index extends Component {
-  constructor() {
-    super();
-    this.state = {
-      searchText: ''
-    };
-  }
-
-  setSearchText = (searchText: string) => {
-    this.setState({ searchText });
-  };
-
-  render() {
-    return <AlbumListContainer searchText={this.state.searchText} setSearchText={this.setSearchText} />;
-  }
-}
-
-const AlbumListContainer = graphql(FindAlbums, {
-  options: ({ searchText }) => ({ variables: { query: searchText } }),
-  skip: ({ searchText }) => !searchText
-})(View);
+export default () => (
+  <Value initial="">
+    {({ value: searchText, setValue: setSearchText }) => (
+      <Query skip={!searchText} query={FindAlbums} variables={{ searchText }}>
+        {({ data, error, loading }) => (
+          <Fragment>
+            <Search value={searchText} onChange={setSearchText} />
+            <div>
+              {!loading && !error && data.albums
+                ? data.albums.map(album => <Album key={album.id} album={album} />)
+                : null}
+            </div>
+          </Fragment>
+        )}
+      </Query>
+    )}
+  </Value>
+);

@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 export default gql`
-  query FindAlbums($query: String) {
-    albums(query: $query) {
+  query FindAlbums($searchText: String!) {
+    albums(query: $searchText) {
       id
       artist
       title
