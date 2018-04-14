@@ -41,7 +41,7 @@ const enhance = compose(
       const result = await onLogin(password);
       const loggedIn = result.data.login;
       loggingEnd(loggedIn);
-      loggedIn && onLoggedIn();
+      loggedIn && onLoggedIn(password);
     },
     logout: ({ onLoggedOut }) => () => {
       onLoggedOut();

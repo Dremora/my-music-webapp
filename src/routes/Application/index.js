@@ -16,15 +16,21 @@ injectGlobal`${global}`;
 
 const enhance = compose(
   withStateHandlers(
-    { isLoggedIn: false },
+    { token: localStorage.getItem('token') },
     {
-      onLoggedIn: () => () => ({ isLoggedIn: true }),
-      onLoggedOut: () => () => ({ isLoggedIn: false })
+      onLoggedIn: () => token => {
+        localStorage.setItem('token', token);
+        return { token };
+      },
+      onLoggedOut: () => () => {
+        localStorage.removeItem('token');
+        return { token: null };
+      }
     }
   )
 );
 
-export default enhance(({ isLoggedIn, onLoggedIn, onLoggedOut }) => (
+export default enhance(({ token, onLoggedIn, onLoggedOut }) => (
   <Page>
     <div>
       <Section>
@@ -39,7 +45,7 @@ export default enhance(({ isLoggedIn, onLoggedIn, onLoggedOut }) => (
       </Section>
     </div>
     <Section>
-      <Login isLoggedIn={isLoggedIn} onLoggedIn={onLoggedIn} onLoggedOut={onLoggedOut} />
+      <Login isLoggedIn={!!token} onLoggedIn={onLoggedIn} onLoggedOut={onLoggedOut} />
     </Section>
   </Page>
 ));
