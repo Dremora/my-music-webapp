@@ -19,7 +19,9 @@ const locations = [
 const formats = [
   { id: 'MP3', label: 'Lossy (MP3)' },
   { id: 'MPC', label: 'Lossy (MPC)' },
+  { id: 'WMA', label: 'Lossy (WMA)' },
   { id: 'TAK', label: 'Lossless (TAK)' },
+  { id: 'OFT', label: 'Lossless (OptimFROG)' },
   { id: 'APE', label: 'Lossless (APE)' },
   { id: 'FLAC', label: 'Lossless (FLAC)' },
   { id: 'Mixed', label: 'Mixed' }
