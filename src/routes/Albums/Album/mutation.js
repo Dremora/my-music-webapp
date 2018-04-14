@@ -6,8 +6,22 @@ export default gql`
       id
       artist
       title
+      comments
       year
       firstPlayed
+      sources {
+        id
+        accurateRip
+        comments
+        cueIssues
+        discs
+        download
+        edition
+        format
+        location
+        mbid
+        tagIssues
+      }
     }
   }
 `;
