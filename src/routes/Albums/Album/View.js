@@ -11,13 +11,14 @@ import Text from '../../../components/Text';
 import { Form as StyledForm } from './styles';
 
 export default ({ data, error, isSubmitting, loading, submit, submitError }) => {
-  const handleSubmit = ({ sources, ...rest }) => {
-    submit({
+  const handleSubmit = async ({ sources, ...rest }, { resetForm }) => {
+    await submit({
       variables: {
         sources: sources.map(({ __typename, ...rest }) => rest),
         ...rest
       }
     });
+    resetForm();
   };
 
   if (loading) {
