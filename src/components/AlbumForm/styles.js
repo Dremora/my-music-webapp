@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { platinum, white } from '../../../styles/colors';
+import { platinum, white } from '../../styles/colors';
 
 export const Form = styled.div`
   border: 2px solid ${platinum};

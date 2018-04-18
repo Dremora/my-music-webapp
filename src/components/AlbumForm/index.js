@@ -2,11 +2,11 @@ import React, { Fragment } from 'react';
 
 import { Formik, Field, FieldArray, Form } from 'formik';
 
-import Button from '../../../components/Button';
-import FormField from '../../../components/FormField';
-import Input from '../../../components/Input';
-import Source from '../../../components/Source';
-import Text from '../../../components/Text';
+import Button from '../Button';
+import FormField from '../FormField';
+import Input from '../Input';
+import Source from '../Source';
+import Text from '../Text';
 
 import { Form as StyledForm } from './styles';
 

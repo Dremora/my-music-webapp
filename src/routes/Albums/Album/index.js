@@ -4,7 +4,7 @@ import React from 'react';
 
 import { Query, Mutation } from 'react-apollo';
 
-import View from './View';
+import AlbumForm from '../../../components/AlbumForm';
 
 import GetAlbum from './query';
 import UpdateAlbum from './mutation';
@@ -14,7 +14,7 @@ export default ({ match: { params: { id } } }) => (
     {({ data, error, loading }) => (
       <Mutation mutation={UpdateAlbum}>
         {(submit, { loading: isSubmitting, error: submitError }) => (
-          <View
+          <AlbumForm
             data={data}
             error={error}
             isSubmitting={isSubmitting}
