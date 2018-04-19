@@ -2,10 +2,11 @@
 
 import React from 'react';
 import { injectGlobal } from 'styled-components';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { compose, withStateHandlers } from 'recompose';
 
 import Index from '../Index';
+import NewAlbum from '../Albums/NewAlbum';
 import Album from '../Albums/Album';
 import Login from '../../components/Login';
 
@@ -41,8 +42,11 @@ export default enhance(({ token, onLoggedIn, onLoggedOut }) => (
           </Header>
         </Section>
         <Section>
-          <Route exact path="/" component={Index} />
-          <Route exact path="/albums/:id" component={Album} />
+          <Switch>
+            <Route exact path="/" component={Index} />
+            <Route exact path="/albums/new" component={NewAlbum} />
+            <Route exact path="/albums/:id" component={Album} />
+          </Switch>
         </Section>
       </div>
       <Section>
