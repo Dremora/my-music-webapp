@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react';
 
-import { Formik, Field, FieldArray, Form } from 'formik';
+import { Field, Form } from 'react-final-form';
+import arrayMutators from 'final-form-arrays';
+import { FieldArray } from 'react-final-form-arrays';
 
 import Button from '../Button';
 import FormField from '../FormField';
@@ -11,14 +13,14 @@ import Text from '../Text';
 import { Form as StyledForm } from './styles';
 
 export default ({ data, error, isSubmitting, loading, submit, submitError }) => {
-  const handleSubmit = async ({ sources, ...rest }, { resetForm }) => {
+  const handleSubmit = async ({ sources, ...rest }, { reset }) => {
     await submit({
       variables: {
         sources: sources.map(({ __typename, ...rest }) => rest),
         ...rest
       }
     });
-    resetForm();
+    reset();
   };
 
   if (loading) {
@@ -32,41 +34,47 @@ export default ({ data, error, isSubmitting, loading, submit, submitError }) => 
   } else {
     return (
       <StyledForm>
-        <Formik initialValues={data.album} onSubmit={handleSubmit}>
-          {({ values }) => (
-            <Form>
+        <Form
+          initialValues={data.album}
+          onSubmit={handleSubmit}
+          mutators={{
+            ...arrayMutators
+          }}
+          subscription={{}}
+        >
+          {({ handleSubmit }) => (
+            <form onSubmit={handleSubmit}>
               <FormField label="Title">
-                <Field name="title" render={({ field }) => <Input disabled={isSubmitting} {...field} />} />
+                <Field name="title">{({ input }) => <Input disabled={isSubmitting} {...input} />}</Field>
               </FormField>
               <FormField label="Artist">
-                <Field name="artist" render={({ field }) => <Input disabled={isSubmitting} {...field} />} />
+                <Field name="artist">{({ input }) => <Input disabled={isSubmitting} {...input} />}</Field>
               </FormField>
               <FormField label="Year">
-                <Field name="year" render={({ field }) => <Input disabled={isSubmitting} {...field} />} />
+                <Field name="year">{({ input }) => <Input disabled={isSubmitting} {...input} />}</Field>
               </FormField>
               <FormField label="Comments">
-                <Field name="comments" render={({ field }) => <Input disabled={isSubmitting} multiline {...field} />} />
+                <Field name="comments">{({ input }) => <Input disabled={isSubmitting} multiline {...input} />}</Field>
               </FormField>
-              <FieldArray
-                name="sources"
-                render={({ remove, push }) => (
+              <FieldArray name="sources">
+                {({ fields }) => (
                   <Fragment>
-                    {values.sources
-                      ? values.sources.map((source, i) => (
-                          <Source key={i} disabled={isSubmitting} i={i} source={source} onRemove={remove} />
-                        ))
-                      : null}
-                    <Button onClick={() => push({ location: 'APPLE_MUSIC' })}>Add source</Button>
+                    {fields.map((name, i) => (
+                      <Source key={i} disabled={isSubmitting} i={i} name={name} onRemove={() => fields.remove(i)} />
+                    ))}
+                    <Button onClick={() => fields.push({ location: 'APPLE_MUSIC' })} palette="secondary" size="small">
+                      Add source
+                    </Button>
                   </Fragment>
                 )}
-              />
+              </FieldArray>
               <Button type="submit" disabled={isSubmitting}>
                 Submit
               </Button>
               {submitError && <Text color="vermilion">{submitError.message}</Text>}
-            </Form>
+            </form>
           )}
-        </Formik>
+        </Form>
       </StyledForm>
     );
   }
