@@ -4,6 +4,8 @@ export const vermilion = `#e25d36`;
 export const darkerVermilion = darken(0.2, vermilion);
 export const darkVermilion = darken(0.4, vermilion);
 
+export const yellow = '#f6f930';
+
 export const platinum = `#e6e6ea`;
 export const darkerPlatinum = darken(0.2, platinum);
 export const darkPlatinum = darken(0.4, platinum);
