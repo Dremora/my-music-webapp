@@ -24,7 +24,7 @@ const formats = [
   { id: 'OFT', label: 'Lossless (OptimFROG)' },
   { id: 'APE', label: 'Lossless (APE)' },
   { id: 'FLAC', label: 'Lossless (FLAC)' },
-  { id: 'Mixed', label: 'Mixed' }
+  { id: 'MIXED', label: 'Mixed' }
 ];
 
 export default ({ disabled, source, i, onRemove }) => (
