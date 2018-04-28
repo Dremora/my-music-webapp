@@ -8,6 +8,7 @@ import FormField from '../../components/FormField';
 import Button from '../../components/Button';
 
 import { Hr } from './styles';
+import { formatDiscs, parseDiscs } from './utils';
 
 const locations = [
   { id: 'APPLE_MUSIC', label: 'Apple Music' },
@@ -66,7 +67,9 @@ export default ({ disabled, name, onRemove }) => (
                 <Field name={`${name}.cueIssues`}>{({ input }) => <Input disabled={disabled} {...input} />}</Field>
               </FormField>
               <FormField label="Discs">
-                <Field name={`${name}.discs`}>{({ input }) => <Input disabled={disabled} {...input} />}</Field>
+                <Field format={formatDiscs} name={`${name}.discs`} parse={parseDiscs}>
+                  {({ input }) => <Input disabled={disabled} {...input} />}
+                </Field>
               </FormField>
               <FormField label="Download">
                 <Field name={`${name}.download`}>{({ input }) => <Input disabled={disabled} {...input} />}</Field>

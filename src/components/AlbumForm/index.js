@@ -11,6 +11,7 @@ import Source from '../Source';
 import Text from '../Text';
 
 import { Form as StyledForm } from './styles';
+import { formatYear, parseYear } from './utils';
 
 export default ({ data, error, isSubmitting, loading, submit, submitError }) => {
   const handleSubmit = async ({ sources, ...rest }, { reset }) => {
@@ -51,7 +52,9 @@ export default ({ data, error, isSubmitting, loading, submit, submitError }) => 
                 <Field name="artist">{({ input }) => <Input disabled={isSubmitting} {...input} />}</Field>
               </FormField>
               <FormField label="Year">
-                <Field name="year">{({ input }) => <Input disabled={isSubmitting} {...input} />}</Field>
+                <Field format={formatYear} name="year" parse={parseYear}>
+                  {({ input }) => <Input disabled={isSubmitting} {...input} />}
+                </Field>
               </FormField>
               <FormField label="Comments">
                 <Field name="comments">{({ input }) => <Input disabled={isSubmitting} multiline {...input} />}</Field>
