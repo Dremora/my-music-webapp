@@ -12,9 +12,13 @@
     "react-scripts": "1.1.4"
   },
   "dependencies": {
-    "apollo-boost": "0.1.4",
+    "apollo-cache-inmemory": "1.1.12",
+    "apollo-client": "2.2.8",
+    "apollo-link-context": "1.0.8",
+    "apollo-link-http": "1.5.4",
     "final-form": "^4.6.1",
     "final-form-arrays": "^1.0.4",
+    "final-form-calculate": "1.1.0",
     "graphql": "0.13.2",
     "graphql-tag": "2.8.0",
     "luxon": "1.0.0",

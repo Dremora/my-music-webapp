@@ -8,7 +8,16 @@ export default gql`
       title
       comments
       year
-      firstPlayed
+      firstPlayed {
+        ... on FirstPlayedTime {
+          timestamp
+        }
+        ... on FirstPlayedDate {
+          year
+          month
+          day
+        }
+      }
       sources {
         id
         accurateRip

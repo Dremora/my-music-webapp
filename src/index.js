@@ -5,19 +5,35 @@ import 'normalize.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { ApolloProvider } from 'react-apollo';
-import ApolloClient from 'apollo-boost';
+import { ApolloClient } from 'apollo-client';
+import { createHttpLink } from 'apollo-link-http';
+import { setContext } from 'apollo-link-context';
+import { InMemoryCache, IntrospectionFragmentMatcher } from 'apollo-cache-inmemory';
+import introspectionQueryResultData from './fragmentTypes.json';
 
 import Application from './routes/Application';
 
+const fragmentMatcher = new IntrospectionFragmentMatcher({
+  introspectionQueryResultData
+});
+
+const httpLink = createHttpLink({
+  uri: '/graphql'
+});
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : null
+    }
+  };
+});
+
 const client = new ApolloClient({
-  request: operation => {
-    const token = localStorage.getItem('token');
-    operation.setContext({
-      headers: {
-        authorization: token ? `Bearer ${token}` : null
-      }
-    });
-  }
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache({ fragmentMatcher })
 });
 
 ReactDOM.render(

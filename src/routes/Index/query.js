@@ -7,7 +7,16 @@ export default gql`
       artist
       title
       year
-      firstPlayed
+      firstPlayed {
+        ... on FirstPlayedTime {
+          timestamp
+        }
+        ... on FirstPlayedDate {
+          year
+          month
+          day
+        }
+      }
     }
   }
 `;

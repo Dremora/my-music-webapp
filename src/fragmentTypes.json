@@ -1,0 +1,11 @@
+{
+  "__schema": {
+    "types": [
+      {
+        "possibleTypes": [{ "name": "FirstPlayedDate" }, { "name": "FirstPlayedTime" }],
+        "name": "FirstPlayed",
+        "kind": "UNION"
+      }
+    ]
+  }
+}

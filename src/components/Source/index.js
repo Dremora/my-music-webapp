@@ -8,6 +8,7 @@ import FormField from '../../components/FormField';
 import Button from '../../components/Button';
 
 import { Hr } from './styles';
+import { parseMbid } from './utils';
 import { formatInteger, parseInteger } from '../utils';
 
 const locations = [
@@ -45,36 +46,46 @@ export default ({ disabled, name, onRemove }) => (
       </Field>
     </FormField>
     <FormField label="MBID">
-      <Field name={`${name}.mbid`}>{({ input }) => <Input disabled={disabled} {...input} />}</Field>
+      <Field name={`${name}.mbid`} parse={parseMbid}>
+        {({ input }) => <Input disabled={disabled} {...input} />}
+      </Field>
     </FormField>
     <FormField label="Comments">
-      <Field name={`${name}.comments`}>{({ input }) => <Input disabled={disabled} multiline {...input} />}</Field>
+      <Field name={`${name}.comments`} parse={null}>
+        {({ input }) => <Input disabled={disabled} multiline {...input} />}
+      </Field>
     </FormField>
     <Field name={`${name}.location`}>
       {({ input: { value: location } }) => (
         <Fragment>
           {location !== 'SPOTIFY' && (
             <FormField label="Tag issues">
-              <Field name={`${name}.tagIssues`}>{({ input }) => <Input disabled={disabled} {...input} />}</Field>
+              <Field name={`${name}.tagIssues`} parse={null}>
+                {({ input }) => <Input disabled={disabled} {...input} />}
+              </Field>
             </FormField>
           )}
           {location === 'FOOBAR2000' && (
             <Fragment>
               <FormField label="Accurate rip">
-                <Field name={`${name}.accurateRip`}>{({ input }) => <Input disabled={disabled} {...input} />}</Field>
+                <Field name={`${name}.accurateRip`} parse={null}>
+                  {({ input }) => <Input disabled={disabled} {...input} />}
+                </Field>
               </FormField>
               <FormField label="Cue issues">
-                <Field name={`${name}.cueIssues`}>{({ input }) => <Input disabled={disabled} {...input} />}</Field>
+                <Field name={`${name}.cueIssues`} parse={null}>
+                  {({ input }) => <Input disabled={disabled} {...input} />}
+                </Field>
               </FormField>
               <FormField label="Discs">
                 <Field format={formatInteger} name={`${name}.discs`} parse={parseInteger}>
                   {({ input }) => <Input disabled={disabled} {...input} />}
                 </Field>
               </FormField>
-              <FormField label="Download">
+              <FormField label="Download" parse={null}>
                 <Field name={`${name}.download`}>{({ input }) => <Input disabled={disabled} {...input} />}</Field>
               </FormField>
-              <FormField label="Edition">
+              <FormField label="Edition" parse={null}>
                 <Field name={`${name}.edition`}>{({ input }) => <Input disabled={disabled} {...input} />}</Field>
               </FormField>
               <FormField label="Format">
