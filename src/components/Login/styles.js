@@ -22,3 +22,12 @@ export const LoginLink = styled.div`
       cursor: auto;
     `};
 `;
+
+export const NewAlbumLink = styled.div`
+  margin-left: 20px;
+  cursor: pointer;
+
+  a {
+    text-decoration: none;
+  }
+`;

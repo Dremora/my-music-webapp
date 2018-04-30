@@ -1,13 +1,14 @@
 import React, { Fragment } from 'react';
 import { graphql } from 'react-apollo';
 import { compose, withHandlers, withStateHandlers } from 'recompose';
+import { Link } from 'react-router-dom';
 
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import Text from '../../components/Text';
 
 import LoginMutation from './mutation';
-import { Root, Spacer, LoginLink } from './styles';
+import { Root, Spacer, LoginLink, NewAlbumLink } from './styles';
 
 const enhance = compose(
   graphql(LoginMutation, {
@@ -82,11 +83,22 @@ const Login = ({
         </Button>
       </Fragment>
     ) : (
-      <LoginLink disabled={loading} onClick={isLoggedIn ? logout : showLogin}>
-        <Text color="lighterGrey" size="small">
-          {loading ? 'Loading…' : isLoggedIn ? 'Log out' : 'Login'}
-        </Text>
-      </LoginLink>
+      <Fragment>
+        <LoginLink disabled={loading} onClick={isLoggedIn ? logout : showLogin}>
+          <Text color="lighterGrey" size="small">
+            {loading ? 'Loading…' : isLoggedIn ? 'Log out' : 'Login'}
+          </Text>
+        </LoginLink>
+        {isLoggedIn && (
+          <NewAlbumLink>
+            <Link to="/albums/new">
+              <Text color="lighterGrey" size="small">
+                New album
+              </Text>
+            </Link>
+          </NewAlbumLink>
+        )}
+      </Fragment>
     )}
   </Root>
 );
