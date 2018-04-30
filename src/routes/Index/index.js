@@ -8,7 +8,11 @@ import FindAlbums from './query';
 import Album from '../../components/Album';
 import Search from '../../components/Search';
 
-export default () => (
+type Props = {|
+  isLoggedIn: boolean
+|};
+
+export default ({ isLoggedIn }: Props) => (
   <Value initial="">
     {({ value: searchText, setValue: setSearchText }) => (
       <Query skip={!searchText} query={FindAlbums} variables={{ searchText }}>
@@ -17,7 +21,7 @@ export default () => (
             <Search value={searchText} onChange={setSearchText} />
             <div>
               {!loading && !error && data.albums
-                ? data.albums.map(album => <Album key={album.id} album={album} />)
+                ? data.albums.map(album => <Album key={album.id} album={album} isLoggedIn={isLoggedIn} />)
                 : null}
             </div>
           </Fragment>

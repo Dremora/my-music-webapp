@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 import { platinum } from '../../styles/colors';
 
@@ -9,6 +9,15 @@ export const Anchor = styled(Link)`
   padding: 5px 10px;
   cursor: pointer;
   flex-wrap: wrap;
+
+  ${props =>
+    props.to
+      ? css`
+          cursor: pointer;
+        `
+      : css`
+          cursor: default;
+        `};
 
   &:hover {
     background-color: ${platinum};

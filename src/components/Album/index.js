@@ -8,10 +8,10 @@ import Text from '../Text';
 
 import { Anchor, Column1, Column2, Column3, FirstPlayed } from './styles';
 
-export default ({ album }) => {
+export default ({ album, isLoggedIn }) => {
   const firstPlayedFormatted = formatFirstPlayed(album.firstPlayed);
   return (
-    <Anchor to={`/albums/${album.id}`}>
+    <Anchor to={isLoggedIn && `/albums/${album.id}`}>
       <Column1>
         <Text color="lighterGrey" size="small">
           {album.year}
