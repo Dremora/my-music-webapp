@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Fragment } from 'react';
+import React from 'react';
 import { injectGlobal } from 'styled-components';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { compose, withStateHandlers } from 'recompose';
@@ -45,10 +45,10 @@ export default enhance(({ token, onLoggedIn, onLoggedOut }) => (
           <Switch>
             <Route exact path="/" render={() => <Index isLoggedIn={!!token} />} />
             {token && (
-              <Fragment>
+              <Switch>
                 <Route exact path="/albums/new" component={NewAlbum} />
                 <Route exact path="/albums/:id" component={Album} />
-              </Fragment>
+              </Switch>
             )}
           </Switch>
         </Section>
