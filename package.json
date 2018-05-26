@@ -12,8 +12,8 @@
     "react-scripts": "1.1.4"
   },
   "dependencies": {
-    "apollo-cache-inmemory": "1.2.0",
-    "apollo-client": "2.3.0",
+    "apollo-cache-inmemory": "1.2.1",
+    "apollo-client": "2.3.1",
     "apollo-link-context": "1.0.8",
     "apollo-link-http": "1.5.4",
     "final-form": "4.6.1",
