@@ -18,7 +18,7 @@ const fragmentMatcher = new IntrospectionFragmentMatcher({
 });
 
 const httpLink = createHttpLink({
-  uri: '/graphql'
+  uri: process.env.REACT_APP_API_URL || '/graphql'
 });
 
 const authLink = setContext((_, { headers }) => {

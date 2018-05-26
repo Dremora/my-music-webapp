@@ -4,7 +4,10 @@
   "private": true,
   "now": {
     "name": "my-music",
-    "alias": "my-music.dremora.com"
+    "alias": "my-music.dremora.com",
+    "env": {
+      "REACT_APP_API_URL": "https://my-music-api.dremora.com"
+    }
   },
   "devDependencies": {
     "eslint-plugin-import": "2.11.0",
