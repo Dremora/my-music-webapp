@@ -2,13 +2,6 @@
   "name": "webapp-react",
   "version": "0.1.0",
   "private": true,
-  "now": {
-    "name": "my-music",
-    "alias": "my-music.dremora.com",
-    "env": {
-      "REACT_APP_API_URL": "https://my-music-api.dremora.com"
-    }
-  },
   "devDependencies": {
     "eslint-plugin-import": "2.11.0",
     "flow-bin": "0.71.0",
@@ -45,7 +38,8 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "now-start": "serve -s build",
-    "deploy": "now && now alias",
+    "deploy":
+      "REACT_APP_API_URL=https://my-music-api.dremora.com yarn build && cp now.json build && now ./build && now alias",
     "flow": "flow"
   },
   "proxy": "http://localhost:4000"
