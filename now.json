@@ -1,9 +1,6 @@
 {
   "name": "my-music",
   "alias": "my-music.dremora.com",
-  "env": {
-    "REACT_APP_API_URL": "https://my-music-api.dremora.com"
-  },
   "static": {
     "directoryListing": false,
     "rewrites": [
