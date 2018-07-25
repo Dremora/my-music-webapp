@@ -38,8 +38,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "now-start": "serve -s build",
-    "deploy":
-      "REACT_APP_API_URL=https://my-music-api.dremora.com yarn build && cp now.json build && now ./build && now alias",
+    "deploy": "now && now alias",
     "flow": "flow"
   },
   "proxy": "http://localhost:4000"
