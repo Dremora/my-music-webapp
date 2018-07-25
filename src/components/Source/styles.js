@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-import { platinum } from '../../styles/colors';
+import { whiteSmoke } from '../../styles/colors';
 
 export const Hr = styled.hr`
-  margin: 20px -20px;
+  margin: 20px 0;
   border: none;
-  border-top: solid 2px ${platinum};
+  border-top: solid 2px ${whiteSmoke};
 `;
