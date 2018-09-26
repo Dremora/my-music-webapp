@@ -13,7 +13,7 @@
     "apollo-link-context": "1.0.9",
     "apollo-link-http": "1.5.4",
     "final-form": "4.6.1",
-    "final-form-arrays": "1.0.4",
+    "final-form-arrays": "1.1.0",
     "final-form-calculate": "1.2.1",
     "graphql": "14.0.2",
     "graphql-tag": "2.9.2",
