@@ -2927,9 +2927,9 @@ final-form-arrays@1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/final-form-arrays/-/final-form-arrays-1.0.4.tgz#74330cb4d64ce07bb1c4a9084d0b65afdac6bf72"
 
-final-form-calculate@1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/final-form-calculate/-/final-form-calculate-1.1.0.tgz#60a580106574ee3d73a44e398a39cd072ce089de"
+final-form-calculate@1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/final-form-calculate/-/final-form-calculate-1.2.1.tgz#906f09e2d3410b3338a94b596062848d9b7c7d03"
 
 final-form@4.6.1:
   version "4.6.1"
