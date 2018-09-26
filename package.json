@@ -29,7 +29,7 @@
     "react-redux": "5.0.7",
     "react-router-dom": "4.2.2",
     "recompose": "0.30.0",
-    "serve": "6.5.6",
+    "serve": "10.0.2",
     "styled-components": "3.2.6"
   },
   "scripts": {
