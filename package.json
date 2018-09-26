@@ -23,7 +23,7 @@
     "react": "16.5.2",
     "react-apollo": "2.1.11",
     "react-dom": "16.5.2",
-    "react-final-form": "3.4.0",
+    "react-final-form": "3.6.5",
     "react-final-form-arrays": "1.0.6",
     "react-powerplug": "0.1.6",
     "react-redux": "5.0.7",
