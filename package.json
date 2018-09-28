@@ -21,7 +21,7 @@
     "normalize.css": "8.0.0",
     "polished": "2.1.1",
     "react": "16.5.2",
-    "react-apollo": "2.1.11",
+    "react-apollo": "2.2.2",
     "react-dom": "16.5.2",
     "react-final-form": "3.6.5",
     "react-final-form-arrays": "1.0.6",
