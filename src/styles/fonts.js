@@ -5,6 +5,7 @@ export const common = css`
   font-weight: 400;
   font-style: normal;
   line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 `;
 
 export const h1 = css`
