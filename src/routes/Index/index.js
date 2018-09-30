@@ -20,7 +20,7 @@ export default ({ isLoggedIn }: Props) => (
           <Fragment>
             <Search value={searchText} onChange={setSearchText} />
             <div>
-              {!loading && !error && data.albums
+              {!loading && !error && data && data.albums
                 ? data.albums.map(album => <Album key={album.id} album={album} isLoggedIn={isLoggedIn} />)
                 : null}
             </div>
