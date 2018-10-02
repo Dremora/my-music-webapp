@@ -6151,9 +6151,9 @@ react-final-form-arrays@1.0.6:
   dependencies:
     react-lifecycles-compat "^3.0.4"
 
-react-final-form@3.6.5:
-  version "3.6.5"
-  resolved "https://registry.yarnpkg.com/react-final-form/-/react-final-form-3.6.5.tgz#191324bc686b20e9e49c929a79949f34b38ba8e5"
+react-final-form@3.6.6:
+  version "3.6.6"
+  resolved "https://registry.yarnpkg.com/react-final-form/-/react-final-form-3.6.6.tgz#a2aa5c36d3bc4bfcbf79d80ab62a9370bb9512c0"
 
 react-is@^16.3.1:
   version "16.3.2"
