@@ -4,7 +4,7 @@
   "private": true,
   "devDependencies": {
     "eslint-plugin-import": "2.14.0",
-    "flow-bin": "0.82.0",
+    "flow-bin": "0.83.0",
     "react-scripts": "2.0.5"
   },
   "dependencies": {
