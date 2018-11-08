@@ -1,7 +1,7 @@
 {
+  "version": 2,
   "name": "my-music",
   "alias": "my-music.dremora.com",
-  "type": "static",
   "static": {
     "directoryListing": false,
     "rewrites": [
@@ -10,5 +10,6 @@
         "destination": "/index.html"
       }
     ]
-  }
+  },
+  "builds": [{ "src": "package.json", "use": "@now/static-build" }]
 }
