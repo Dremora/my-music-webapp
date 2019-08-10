@@ -6,7 +6,7 @@ interface Props {
   children: React.ReactNode;
   color: string;
   size?: 'small' | 'base' | 'medium' | 'large';
-  weight?: 'normal' | 'semiBold' | 'bold'
+  weight?: 'normal' | 'semiBold' | 'bold';
 }
 
 const Text = ({ children, color, size = 'base', weight = 'normal' }: Props) => (

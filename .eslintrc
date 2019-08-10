@@ -1,12 +1,12 @@
 {
-  "extends": "react-app",
+  "extends": ["react-app", "plugin:prettier/recommended", "prettier/react", "prettier/@typescript-eslint"],
   "parser": "@typescript-eslint/parser",
   "settings": {
     "import/resolver": {
       "typescript": {}
     }
   },
-  "plugins": ["import"],
+  "plugins": ["prettier", "import"],
   "rules": {
     "import/no-unresolved": ["error", { "commonjs": true, "caseSensitive": true }]
   }

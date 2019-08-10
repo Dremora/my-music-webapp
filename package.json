@@ -10,8 +10,11 @@
     "@types/react-dom": "16.8.5",
     "@types/styled-components": "4.1.18",
     "@typescript-eslint/parser": "1.13.0",
+    "eslint-config-prettier": "6.0.0",
     "eslint-import-resolver-typescript": "1.1.1",
     "eslint-plugin-import": "2.18.2",
+    "eslint-plugin-prettier": "3.1.0",
+    "prettier": "1.18.2",
     "react-scripts": "3.1.0",
     "typescript": "3.5.3"
   },
@@ -45,6 +48,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
+    "lint": "eslint src --ext js,ts,tsx",
+    "lint:fix": "eslint src --ext js,ts,tsx --fix",
     "now-start": "serve -s build",
     "deploy": "now && now alias"
   },

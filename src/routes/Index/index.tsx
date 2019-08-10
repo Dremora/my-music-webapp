@@ -7,8 +7,8 @@ import Album from '../../components/Album';
 import Search from '../../components/Search';
 
 interface Props {
-  isLoggedIn: boolean
-};
+  isLoggedIn: boolean;
+}
 
 export default ({ isLoggedIn }: Props) => (
   <Value initial="">

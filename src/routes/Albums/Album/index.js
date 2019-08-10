@@ -7,7 +7,11 @@ import AlbumForm from '../../../components/AlbumForm';
 import GetAlbum from './query';
 import UpdateAlbum from './mutation';
 
-export default ({ match: { params: { id } } }) => (
+export default ({
+  match: {
+    params: { id }
+  }
+}) => (
   <Query variables={{ id }} query={GetAlbum}>
     {({ data, error, loading }) => (
       <Mutation mutation={UpdateAlbum}>

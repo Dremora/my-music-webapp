@@ -13,7 +13,7 @@ interface Props {
     year: string;
     title: string;
     firstPlayed: FirstPlayedType;
-  }
+  };
   isLoggedIn: boolean;
 }
 

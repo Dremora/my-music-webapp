@@ -7,7 +7,7 @@ import Text from '../Text';
 import { RadioGroup, RadioGroupLabel, DateInputContainer, YearInputField, MonthDayField } from './styles';
 import { formatInteger, parseInteger } from '../utils';
 
-interface Props {};
+interface Props {}
 
 export default (_: Props) => (
   <RadioGroup>

@@ -11,7 +11,7 @@ const weights = {
 
 interface Props {
   size: 'small' | 'base' | 'medium' | 'large';
-  weight: 'normal' | 'semiBold' | 'bold'
+  weight: 'normal' | 'semiBold' | 'bold';
 }
 
 export default styled.span<Props>`

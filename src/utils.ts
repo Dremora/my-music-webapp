@@ -1,13 +1,13 @@
 import { DateTime } from 'luxon';
 
 interface Date {
-  year: number,
-  month?: number,
-  day?: number
+  year: number;
+  month?: number;
+  day?: number;
 }
 
 interface Timestamp {
-  timestamp: number
+  timestamp: number;
 }
 
 export type FirstPlayed = Date | Timestamp | null;

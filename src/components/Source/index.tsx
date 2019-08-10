@@ -85,7 +85,7 @@ export default ({ disabled, name, onRemove }) => (
               <FormField label="Download">
                 <Field name={`${name}.download`}>{({ input }) => <Input disabled={disabled} {...input} />}</Field>
               </FormField>
-              <FormField label="Edition" >
+              <FormField label="Edition">
                 <Field name={`${name}.edition`}>{({ input }) => <Input disabled={disabled} {...input} />}</Field>
               </FormField>
               <FormField label="Format">
