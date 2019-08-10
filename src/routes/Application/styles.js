@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import { h1 } from '../../styles/fonts';
 import { whiteSmoke, vermilion } from '../../styles/colors';
 
@@ -34,7 +34,7 @@ export const Section = styled.div`
   width: 100%;
 `;
 
-export const global = css`
+export const GlobalStyles = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;

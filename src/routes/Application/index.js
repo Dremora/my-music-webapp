@@ -1,5 +1,4 @@
 import React from 'react';
-import { injectGlobal } from 'styled-components';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { compose, withStateHandlers } from 'recompose';
 
@@ -8,10 +7,8 @@ import NewAlbum from '../Albums/NewAlbum';
 import Album from '../Albums/Album';
 import Login from '../../components/Login';
 
-import { Page, Section, Header, H1, global } from './styles';
+import { Page, Section, Header, H1, GlobalStyles } from './styles';
 import logo from './logo.svg';
-
-injectGlobal`${global}`;
 
 const enhance = compose(
   withStateHandlers(
@@ -31,6 +28,7 @@ const enhance = compose(
 
 export default enhance(({ token, onLoggedIn, onLoggedOut }) => (
   <Router>
+    <GlobalStyles />
     <Page>
       <div>
         <Section>
