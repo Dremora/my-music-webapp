@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { graphql } from 'react-apollo';
+import { graphql } from '@apollo/react-hoc';
 import { compose, withHandlers, withStateHandlers } from 'recompose';
 import { Link } from 'react-router-dom';
 

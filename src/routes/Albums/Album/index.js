@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Query, Mutation } from 'react-apollo';
+import { Query, Mutation } from '@apollo/react-components';
 
 import AlbumForm from '../../../components/AlbumForm';
 

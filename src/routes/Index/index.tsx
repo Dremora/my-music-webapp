@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Query } from 'react-apollo';
+import { Query } from '@apollo/react-components';
 import { Value } from 'react-powerplug';
 
 import FindAlbums from './query';

@@ -19,6 +19,9 @@
     "typescript": "3.5.3"
   },
   "dependencies": {
+    "@apollo/react-components": "3.0.0",
+    "@apollo/react-hoc": "3.0.0",
+    "@apollo/react-hooks": "3.0.0",
     "apollo-cache-inmemory": "1.6.2",
     "apollo-client": "2.6.3",
     "apollo-link-context": "1.0.18",
@@ -32,7 +35,6 @@
     "normalize.css": "8.0.1",
     "polished": "3.4.1",
     "react": "16.9.0",
-    "react-apollo": "3.0.0",
     "react-dom": "16.9.0",
     "react-final-form": "3.6.7",
     "react-final-form-arrays": "1.1.0",
