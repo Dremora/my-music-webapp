@@ -4299,10 +4299,10 @@ final-form-arrays@1.2.0:
   resolved "https://registry.yarnpkg.com/final-form-arrays/-/final-form-arrays-1.2.0.tgz#8b7ff78a5bb917d1b3bd40ba02e67710b0a23d08"
   integrity sha512-7wC38TOHO4LBcKW5Cp14CXefT985nOsuLt+cibiYVTRWiiYmxytxkJpu43wy8gMpDrJPinw3LXRW2AJdJx3eyw==
 
-final-form-calculate@1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/final-form-calculate/-/final-form-calculate-1.2.1.tgz#906f09e2d3410b3338a94b596062848d9b7c7d03"
-  integrity sha512-uAmVfJ68Qe8HEs7fzbe+u2UJ89ZFAEa9LIfDKVNm4KDeSXGvSe/e2XODRjayvm34X36SmkP8TJMmsRd6OW8oRw==
+final-form-calculate@1.3.1:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/final-form-calculate/-/final-form-calculate-1.3.1.tgz#463089114245afa97fea94712bfbfca11da8413e"
+  integrity sha512-vZCvQ08w9FIoHLkZMcJSIXQr5TAVLxHfLD0thmm50zcNyJESruqhgvurSjWYPLoJGnIgbIb94Rumdg5ZXX5WiQ==
 
 final-form@4.18.4:
   version "4.18.4"
