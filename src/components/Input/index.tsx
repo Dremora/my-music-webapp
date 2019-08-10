@@ -2,13 +2,16 @@ import React from 'react';
 import { Input as StyledInput, Textarea } from './styles';
 
 interface Props {
+  autoFocus?: boolean;
   disabled?: boolean;
-  value: string;
   multiline?: boolean;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   placeholder?: string;
+  type?: 'text' | 'password';
+  value: string;
 }
 
-const Input = ({ value, multiline = false, ...props }: Props) =>
-  multiline ? <Textarea value={value || ''} {...props} /> : <StyledInput type="text" value={value || ''} {...props} />;
+const Input = ({ value, multiline = false, type = 'text', ...props }: Props) =>
+  multiline ? <Textarea value={value || ''} {...props} /> : <StyledInput type={type} value={value || ''} {...props} />;
 
 export default Input;

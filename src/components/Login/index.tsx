@@ -29,9 +29,15 @@ const Login = ({ isLoggedIn, onLoggedIn, onLoggedOut }) => {
   };
 
   const login = async () => {
+    const result = await loginRequest({ variables: { password: passwordInput } });
+    if (!result) {
+      setPasswordInput('');
+      setWrongPassword(true);
+      return;
+    }
     const {
       data: { login: loggedIn }
-    } = await loginRequest({ variables: { password: passwordInput } });
+    } = result;
     setPasswordInput('');
     setShowingLogin(!loggedIn);
     setWrongPassword(!loggedIn);
@@ -43,7 +49,7 @@ const Login = ({ isLoggedIn, onLoggedIn, onLoggedOut }) => {
       {showingLogin ? (
         <>
           <Input
-            autofocus
+            autoFocus
             disabled={loading}
             onChange={setPassword}
             placeholder={wrongPassword ? 'Sorry, try again' : 'Hey Dremora, please confirm your password'}
