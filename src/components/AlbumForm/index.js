@@ -46,7 +46,7 @@ export default ({ data, error, isSubmitting, loading, submit, submitError }) => 
         })()
       }
     });
-    reset();
+    setTimeout(reset, 0);
   };
 
   if (loading) {

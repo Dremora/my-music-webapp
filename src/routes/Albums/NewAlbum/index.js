@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mutation } from '@apollo/react-components';
+import { useMutation } from '@apollo/react-hooks';
 
 import AlbumForm from '../../../components/AlbumForm';
 
@@ -12,10 +12,9 @@ const emptyAlbum = () => ({
   }
 });
 
-export default ({ history }) => (
-  <Mutation mutation={UpdateAlbum} onCompleted={({ createAlbum: { id } }) => history.replace(`/albums/${id}`)}>
-    {(submit, { loading, error }) => (
-      <AlbumForm data={emptyAlbum()} isSubmitting={loading} submit={submit} submitError={error} />
-    )}
-  </Mutation>
-);
+export default ({ history }) => {
+  const [submit, { loading, error }] = useMutation(UpdateAlbum, {
+    onCompleted: ({ createAlbum: { id } }) => history.replace(`/albums/${id}`)
+  });
+  return <AlbumForm data={emptyAlbum()} isSubmitting={loading} submit={submit} submitError={error} />;
+};
