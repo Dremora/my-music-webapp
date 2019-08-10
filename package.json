@@ -5,7 +5,7 @@
   "devDependencies": {
     "eslint-plugin-import": "2.18.2",
     "flow-bin": "0.105.0",
-    "react-scripts": "2.1.1"
+    "react-scripts": "3.1.0"
   },
   "dependencies": {
     "apollo-cache-inmemory": "1.6.2",
