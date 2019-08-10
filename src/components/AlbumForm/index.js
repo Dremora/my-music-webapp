@@ -97,7 +97,7 @@ export default ({ data, error, isSubmitting, loading, submit, submitError }) => 
                 {({ fields }) => (
                   <Fragment>
                     {fields.map((name, i) => (
-                      <Source key={i} disabled={isSubmitting} i={i} name={name} onRemove={() => fields.remove(i)} />
+                      <Source key={i} disabled={isSubmitting} name={name} onRemove={() => fields.remove(i)} />
                     ))}
                     <Button onClick={() => fields.push({ location: 'APPLE_MUSIC' })} palette="secondary" size="small">
                       Add source

@@ -1,12 +1,23 @@
 import React from 'react';
 
-import { formatFirstPlayed } from '../../utils';
+import { formatFirstPlayed, FirstPlayed as FirstPlayedType } from '../../utils';
 
 import Text from '../Text';
 
 import { Anchor, Column1, Column2, Column3, FirstPlayed } from './styles';
 
-export default ({ album, isLoggedIn }) => {
+interface Props {
+  album: {
+    id: string;
+    artist: string;
+    year: string;
+    title: string;
+    firstPlayed: FirstPlayedType;
+  }
+  isLoggedIn: boolean;
+}
+
+export default ({ album, isLoggedIn }: Props) => {
   const firstPlayedFormatted = formatFirstPlayed(album.firstPlayed);
   return (
     <Anchor to={isLoggedIn && `/albums/${album.id}`}>
