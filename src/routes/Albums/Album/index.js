@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 
 import { Query, Mutation } from 'react-apollo';

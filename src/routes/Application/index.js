@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import { injectGlobal } from 'styled-components';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';

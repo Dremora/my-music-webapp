@@ -1,5 +1,3 @@
-// @flow
-
 import React, { Fragment } from 'react';
 import { Query } from 'react-apollo';
 import { Value } from 'react-powerplug';
@@ -8,13 +6,13 @@ import FindAlbums from './query';
 import Album from '../../components/Album';
 import Search from '../../components/Search';
 
-type Props = {|
+interface Props {
   isLoggedIn: boolean
-|};
+};
 
 export default ({ isLoggedIn }: Props) => (
   <Value initial="">
-    {({ value: searchText, setValue: setSearchText }) => (
+    {({ value: searchText, set: setSearchText }) => (
       <Query skip={!searchText} query={FindAlbums} variables={{ searchText }}>
         {({ data, error, loading }) => (
           <Fragment>

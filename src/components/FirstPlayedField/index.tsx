@@ -1,5 +1,3 @@
-// @flow
-
 import React, { Fragment } from 'react';
 import { Field } from 'react-final-form';
 
@@ -9,7 +7,7 @@ import Text from '../Text';
 import { RadioGroup, RadioGroupLabel, DateInputContainer, YearInputField, MonthDayField } from './styles';
 import { formatInteger, parseInteger } from '../utils';
 
-type Props = {||};
+interface Props {};
 
 export default (_: Props) => (
   <RadioGroup>

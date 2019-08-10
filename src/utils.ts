@@ -1,19 +1,21 @@
-// @flow
-
 import { DateTime } from 'luxon';
 
-type Date = {|
+interface Date {
   year: number,
   month?: number,
   day?: number
-|};
+}
 
-type Timestamp = {| timestamp: number |};
+interface Timestamp {
+  timestamp: number
+}
 
-export function formatFirstPlayed(val: Date | Timestamp | null): string {
+type FirstPlayed = Date | Timestamp | null;
+
+export function formatFirstPlayed(val: FirstPlayed): string {
   if (!val) {
     return '';
-  } else if (val.timestamp) {
+  } else if ('timestamp' in val) {
     return DateTime.fromMillis(val.timestamp, { zone: 'utc' }).toFormat('d MMM yyyy HH:mm');
   } else {
     if (val.day) {
