@@ -3,7 +3,13 @@ import styled, { css } from 'styled-components';
 import { vermilion, darkPlatinum, darkerPlatinum, yellow, white } from '../../styles/colors';
 import { base, medium } from '../../styles/fonts';
 
-export default styled.button`
+interface Props {
+  size: 'medium' | 'small';
+  palette: 'primary' | 'secondary';
+  full?: boolean;
+}
+
+export default styled.button<Props>`
   border: none;
   display: block;
   font-weight: 700;

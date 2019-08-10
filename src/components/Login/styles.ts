@@ -11,7 +11,11 @@ export const Spacer = styled.div`
   width: 10px;
 `;
 
-export const LoginLink = styled.div`
+interface LoginLinkProps {
+  disabled?: boolean;
+}
+
+export const LoginLink = styled.div<LoginLinkProps>`
   margin-left: 62px;
   cursor: pointer;
 

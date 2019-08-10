@@ -9,7 +9,12 @@ const weights = {
   bold: 700
 };
 
-export default styled.span`
+interface Props {
+  size: 'small' | 'base' | 'medium' | 'large';
+  weight: 'normal' | 'semiBold' | 'bold'
+}
+
+export default styled.span<Props>`
   ${props => props.size === 'small' && small};
   ${props => props.size === 'base' && base};
   ${props => props.size === 'medium' && medium};
