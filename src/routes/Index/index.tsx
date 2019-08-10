@@ -1,6 +1,5 @@
-import React, { Fragment } from 'react';
-import { Query } from '@apollo/react-components';
-import { Value } from 'react-powerplug';
+import React, { useState } from 'react';
+import { useQuery } from '@apollo/react-hooks';
 
 import FindAlbums from './query';
 import Album from '../../components/Album';
@@ -10,21 +9,21 @@ interface Props {
   isLoggedIn: boolean;
 }
 
-export default ({ isLoggedIn }: Props) => (
-  <Value initial="">
-    {({ value: searchText, set: setSearchText }) => (
-      <Query skip={!searchText} query={FindAlbums} variables={{ searchText }}>
-        {({ data, error, loading }) => (
-          <Fragment>
-            <Search value={searchText} onChange={setSearchText} />
-            <div>
-              {!loading && !error && data && data.albums
-                ? data.albums.map(album => <Album key={album.id} album={album} isLoggedIn={isLoggedIn} />)
-                : null}
-            </div>
-          </Fragment>
-        )}
-      </Query>
-    )}
-  </Value>
-);
+export default ({ isLoggedIn }: Props) => {
+  const [searchText, setSearchText] = useState('');
+  const { data, error, loading } = useQuery(FindAlbums, {
+    skip: !searchText,
+    variables: { searchText }
+  });
+
+  return (
+    <>
+      <Search value={searchText} onChange={setSearchText} />
+      <div>
+        {!loading && !error && data && data.albums
+          ? data.albums.map(album => <Album key={album.id} album={album} isLoggedIn={isLoggedIn} />)
+          : null}
+      </div>
+    </>
+  );
+};
