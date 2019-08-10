@@ -19,7 +19,6 @@
     "typescript": "3.5.3"
   },
   "dependencies": {
-    "@apollo/react-components": "3.0.0",
     "@apollo/react-hooks": "3.0.0",
     "apollo-cache-inmemory": "1.6.2",
     "apollo-client": "2.6.3",
