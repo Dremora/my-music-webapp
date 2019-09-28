@@ -4,6 +4,7 @@
   "alias": "my-music.dremora.com",
   "builds": [{ "src": "package.json", "use": "@now/static-build", "config": { "distDir": "build" } }],
   "routes": [
+    { "src": "^/graphql(.*)", "dest": "https://my-music-api.dremora.com$1" },
     { "src": "^/static/(.*)", "dest": "/static/$1" },
     { "src": "^/favicon.ico", "dest": "/favicon.ico" },
     { "src": "^/asset-manifest.json", "dest": "/asset-manifest.json" },
@@ -14,7 +15,7 @@
   ],
   "build": {
     "env": {
-      "REACT_APP_API_URL": "https://my-music-api.dremora.com"
+      "REACT_APP_API_URL": "/graphql"
     }
   }
 }
