@@ -8437,10 +8437,13 @@ react-final-form-arrays@1.1.0:
   dependencies:
     react-lifecycles-compat "^3.0.4"
 
-react-final-form@3.6.7:
-  version "3.6.7"
-  resolved "https://registry.yarnpkg.com/react-final-form/-/react-final-form-3.6.7.tgz#c4d2e01e04674201b850cdd05ed5b67ff5ea06c5"
-  integrity sha512-/m7JBwA5FaGlSo2ZSFhzQYfPKfT18uirIbJrojWgb9GLoYU2wEOq9yM+vlugqTPD4Ozq+TFJDxWr1jzgASN0fA==
+react-final-form@6.3.1:
+  version "6.3.1"
+  resolved "https://registry.yarnpkg.com/react-final-form/-/react-final-form-6.3.1.tgz#d4b72a81892b2ebc46ea053d6b11b361d063ddf8"
+  integrity sha512-UzpAVBLnXRr2GnTP/Z3wjxlFZnfiOnWKNYW2ViK5+6Res0Ehp6vMkBLfaWaoHxSXNCUJtnItM23okAzBINSelg==
+  dependencies:
+    "@babel/runtime" "^7.4.5"
+    ts-essentials "^3.0.2"
 
 react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6:
   version "16.9.0"
@@ -9899,6 +9902,11 @@ trim-right@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/trim-right/-/trim-right-1.0.1.tgz#cb2e1203067e0c8de1f614094b9fe45704ea6003"
   integrity sha1-yy4SAwZ+DI3h9hQJS5/kVwTqYAM=
+
+ts-essentials@^3.0.2:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/ts-essentials/-/ts-essentials-3.0.4.tgz#e783fc31ddce38e19429d2e7171d1c42654f3715"
+  integrity sha512-lVxvv4CzJURUagjsE3D2PwMK3yVZw0eGXWSlvXVI/cY5vICt5yQ/Cx9Row5fKRcy/rXXz1wzmmVHQtjJoL+lvg==
 
 ts-invariant@^0.4.0, ts-invariant@^0.4.4:
   version "0.4.4"
