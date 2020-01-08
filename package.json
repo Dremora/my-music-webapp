@@ -51,6 +51,9 @@
     "now-start": "serve -s build",
     "deploy": "now && now alias"
   },
+  "engines": {
+    "node": "12.x"
+  },
   "proxy": "http://localhost:4000",
   "browserslist": {
     "production": [
