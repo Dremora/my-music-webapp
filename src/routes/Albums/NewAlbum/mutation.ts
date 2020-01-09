@@ -1,13 +1,13 @@
 import gql from 'graphql-tag';
 
 export default gql`
-  mutation createAlbum(
+  mutation CreateAlbum(
     $title: String!
     $artist: String!
     $comments: String
     $year: Int
     $firstPlayed: FirstPlayedInput
-    $sources: [SourceInput]!
+    $sources: [NewSourceInput!]!
   ) {
     createAlbum(
       title: $title

@@ -1,14 +1,14 @@
 import gql from 'graphql-tag';
 
 export default gql`
-  mutation updateAlbum(
-    $id: String!
+  mutation UpdateAlbum(
+    $id: BinaryId!
     $title: String!
     $artist: String!
     $comments: String
     $year: Int
     $firstPlayed: FirstPlayedInput
-    $sources: [SourceInput]!
+    $sources: [SourceInput!]!
   ) {
     updateAlbum(
       id: $id

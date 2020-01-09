@@ -10,6 +10,7 @@
     "@types/react-dom": "16.9.0",
     "@types/styled-components": "4.1.18",
     "@typescript-eslint/parser": "2.3.0",
+    "apollo": "2.21.2",
     "eslint-config-prettier": "6.9.0",
     "eslint-import-resolver-typescript": "1.1.1",
     "eslint-plugin-import": "2.18.2",
@@ -27,7 +28,7 @@
     "final-form": "4.18.4",
     "final-form-arrays": "3.0.1",
     "final-form-calculate": "1.3.1",
-    "graphql": "14.5.6",
+    "graphql": "14.5.8",
     "graphql-tag": "2.10.1",
     "luxon": "1.21.3",
     "normalize.css": "8.0.1",
@@ -48,6 +49,7 @@
     "lint": "eslint src --ext js,ts,tsx",
     "lint:fix": "eslint src --ext js,ts,tsx --fix",
     "now-start": "serve -s build",
+    "generate-typescript-graphql-types": "apollo client:codegen --useReadOnlyTypes --globalTypesFile=src/types/graphql.ts --target=typescript types && yarn prettier --write src/**/types/*.ts",
     "deploy": "now && now alias"
   },
   "engines": {
