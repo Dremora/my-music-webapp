@@ -10,23 +10,26 @@ import Button from '../../components/Button';
 import { Hr } from './styles';
 import { parseMbid } from './utils';
 import { formatInteger, parseInteger } from '../utils';
+import { Location, Format } from '../../types/graphql';
 
-const locations = [
-  { id: 'APPLE_MUSIC', label: 'Apple Music' },
-  { id: 'GOOGLE_MUSIC', label: 'Google Music' },
-  { id: 'SPOTIFY', label: 'Spotify' },
-  { id: 'FOOBAR2000', label: 'foobar2000' }
+const locations: { id: Location; label: string }[] = [
+  { id: Location.APPLE_MUSIC, label: 'Apple Music' },
+  { id: Location.GOOGLE_MUSIC, label: 'Google Music' },
+  { id: Location.SPOTIFY, label: 'Spotify' },
+  { id: Location.FOOBAR2000, label: 'foobar2000' }
 ];
 
-const formats = [
-  { id: 'MP3', label: 'Lossy (MP3)' },
-  { id: 'MPC', label: 'Lossy (MPC)' },
-  { id: 'WMA', label: 'Lossy (WMA)' },
-  { id: 'TAK', label: 'Lossless (TAK)' },
-  { id: 'OFT', label: 'Lossless (OptimFROG)' },
-  { id: 'APE', label: 'Lossless (APE)' },
-  { id: 'FLAC', label: 'Lossless (FLAC)' },
-  { id: 'MIXED', label: 'Mixed' }
+const loc: Location = Location.SPOTIFY;
+
+const formats: { id: Format; label: string }[] = [
+  { id: Format.MP3, label: 'Lossy (MP3)' },
+  { id: Format.MPC, label: 'Lossy (MPC)' },
+  { id: Format.WMA, label: 'Lossy (WMA)' },
+  { id: Format.TAK, label: 'Lossless (TAK)' },
+  { id: Format.OFT, label: 'Lossless (OptimFROG)' },
+  { id: Format.APE, label: 'Lossless (APE)' },
+  { id: Format.FLAC, label: 'Lossless (FLAC)' },
+  { id: Format.MIXED, label: 'Mixed' }
 ];
 
 export default ({ disabled, name, onRemove }) => (
