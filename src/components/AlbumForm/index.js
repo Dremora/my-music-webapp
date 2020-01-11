@@ -30,7 +30,7 @@ const firstPlayedDecorator = createDecorator({
   }
 });
 
-export default ({ data, error, isSubmitting, loading, submit, submitError }) => {
+export default ({ data, error, isNew, isSubmitting, loading, submit, submitError }) => {
   const handleSubmit = async ({ sources, firstPlayedMode, ...rest }, { reset }) => {
     await submit({
       variables: {
@@ -76,7 +76,7 @@ export default ({ data, error, isSubmitting, loading, submit, submitError }) => 
         {({ handleSubmit }) => (
           <StyledForm onSubmit={handleSubmit}>
             <Text color="grey" weight="bold" size="large">
-              Edit album
+              {isNew ? 'Create album' : 'Edit album'}
             </Text>
             <FormField label="Title">
               <Field name="title">{({ input }) => <Input disabled={isSubmitting} {...input} />}</Field>

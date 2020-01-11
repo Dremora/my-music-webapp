@@ -23,5 +23,5 @@ export default ({ history }) => {
   const [submit, { loading, error }] = useMutation(UpdateAlbum, {
     onCompleted: ({ createAlbum: { id } }) => history.replace(`/albums/${id}`)
   });
-  return <AlbumForm data={emptyAlbum()} isSubmitting={loading} submit={submit} submitError={error} />;
+  return <AlbumForm data={emptyAlbum()} isNew isSubmitting={loading} submit={submit} submitError={error} />;
 };
