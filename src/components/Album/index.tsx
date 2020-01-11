@@ -27,7 +27,7 @@ export default ({ album, isLoggedIn }: Props) => {
         </Text>
       </Column1>
       <Column2>
-        <Text color="grey" size="large" weight="semiBold">
+        <Text color="grey" size="large" weight="bold">
           {album.title}
         </Text>
 

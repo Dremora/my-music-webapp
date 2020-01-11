@@ -36,13 +36,13 @@ const Years = ({ data }: Props) => {
               transition={{ ease: 'easeOut', duration: 0.1 }}
               exit={{ opacity: 0 }}
             >
-              <Text color="grey" weight="semiBold">
+              <Text color="grey" weight="bold">
                 {selectedYear}
               </Text>
             </motion.div>
           ) : (
             <div key="year_popup_invisible" ref={layerProps.ref} style={{ visibility: 'hidden', ...layerProps.style }}>
-              <Text color="grey" weight="semiBold">
+              <Text color="grey" weight="bold">
                 {selectedYear}
               </Text>
             </div>

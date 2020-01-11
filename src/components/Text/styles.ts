@@ -5,13 +5,12 @@ import { small, base, medium, large } from '../../styles/fonts';
 
 const weights = {
   normal: 400,
-  semiBold: 600,
   bold: 700
 };
 
 interface Props {
   size: 'small' | 'base' | 'medium' | 'large';
-  weight: 'normal' | 'semiBold' | 'bold';
+  weight: 'normal' | 'bold';
 }
 
 export default styled.span<Props>`
