@@ -1,4 +1,4 @@
-import React, { Fragment, memo, useCallback } from 'react';
+import React, { memo, useCallback } from 'react';
 
 import { Field } from 'react-final-form';
 
@@ -41,7 +41,7 @@ export default memo(({ disabled, index, name, onRemove }: Props) => {
   const remove = useCallback(() => onRemove(index), [index, onRemove]);
 
   return (
-    <Fragment>
+    <>
       <Hr />
       <FormField label="Location">
         <Field name={`${name}.location`}>
@@ -68,7 +68,7 @@ export default memo(({ disabled, index, name, onRemove }: Props) => {
       </FormField>
       <Field name={`${name}.location`}>
         {({ input: { value: location } }) => (
-          <Fragment>
+          <>
             {location !== 'SPOTIFY' && (
               <FormField label="Tag issues">
                 <Field name={`${name}.tagIssues`} parse={parseOptionalString}>
@@ -77,7 +77,7 @@ export default memo(({ disabled, index, name, onRemove }: Props) => {
               </FormField>
             )}
             {location === 'FOOBAR2000' && (
-              <Fragment>
+              <>
                 <FormField label="Accurate rip">
                   <Field name={`${name}.accurateRip`} parse={parseOptionalString}>
                     {({ input }) => <Input disabled={disabled} {...input} />}
@@ -117,14 +117,14 @@ export default memo(({ disabled, index, name, onRemove }: Props) => {
                     )}
                   />
                 </FormField>
-              </Fragment>
+              </>
             )}
-          </Fragment>
+          </>
         )}
       </Field>
       <div>
         <Button onClick={remove}>x</Button>
       </div>
-    </Fragment>
+    </>
   );
 });

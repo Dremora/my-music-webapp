@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Field } from 'react-final-form';
 
 import Input from '../Input';
@@ -16,7 +16,7 @@ export default (_: Props) => (
     </RadioGroupLabel>
     <Field name="firstPlayedMode" value="timestamp" type="radio">
       {({ input }) => (
-        <Fragment>
+        <>
           <label>
             <input type="radio" {...input} /> <Text color="darkPlatinum">Timestamp</Text>
           </label>
@@ -27,12 +27,12 @@ export default (_: Props) => (
               </Field>
             </DateInputContainer>
           )}
-        </Fragment>
+        </>
       )}
     </Field>
     <Field name="firstPlayedMode" value="date" type="radio">
       {({ input }) => (
-        <Fragment>
+        <>
           <label>
             <input type="radio" {...input} /> <Text color="darkPlatinum">At a specific date</Text>
           </label>
@@ -55,7 +55,7 @@ export default (_: Props) => (
               </MonthDayField>
             </DateInputContainer>
           )}
-        </Fragment>
+        </>
       )}
     </Field>
     <Field name="firstPlayedMode" value="unknown" type="radio">

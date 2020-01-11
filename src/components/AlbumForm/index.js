@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import { Field, Form } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
@@ -95,14 +95,14 @@ export default ({ data, error, isSubmitting, loading, submit, submitError }) => 
               </FormField>
               <FieldArray name="sources">
                 {({ fields }) => (
-                  <Fragment>
+                  <>
                     {fields.map((name, i) => (
                       <Source key={i} index={i} disabled={isSubmitting} name={name} onRemove={fields.remove} />
                     ))}
                     <Button onClick={() => fields.push({ location: 'APPLE_MUSIC' })} palette="secondary" size="small">
                       Add source
                     </Button>
-                  </Fragment>
+                  </>
                 )}
               </FieldArray>
               <Button type="submit" disabled={isSubmitting}>
