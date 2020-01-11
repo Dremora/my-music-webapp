@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { motion } from 'framer-motion';
 import { Field, Form } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
 import { FieldArray } from 'react-final-form-arrays';
@@ -14,6 +14,7 @@ import FirstPlayedField from '../FirstPlayedField';
 
 import { Form as StyledForm, Buttons } from './styles';
 import { formatInteger, parseInteger, parseOptionalString } from '../utils';
+import { AnimatePresence } from 'framer-motion';
 
 const firstPlayedDecorator = createDecorator({
   field: 'firstPlayedMode',
@@ -98,9 +99,20 @@ export default ({ data, error, isNew, isSubmitting, loading, submit, submitError
             <FieldArray name="sources">
               {({ fields }) => (
                 <>
-                  {fields.map((name, i) => (
-                    <Source key={i} index={i} disabled={isSubmitting} name={name} onRemove={fields.remove} />
-                  ))}
+                  <AnimatePresence>
+                    {fields.map((name, i) => (
+                      <motion.div
+                        initial={{ height: 0 }}
+                        style={{ overflow: 'hidden' }}
+                        key={i}
+                        animate={{ height: 'auto' }}
+                        exit={{ height: 0 }}
+                        transition={{ type: 'tween' }}
+                      >
+                        <Source index={i} disabled={isSubmitting} name={name} onRemove={fields.remove} />
+                      </motion.div>
+                    ))}
+                  </AnimatePresence>
                   <Buttons>
                     <Button onClick={() => fields.push({ location: 'APPLE_MUSIC' })} palette="link" size="small">
                       Add source
