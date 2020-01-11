@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Index from '../Index';
 import NewAlbum from '../Albums/NewAlbum';
 import Album from '../Albums/Album';
+import Years from '../Years';
 import Login from '../../components/Login';
 
 import { Page, Section, Header, H1, GlobalStyles } from './styles';
@@ -35,6 +36,7 @@ export default () => {
           <Section>
             <Switch>
               <Route exact path="/" render={() => <Index isLoggedIn={!!token} />} />
+              <Route exact path="/years" component={Years} />
               {token && (
                 <Switch>
                   <Route exact path="/albums/new" component={NewAlbum} />
