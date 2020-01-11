@@ -9,7 +9,7 @@ import Button from '../../components/Button';
 
 import { Hr } from './styles';
 import { parseMbid } from './utils';
-import { formatInteger, parseInteger } from '../utils';
+import { formatInteger, parseInteger, parseOptionalString } from '../utils';
 import { Location, Format } from '../../types/graphql';
 
 const locations: { id: Location; label: string }[] = [
@@ -52,7 +52,7 @@ export default ({ disabled, name, onRemove }) => (
       </Field>
     </FormField>
     <FormField label="Comments">
-      <Field name={`${name}.comments`} parse={null}>
+      <Field name={`${name}.comments`} parse={parseOptionalString}>
         {({ input }) => <Input disabled={disabled} multiline {...input} />}
       </Field>
     </FormField>
@@ -61,7 +61,7 @@ export default ({ disabled, name, onRemove }) => (
         <Fragment>
           {location !== 'SPOTIFY' && (
             <FormField label="Tag issues">
-              <Field name={`${name}.tagIssues`} parse={null}>
+              <Field name={`${name}.tagIssues`} parse={parseOptionalString}>
                 {({ input }) => <Input disabled={disabled} {...input} />}
               </Field>
             </FormField>
@@ -69,12 +69,12 @@ export default ({ disabled, name, onRemove }) => (
           {location === 'FOOBAR2000' && (
             <Fragment>
               <FormField label="Accurate rip">
-                <Field name={`${name}.accurateRip`} parse={null}>
+                <Field name={`${name}.accurateRip`} parse={parseOptionalString}>
                   {({ input }) => <Input disabled={disabled} {...input} />}
                 </Field>
               </FormField>
               <FormField label="Cue issues">
-                <Field name={`${name}.cueIssues`} parse={null}>
+                <Field name={`${name}.cueIssues`} parse={parseOptionalString}>
                   {({ input }) => <Input disabled={disabled} {...input} />}
                 </Field>
               </FormField>
@@ -84,10 +84,14 @@ export default ({ disabled, name, onRemove }) => (
                 </Field>
               </FormField>
               <FormField label="Download">
-                <Field name={`${name}.download`}>{({ input }) => <Input disabled={disabled} {...input} />}</Field>
+                <Field name={`${name}.download`} parse={parseOptionalString}>
+                  {({ input }) => <Input disabled={disabled} {...input} />}
+                </Field>
               </FormField>
               <FormField label="Edition">
-                <Field name={`${name}.edition`}>{({ input }) => <Input disabled={disabled} {...input} />}</Field>
+                <Field name={`${name}.edition`} parse={parseOptionalString}>
+                  {({ input }) => <Input disabled={disabled} {...input} />}
+                </Field>
               </FormField>
               <FormField label="Format">
                 <Field

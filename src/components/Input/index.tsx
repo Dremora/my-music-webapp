@@ -7,7 +7,7 @@ interface Props {
   multiline?: boolean;
   onChange?: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   placeholder?: string;
-  type?: 'text' | 'password';
+  type?: string;
   value: string;
 }
 

@@ -13,7 +13,7 @@ import Text from '../Text';
 import FirstPlayedField from '../FirstPlayedField';
 
 import { Form as StyledForm } from './styles';
-import { formatInteger, parseInteger } from '../utils';
+import { formatInteger, parseInteger, parseOptionalString } from '../utils';
 
 const firstPlayedDecorator = createDecorator({
   field: 'firstPlayedMode',
@@ -89,7 +89,7 @@ export default ({ data, error, isSubmitting, loading, submit, submitError }) => 
               </FormField>
               <FirstPlayedField />
               <FormField label="Comments">
-                <Field name="comments" parse={null}>
+                <Field name="comments" parse={parseOptionalString}>
                   {({ input }) => <Input disabled={isSubmitting} multiline {...input} />}
                 </Field>
               </FormField>
