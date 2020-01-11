@@ -8,8 +8,10 @@ import Text from '../../components/Text';
 
 import LoginMutation from './mutation';
 import { Root, Spacer, LoginLink, NewAlbumLink } from './styles';
+import { useLogin } from '../../data/login';
 
-const Login = ({ isLoggedIn, onLoggedIn, onLoggedOut }) => {
+const Login = () => {
+  const { isLoggedIn, onLoggedIn, onLoggedOut } = useLogin();
   const [loginRequest, { loading }] = useMutation(LoginMutation);
 
   const [passwordInput, setPasswordInput] = useState('');

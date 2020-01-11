@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Index from '../Index';
@@ -9,20 +9,10 @@ import Login from '../../components/Login';
 
 import { Page, Section, Header, H1, GlobalStyles, HomeLink } from './styles';
 import logo from './logo.svg';
+import { LoginProvider } from '../../data/login';
 
-export default () => {
-  const [token, setToken] = useState(localStorage.getItem('token'));
-  const onLoggedIn = useCallback(newToken => {
-    localStorage.setItem('token', newToken);
-    setToken(newToken);
-  }, []);
-
-  const onLoggedOut = useCallback(() => {
-    localStorage.removeItem('token');
-    setToken(null);
-  }, []);
-
-  return (
+export default () => (
+  <LoginProvider>
     <Router>
       <GlobalStyles />
       <Page>
@@ -37,21 +27,17 @@ export default () => {
           </Section>
           <Section>
             <Switch>
-              <Route exact path="/" render={() => <Index isLoggedIn={!!token} />} />
+              <Route exact path="/" component={Index} />
               <Route exact path="/years" component={Years} />
-              {token && (
-                <Switch>
-                  <Route exact path="/albums/new" component={NewAlbum} />
-                  <Route exact path="/albums/:id" component={Album} />
-                </Switch>
-              )}
+              <Route exact path="/albums/new" component={NewAlbum} />
+              <Route exact path="/albums/:id" component={Album} />
             </Switch>
           </Section>
         </div>
         <Section>
-          <Login isLoggedIn={!!token} onLoggedIn={onLoggedIn} onLoggedOut={onLoggedOut} />
+          <Login />
         </Section>
       </Page>
     </Router>
-  );
-};
+  </LoginProvider>
+);
