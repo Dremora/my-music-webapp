@@ -7,7 +7,7 @@
 // ====================================================
 
 export interface Login {
-  readonly login: boolean | null;
+  readonly login: boolean;
 }
 
 export interface LoginVariables {

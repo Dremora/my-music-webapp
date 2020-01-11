@@ -6,13 +6,14 @@ import Button from '../../components/Button';
 import Input from '../../components/Input';
 import Text from '../../components/Text';
 
-import LoginMutation from './mutation';
+import LOGIN from './mutation';
+import { Login as LoginType, LoginVariables } from './types/Login';
 import { Root, Spacer, LoginLink, NewAlbumLink } from './styles';
 import { useLogin } from '../../data/login';
 
 const Login = () => {
   const { isLoggedIn, onLoggedIn, onLoggedOut } = useLogin();
-  const [loginRequest, { loading }] = useMutation(LoginMutation);
+  const [loginRequest, { loading }] = useMutation<LoginType, LoginVariables>(LOGIN);
 
   const [passwordInput, setPasswordInput] = useState('');
   const [showingLogin, setShowingLogin] = useState(false);
@@ -25,25 +26,21 @@ const Login = () => {
   };
 
   const showLogin = () => setShowingLogin(true);
-  const setPassword = e => {
+  const setPassword = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setWrongPassword(false);
     setPasswordInput(e.target.value);
   };
 
   const login = async () => {
     const result = await loginRequest({ variables: { password: passwordInput } });
-    if (!result) {
-      setPasswordInput('');
-      setWrongPassword(true);
-      return;
-    }
-    const {
-      data: { login: loggedIn }
-    } = result;
     setPasswordInput('');
-    setShowingLogin(!loggedIn);
-    setWrongPassword(!loggedIn);
-    loggedIn && onLoggedIn(passwordInput);
+    if (!result.data || !result.data.login) {
+      setWrongPassword(true);
+    } else {
+      setShowingLogin(false);
+      setWrongPassword(false);
+      onLoggedIn(passwordInput);
+    }
   };
 
   return (
