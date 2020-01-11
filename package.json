@@ -10,7 +10,7 @@
     "@types/react-dom": "16.9.4",
     "@types/styled-components": "4.4.2",
     "@typescript-eslint/parser": "2.15.0",
-    "apollo": "2.21.2",
+    "apollo": "2.21.3",
     "eslint-config-prettier": "6.9.0",
     "eslint-config-react-app": "5.1.0",
     "eslint-import-resolver-typescript": "2.0.0",
