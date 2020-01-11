@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, memo, useCallback } from 'react';
 
 import { Field } from 'react-final-form';
 
@@ -30,90 +30,101 @@ const formats: { id: Format; label: string }[] = [
   { id: Format.MIXED, label: 'Mixed' }
 ];
 
-export default ({ disabled, name, onRemove }) => (
-  <Fragment>
-    <Hr />
-    <FormField label="Location">
+interface Props {
+  disabled: boolean;
+  index: number;
+  name: string;
+  onRemove: (index: number) => void;
+}
+
+export default memo(({ disabled, index, name, onRemove }: Props) => {
+  const remove = useCallback(() => onRemove(index), [index, onRemove]);
+
+  return (
+    <Fragment>
+      <Hr />
+      <FormField label="Location">
+        <Field name={`${name}.location`}>
+          {({ input }) => (
+            <Select disabled={disabled} {...input}>
+              {locations.map(location => (
+                <option value={location.id} key={location.id}>
+                  {location.label}
+                </option>
+              ))}
+            </Select>
+          )}
+        </Field>
+      </FormField>
+      <FormField label="MBID">
+        <Field name={`${name}.mbid`} parse={parseMbid}>
+          {({ input }) => <Input disabled={disabled} {...input} />}
+        </Field>
+      </FormField>
+      <FormField label="Comments">
+        <Field name={`${name}.comments`} parse={parseOptionalString}>
+          {({ input }) => <Input disabled={disabled} multiline {...input} />}
+        </Field>
+      </FormField>
       <Field name={`${name}.location`}>
-        {({ input }) => (
-          <Select disabled={disabled} {...input}>
-            {locations.map(location => (
-              <option value={location.id} key={location.id}>
-                {location.label}
-              </option>
-            ))}
-          </Select>
+        {({ input: { value: location } }) => (
+          <Fragment>
+            {location !== 'SPOTIFY' && (
+              <FormField label="Tag issues">
+                <Field name={`${name}.tagIssues`} parse={parseOptionalString}>
+                  {({ input }) => <Input disabled={disabled} {...input} />}
+                </Field>
+              </FormField>
+            )}
+            {location === 'FOOBAR2000' && (
+              <Fragment>
+                <FormField label="Accurate rip">
+                  <Field name={`${name}.accurateRip`} parse={parseOptionalString}>
+                    {({ input }) => <Input disabled={disabled} {...input} />}
+                  </Field>
+                </FormField>
+                <FormField label="Cue issues">
+                  <Field name={`${name}.cueIssues`} parse={parseOptionalString}>
+                    {({ input }) => <Input disabled={disabled} {...input} />}
+                  </Field>
+                </FormField>
+                <FormField label="Discs">
+                  <Field format={formatInteger} name={`${name}.discs`} parse={parseInteger}>
+                    {({ input }) => <Input disabled={disabled} {...input} />}
+                  </Field>
+                </FormField>
+                <FormField label="Download">
+                  <Field name={`${name}.download`} parse={parseOptionalString}>
+                    {({ input }) => <Input disabled={disabled} {...input} />}
+                  </Field>
+                </FormField>
+                <FormField label="Edition">
+                  <Field name={`${name}.edition`} parse={parseOptionalString}>
+                    {({ input }) => <Input disabled={disabled} {...input} />}
+                  </Field>
+                </FormField>
+                <FormField label="Format">
+                  <Field
+                    name={`${name}.format`}
+                    render={({ input }) => (
+                      <Select disabled={disabled} {...input}>
+                        {formats.map(format => (
+                          <option value={format.id} key={format.id}>
+                            {format.label}
+                          </option>
+                        ))}
+                      </Select>
+                    )}
+                  />
+                </FormField>
+              </Fragment>
+            )}
+          </Fragment>
         )}
       </Field>
-    </FormField>
-    <FormField label="MBID">
-      <Field name={`${name}.mbid`} parse={parseMbid}>
-        {({ input }) => <Input disabled={disabled} {...input} />}
-      </Field>
-    </FormField>
-    <FormField label="Comments">
-      <Field name={`${name}.comments`} parse={parseOptionalString}>
-        {({ input }) => <Input disabled={disabled} multiline {...input} />}
-      </Field>
-    </FormField>
-    <Field name={`${name}.location`}>
-      {({ input: { value: location } }) => (
-        <Fragment>
-          {location !== 'SPOTIFY' && (
-            <FormField label="Tag issues">
-              <Field name={`${name}.tagIssues`} parse={parseOptionalString}>
-                {({ input }) => <Input disabled={disabled} {...input} />}
-              </Field>
-            </FormField>
-          )}
-          {location === 'FOOBAR2000' && (
-            <Fragment>
-              <FormField label="Accurate rip">
-                <Field name={`${name}.accurateRip`} parse={parseOptionalString}>
-                  {({ input }) => <Input disabled={disabled} {...input} />}
-                </Field>
-              </FormField>
-              <FormField label="Cue issues">
-                <Field name={`${name}.cueIssues`} parse={parseOptionalString}>
-                  {({ input }) => <Input disabled={disabled} {...input} />}
-                </Field>
-              </FormField>
-              <FormField label="Discs">
-                <Field format={formatInteger} name={`${name}.discs`} parse={parseInteger}>
-                  {({ input }) => <Input disabled={disabled} {...input} />}
-                </Field>
-              </FormField>
-              <FormField label="Download">
-                <Field name={`${name}.download`} parse={parseOptionalString}>
-                  {({ input }) => <Input disabled={disabled} {...input} />}
-                </Field>
-              </FormField>
-              <FormField label="Edition">
-                <Field name={`${name}.edition`} parse={parseOptionalString}>
-                  {({ input }) => <Input disabled={disabled} {...input} />}
-                </Field>
-              </FormField>
-              <FormField label="Format">
-                <Field
-                  name={`${name}.format`}
-                  render={({ input }) => (
-                    <Select disabled={disabled} {...input}>
-                      {formats.map(format => (
-                        <option value={format.id} key={format.id}>
-                          {format.label}
-                        </option>
-                      ))}
-                    </Select>
-                  )}
-                />
-              </FormField>
-            </Fragment>
-          )}
-        </Fragment>
-      )}
-    </Field>
-    <div>
-      <Button onClick={onRemove}>x</Button>
-    </div>
-  </Fragment>
-);
+      <div>
+        <Button onClick={remove}>x</Button>
+      </div>
+    </Fragment>
+  );
+});
