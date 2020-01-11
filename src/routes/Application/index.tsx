@@ -7,7 +7,7 @@ import Album from '../Albums/Album';
 import Years from '../Years';
 import Login from '../../components/Login';
 
-import { Page, Section, Header, H1, GlobalStyles } from './styles';
+import { Page, Section, Header, H1, GlobalStyles, HomeLink } from './styles';
 import logo from './logo.svg';
 
 export default () => {
@@ -29,8 +29,10 @@ export default () => {
         <div>
           <Section>
             <Header>
-              <img alt="Logo" src={logo} height={48} />
-              <H1>My Music</H1>
+              <HomeLink to="/">
+                <img alt="Logo" src={logo} height={48} />
+                <H1>My Music</H1>
+              </HomeLink>
             </Header>
           </Section>
           <Section>

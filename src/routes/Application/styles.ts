@@ -1,4 +1,6 @@
 import styled, { createGlobalStyle } from 'styled-components';
+import { Link } from 'react-router-dom';
+
 import { h1 } from '../../styles/fonts';
 import { whiteSmoke, vermilion } from '../../styles/colors';
 
@@ -15,6 +17,11 @@ export const Header = styled.header`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+`;
+
+export const HomeLink = styled(Link)`
+  text-decoration: none;
+  display: flex;
 `;
 
 export const H1 = styled.h1`
