@@ -8,6 +8,7 @@ export const Form = styled.form`
   margin: 10px 0;
   display: flex;
   flex-direction: column;
+  box-shadow: 0px 2px 8px 3px rgba(0, 0, 0, 0.09);
 `;
 
 export const Buttons = styled.div`
