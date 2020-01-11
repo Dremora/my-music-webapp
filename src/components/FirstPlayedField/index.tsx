@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { Field } from 'react-final-form';
+import { AnimatePresence, motion } from 'framer-motion';
 
 import Input from '../Input';
 import Text from '../Text';
@@ -15,16 +16,13 @@ import {
   MonthDayField
 } from './styles';
 import { formatInteger, parseInteger } from '../utils';
-import { AnimatePresence, motion } from 'framer-motion';
+import useIsFirstRender from '../../data/useIsFirstRender';
 
 interface Props {}
 
 export default (_: Props) => {
-  const isFirstRender = useRef(true);
+  const isFirstRender = useIsFirstRender();
 
-  useEffect(() => {
-    isFirstRender.current = false;
-  }, []);
   return (
     <Container>
       <Label>
