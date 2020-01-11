@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { vermilion, darkPlatinum, darkerPlatinum, white, grey, blue, darkerVermilion } from '../../styles/colors';
+import { vermilion, darkerPlatinum, white, grey, blue, darkerVermilion } from '../../styles/colors';
 import { base, medium } from '../../styles/fonts';
 
 interface Props {
@@ -16,6 +16,7 @@ export default styled.button<Props>`
 
   ${props =>
     props.size === 'medium' &&
+    props.palette !== 'link' &&
     css`
       padding: 7px 20px;
       ${medium};
@@ -26,6 +27,7 @@ export default styled.button<Props>`
 
   ${props =>
     props.size === 'small' &&
+    props.palette !== 'link' &&
     css`
       padding: 3px 10px;
       ${base};
@@ -57,6 +59,9 @@ export default styled.button<Props>`
     props.palette === 'link' &&
     css`
       color: ${blue};
+      ${base};
+      padding: 0;
+      font-weight: 700;
 
       &:hover {
         text-decoration: underline;
