@@ -1,13 +1,27 @@
 import styled from 'styled-components';
 
-export const RadioGroup = styled.div`
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
   margin: 10px 0;
 `;
 
-export const RadioGroupLabel = styled.div`
+export const Label = styled.div`
   padding-bottom: 10px;
+`;
+
+export const RadioGroup = styled.div`
+  display: flex;
+`;
+
+export const RadioLabel = styled.label`
+  margin-right: 15px;
+  display: flex;
+  align-items: baseline;
+`;
+
+export const RadioInput = styled.input`
+  margin-right: 5px;
 `;
 
 export const DateInputContainer = styled.div`

@@ -16,6 +16,13 @@ const styles = css`
   transition: all 0.2s;
   background: white;
 
+  &[type='number'] {
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+
   &:focus {
     outline: none;
     border-color: ${darkerPlatinum};
