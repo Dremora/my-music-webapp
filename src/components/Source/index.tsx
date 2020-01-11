@@ -19,8 +19,6 @@ const locations: { id: Location; label: string }[] = [
   { id: Location.FOOBAR2000, label: 'foobar2000' }
 ];
 
-const loc: Location = Location.SPOTIFY;
-
 const formats: { id: Format; label: string }[] = [
   { id: Format.MP3, label: 'Lossy (MP3)' },
   { id: Format.MPC, label: 'Lossy (MPC)' },
