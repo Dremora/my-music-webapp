@@ -32,7 +32,7 @@ export interface FindAlbums_albums {
 }
 
 export interface FindAlbums {
-  readonly albums: ReadonlyArray<FindAlbums_albums> | null;
+  readonly albums: ReadonlyArray<FindAlbums_albums>;
 }
 
 export interface FindAlbumsVariables {

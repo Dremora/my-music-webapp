@@ -51,7 +51,7 @@ export interface CreateAlbum_createAlbum {
 }
 
 export interface CreateAlbum {
-  readonly createAlbum: CreateAlbum_createAlbum | null;
+  readonly createAlbum: CreateAlbum_createAlbum;
 }
 
 export interface CreateAlbumVariables {

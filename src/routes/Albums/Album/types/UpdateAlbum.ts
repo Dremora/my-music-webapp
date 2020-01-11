@@ -51,7 +51,7 @@ export interface UpdateAlbum_updateAlbum {
 }
 
 export interface UpdateAlbum {
-  readonly updateAlbum: UpdateAlbum_updateAlbum | null;
+  readonly updateAlbum: UpdateAlbum_updateAlbum;
 }
 
 export interface UpdateAlbumVariables {
