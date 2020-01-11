@@ -7,3 +7,9 @@ export const Hr = styled.hr`
   border: none;
   border-top: solid 2px ${whiteSmoke};
 `;
+
+export const Title = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+`;

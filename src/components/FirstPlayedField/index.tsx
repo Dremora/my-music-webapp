@@ -12,7 +12,9 @@ interface Props {}
 export default (_: Props) => (
   <RadioGroup>
     <RadioGroupLabel>
-      <Text color="darkPlatinum">First played</Text>
+      <Text color="darkPlatinum" weight="bold">
+        First played
+      </Text>
     </RadioGroupLabel>
     <Field name="firstPlayedMode" value="timestamp" type="radio">
       {({ input }) => (

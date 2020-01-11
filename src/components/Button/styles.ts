@@ -1,25 +1,27 @@
 import styled, { css } from 'styled-components';
 
-import { vermilion, darkPlatinum, darkerPlatinum, yellow, white } from '../../styles/colors';
+import { vermilion, darkPlatinum, darkerPlatinum, white, grey, blue, darkerVermilion } from '../../styles/colors';
 import { base, medium } from '../../styles/fonts';
 
 interface Props {
   size: 'medium' | 'small';
-  palette: 'primary' | 'secondary';
+  palette: 'primary' | 'secondary' | 'link';
   full?: boolean;
 }
 
 export default styled.button<Props>`
   border: none;
   display: block;
-  font-weight: 700;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.09);
+  appearance: none;
 
   ${props =>
     props.size === 'medium' &&
     css`
       padding: 7px 20px;
       ${medium};
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     `};
 
   ${props =>
@@ -27,20 +29,38 @@ export default styled.button<Props>`
     css`
       padding: 3px 10px;
       ${base};
+      font-weight: 700;
     `};
 
   ${props =>
     props.palette === 'primary' &&
     css`
       color: ${white};
-      background-color: ${vermilion};
+      background-color: ${darkerVermilion};
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.09);
+      transition: 0.1s;
+
+      &:hover:not(:disabled) {
+        background-color: ${vermilion};
+      }
     `};
 
   ${props =>
     props.palette === 'secondary' &&
     css`
-      color: ${darkPlatinum};
-      background-color: ${yellow};
+      color: ${white};
+      background-color: ${grey};
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.09);
+    `};
+
+  ${props =>
+    props.palette === 'link' &&
+    css`
+      color: ${blue};
+
+      &:hover {
+        text-decoration: underline;
+      }
     `};
 
   ${props =>

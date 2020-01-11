@@ -6,7 +6,7 @@ interface Props {
   disabled?: boolean;
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   type?: 'button' | 'submit';
-  palette?: 'primary' | 'secondary';
+  palette?: 'primary' | 'secondary' | 'link';
   size?: 'medium' | 'small';
 }
 

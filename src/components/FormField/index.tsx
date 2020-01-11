@@ -12,7 +12,9 @@ interface Props {
 export default ({ label, children }: Props) => (
   <Container>
     <Label>
-      <Text color="darkPlatinum">{label}</Text>
+      <Text color="darkPlatinum" weight="bold">
+        {label}
+      </Text>
     </Label>
     <Contents>{children}</Contents>
   </Container>

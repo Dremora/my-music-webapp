@@ -3,11 +3,12 @@ import React, { memo, useCallback } from 'react';
 import { Field } from 'react-final-form';
 
 import Input from '../../components/Input';
+import Text from '../../components/Text';
 import Select from '../../components/Select';
 import FormField from '../../components/FormField';
 import Button from '../../components/Button';
 
-import { Hr } from './styles';
+import { Hr, Title } from './styles';
 import { parseMbid } from './utils';
 import { formatInteger, parseInteger, parseOptionalString } from '../utils';
 import { Location, Format } from '../../types/graphql';
@@ -43,6 +44,14 @@ export default memo(({ disabled, index, name, onRemove }: Props) => {
   return (
     <>
       <Hr />
+      <Title>
+        <Text color="grey" weight="bold" size="medium">
+          Source {index + 1}
+        </Text>
+        <Button onClick={remove} size="small">
+          Delete source
+        </Button>
+      </Title>
       <FormField label="Location">
         <Field name={`${name}.location`}>
           {({ input }) => (
@@ -122,9 +131,6 @@ export default memo(({ disabled, index, name, onRemove }: Props) => {
           </>
         )}
       </Field>
-      <div>
-        <Button onClick={remove}>x</Button>
-      </div>
     </>
   );
 });
