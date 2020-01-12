@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { Field, Form } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
 import { FieldArray } from 'react-final-form-arrays';
-import createDecorator from 'final-form-calculate';
 import { AnimatePresence } from 'framer-motion';
 import { ApolloError } from 'apollo-client';
 import { ExecutionResult } from 'graphql';
@@ -22,21 +21,6 @@ import FirstPlayedField from '../FirstPlayedField';
 
 import { Form as StyledForm, Buttons } from './styles';
 import { formatInteger, parseInteger, parseOptionalString } from '../utils';
-
-const firstPlayedDecorator = createDecorator({
-  field: 'firstPlayedMode',
-  updates: {
-    firstPlayed: (firstPlayedMode, { firstPlayed }: any) => {
-      if (firstPlayedMode === 'date') {
-        return firstPlayed && firstPlayed.year ? firstPlayed : { year: undefined, month: undefined, day: undefined };
-      } else if (firstPlayedMode === 'timestamp') {
-        return firstPlayed && firstPlayed.timestamp ? firstPlayed : { timestamp: undefined };
-      } else {
-        return null;
-      }
-    }
-  }
-});
 
 interface Props {
   data?: { album: CreateAlbumVariables } | GetAlbum;
@@ -84,13 +68,9 @@ const AlbumForm = ({ data, error, isNew, isSubmitting, loading, submit, submitEr
   } else if (error || !data) {
     return <span>error</span>;
   } else {
-    let firstPlayed = data.album ? data.album.firstPlayed : null;
-    const firstPlayedMode =
-      firstPlayed === null || firstPlayed === undefined ? 'unknown' : 'year' in firstPlayed ? 'date' : 'timestamp';
     return (
       <Form
-        initialValues={{ firstPlayedMode, ...data.album }}
-        decorators={[firstPlayedDecorator]}
+        initialValues={data.album}
         onSubmit={handleSubmit}
         mutators={{
           ...arrayMutators
