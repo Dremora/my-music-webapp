@@ -25,7 +25,8 @@ export default (_: Props) => {
   const { value } = input;
 
   const [firstPlayedMode, setFirstPlayedMode] = useState(() =>
-    value === null || value === undefined ? 'unknown' : 'year' in value ? 'date' : 'timestamp'
+    // TODO figure out why this can ever be ''
+    value === '' || value === null || value === undefined ? 'unknown' : 'year' in value ? 'date' : 'timestamp'
   );
 
   const setMode = useCallback(
