@@ -3,9 +3,11 @@ import React from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
 import AlbumForm from '../../../components/AlbumForm';
+import { GetAlbum, GetAlbumVariables } from './types/GetAlbum';
+import { UpdateAlbum, UpdateAlbumVariables } from './types/UpdateAlbum';
 
-import GetAlbum from './query';
-import UpdateAlbum from './mutation';
+import GET_ALBUM from './query';
+import UPDATE_ALBUM from './mutation';
 import { useLogin } from '../../../data/login';
 
 export default ({
@@ -19,8 +21,10 @@ export default ({
     return null;
   }
 
-  const { data, error, loading } = useQuery(GetAlbum, { variables: { id } });
-  const [submit, { loading: isSubmitting, error: submitError }] = useMutation(UpdateAlbum);
+  const { data, error, loading } = useQuery<GetAlbum, GetAlbumVariables>(GET_ALBUM, { variables: { id } });
+  const [submit, { loading: isSubmitting, error: submitError }] = useMutation<UpdateAlbum, UpdateAlbumVariables>(
+    UPDATE_ALBUM
+  );
   return (
     <AlbumForm
       data={data}

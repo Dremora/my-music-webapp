@@ -4,6 +4,12 @@ import { Field, Form } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
 import { FieldArray } from 'react-final-form-arrays';
 import createDecorator from 'final-form-calculate';
+import { AnimatePresence } from 'framer-motion';
+import { ApolloError } from 'apollo-client';
+import { ExecutionResult } from 'graphql';
+
+import { CreateAlbumVariables, CreateAlbum } from '../../routes/Albums/NewAlbum/types/CreateAlbum';
+import { UpdateAlbumVariables, UpdateAlbum } from '../../routes/Albums/Album/types/UpdateAlbum';
 
 import Button from '../Button';
 import FormField from '../FormField';
@@ -14,12 +20,11 @@ import FirstPlayedField from '../FirstPlayedField';
 
 import { Form as StyledForm, Buttons } from './styles';
 import { formatInteger, parseInteger, parseOptionalString } from '../utils';
-import { AnimatePresence } from 'framer-motion';
 
 const firstPlayedDecorator = createDecorator({
   field: 'firstPlayedMode',
   updates: {
-    firstPlayed: (firstPlayedMode, { firstPlayed }) => {
+    firstPlayed: (firstPlayedMode, { firstPlayed }: any) => {
       if (firstPlayedMode === 'date') {
         return firstPlayed && firstPlayed.year ? firstPlayed : { year: undefined, month: undefined, day: undefined };
       } else if (firstPlayedMode === 'timestamp') {
@@ -31,18 +36,34 @@ const firstPlayedDecorator = createDecorator({
   }
 });
 
-export default ({ data, error, isNew, isSubmitting, loading, submit, submitError }) => {
-  const handleSubmit = async ({ sources, firstPlayedMode, ...rest }, { reset }) => {
+interface Props {
+  data;
+  error?: ApolloError;
+  isNew?: boolean;
+  isSubmitting: boolean;
+  loading?: boolean;
+  submit:
+    | ((data: { variables?: CreateAlbumVariables }) => Promise<ExecutionResult<CreateAlbum>>)
+    | ((data: { variables?: UpdateAlbumVariables }) => Promise<ExecutionResult<UpdateAlbum>>);
+  submitError?: ApolloError;
+}
+
+const AlbumForm = ({ data, error, isNew, isSubmitting, loading, submit, submitError }: Props) => {
+  const handleSubmit = async (data, { reset }) => {
     await submit({
       variables: {
-        sources: sources.map(({ __typename, ...rest }) => rest),
-        ...rest,
+        id: data.id,
+        title: data.title,
+        artist: data.artist,
+        comments: data.comments,
+        year: data.year,
+        sources: data.sources.map(({ __typename, ...rest }) => rest),
         firstPlayed: (() => {
-          if (rest.firstPlayed) {
-            const { __typename, ...firstPlayed } = rest.firstPlayed;
+          if (data.firstPlayed) {
+            const { __typename, ...firstPlayed } = data.firstPlayed;
             return firstPlayed;
           } else {
-            return rest.firstPlayed;
+            return data.firstPlayed;
           }
         })()
       }
@@ -57,12 +78,9 @@ export default ({ data, error, isNew, isSubmitting, loading, submit, submitError
       </div>
     );
   } else if (error) {
-    return 'error';
+    return <span>error</span>;
   } else {
-    let firstPlayed = null;
-    if (data.album) {
-      firstPlayed = data.album.firstPlayed;
-    }
+    let firstPlayed = data.album ? data.album.firstPlayed : null;
     const firstPlayedMode = firstPlayed === null ? 'unknown' : firstPlayed.year ? 'date' : 'timestamp';
     return (
       <Form
@@ -131,3 +149,5 @@ export default ({ data, error, isNew, isSubmitting, loading, submit, submitError
     );
   }
 };
+
+export default AlbumForm;
