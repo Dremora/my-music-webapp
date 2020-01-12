@@ -105,7 +105,7 @@ const AlbumForm = ({ data, error, isNew, isSubmitting, loading, submit, submitEr
                   <AnimatePresence>
                     {fields.map((name, i) => (
                       <motion.div
-                        initial={{ height: isFirstRender ? 'auto' : 0 }}
+                        initial={{ height: isFirstRender.current ? 'auto' : 0 }}
                         style={{ overflow: 'hidden' }}
                         key={i}
                         animate={{ height: 'auto' }}
