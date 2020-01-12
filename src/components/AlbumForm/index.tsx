@@ -11,6 +11,7 @@ import { ExecutionResult } from 'graphql';
 import { CreateAlbumVariables, CreateAlbum } from '../../routes/Albums/NewAlbum/types/CreateAlbum';
 import { UpdateAlbumVariables, UpdateAlbum } from '../../routes/Albums/Album/types/UpdateAlbum';
 
+import useIsFirstRender from '../../data/useIsFirstRender';
 import Button from '../Button';
 import FormField from '../FormField';
 import Input from '../Input';
@@ -49,6 +50,8 @@ interface Props {
 }
 
 const AlbumForm = ({ data, error, isNew, isSubmitting, loading, submit, submitError }: Props) => {
+  const isFirstRender = useIsFirstRender();
+
   const handleSubmit = async (data, { reset }) => {
     await submit({
       variables: {
@@ -120,7 +123,7 @@ const AlbumForm = ({ data, error, isNew, isSubmitting, loading, submit, submitEr
                   <AnimatePresence>
                     {fields.map((name, i) => (
                       <motion.div
-                        initial={{ height: 0 }}
+                        initial={{ height: isFirstRender ? 'auto' : 0 }}
                         style={{ overflow: 'hidden' }}
                         key={i}
                         animate={{ height: 'auto' }}
