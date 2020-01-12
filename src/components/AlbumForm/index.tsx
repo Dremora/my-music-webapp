@@ -11,6 +11,7 @@ import { ExecutionResult } from 'graphql';
 import { CreateAlbumVariables, CreateAlbum } from '../../routes/Albums/NewAlbum/types/CreateAlbum';
 import { UpdateAlbumVariables, UpdateAlbum } from '../../routes/Albums/Album/types/UpdateAlbum';
 
+import { GetAlbum } from '../../routes/Albums/Album/types/GetAlbum';
 import useIsFirstRender from '../../data/useIsFirstRender';
 import Button from '../Button';
 import FormField from '../FormField';
@@ -38,7 +39,7 @@ const firstPlayedDecorator = createDecorator({
 });
 
 interface Props {
-  data;
+  data?: { album: CreateAlbumVariables } | GetAlbum;
   error?: ApolloError;
   isNew?: boolean;
   isSubmitting: boolean;
@@ -80,11 +81,12 @@ const AlbumForm = ({ data, error, isNew, isSubmitting, loading, submit, submitEr
         <Text color="grey">Loading...</Text>
       </div>
     );
-  } else if (error) {
+  } else if (error || !data) {
     return <span>error</span>;
   } else {
     let firstPlayed = data.album ? data.album.firstPlayed : null;
-    const firstPlayedMode = firstPlayed === null ? 'unknown' : firstPlayed.year ? 'date' : 'timestamp';
+    const firstPlayedMode =
+      firstPlayed === null || firstPlayed === undefined ? 'unknown' : 'year' in firstPlayed ? 'date' : 'timestamp';
     return (
       <Form
         initialValues={{ firstPlayedMode, ...data.album }}

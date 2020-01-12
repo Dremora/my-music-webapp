@@ -51,7 +51,7 @@ export interface GetAlbum_album {
 }
 
 export interface GetAlbum {
-  readonly album: GetAlbum_album | null;
+  readonly album: GetAlbum_album;
 }
 
 export interface GetAlbumVariables {
