@@ -11,7 +11,7 @@ const createEmptyAlbum = (): { album: CreateAlbumVariables } => ({
   album: {
     title: '',
     artist: '',
-    firstPlayed: { timestamp: new Date().getTime() },
+    firstPlayed: { timestamp: Math.floor(new Date().getTime() / 1000) },
     sources: []
   }
 });

@@ -16,7 +16,7 @@ export function formatFirstPlayed(val: FirstPlayed): string {
   if (!val) {
     return '';
   } else if ('timestamp' in val) {
-    return DateTime.fromMillis(val.timestamp, { zone: 'utc' }).toFormat('d MMM yyyy HH:mm');
+    return DateTime.fromSeconds(val.timestamp, { zone: 'utc' }).toFormat('d MMM yyyy HH:mm');
   } else {
     if (val.day) {
       return DateTime.utc(val.year, val.month, val.day).toFormat('d MMM yyyy');
