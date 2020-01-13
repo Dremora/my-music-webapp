@@ -5,7 +5,7 @@ import FindAlbums from './query';
 import Album from '../../components/Album';
 import Search from '../../components/Search';
 
-export default () => {
+const IndexRoute = () => {
   const [searchText, setSearchText] = useState('');
   const { data, error, loading } = useQuery(FindAlbums, {
     skip: !searchText,
@@ -23,3 +23,5 @@ export default () => {
     </>
   );
 };
+
+export default IndexRoute;

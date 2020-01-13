@@ -6,7 +6,7 @@ import Years from '../../components/Years';
 import { AlbumPerYearCount } from './types/AlbumPerYearCount';
 import ALBUM_PER_YEAR_COUNT from './query';
 
-export default () => {
+const YearsRoute = () => {
   const { data, error, loading } = useQuery<AlbumPerYearCount, {}>(ALBUM_PER_YEAR_COUNT);
 
   if (loading || error || !data) {
@@ -15,3 +15,5 @@ export default () => {
 
   return <Years data={data.albumPerYearCount} />;
 };
+
+export default YearsRoute;

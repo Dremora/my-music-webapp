@@ -38,7 +38,7 @@ interface Props {
   onRemove: (index: number) => void;
 }
 
-export default memo(({ disabled, index, name, onRemove }: Props) => {
+const Source = ({ disabled, index, name, onRemove }: Props) => {
   const remove = useCallback(() => onRemove(index), [index, onRemove]);
 
   return (
@@ -133,4 +133,6 @@ export default memo(({ disabled, index, name, onRemove }: Props) => {
       </Field>
     </>
   );
-});
+};
+
+export default memo(Source);

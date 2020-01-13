@@ -16,16 +16,19 @@ const createEmptyAlbum = (): { album: CreateAlbumVariables } => ({
   }
 });
 
-export default ({ history }) => {
+const NewAlbumRoute = ({ history }) => {
   const { isLoggedIn } = useLogin();
   const [emptyAlbum] = useState(createEmptyAlbum);
+
+  const [submit, { loading, error }] = useMutation(UpdateAlbum, {
+    onCompleted: ({ createAlbum: { id } }) => history.replace(`/albums/${id}`)
+  });
 
   if (!isLoggedIn) {
     return null;
   }
 
-  const [submit, { loading, error }] = useMutation(UpdateAlbum, {
-    onCompleted: ({ createAlbum: { id } }) => history.replace(`/albums/${id}`)
-  });
   return <AlbumForm data={emptyAlbum} isNew isSubmitting={loading} submit={submit} submitError={error} />;
 };
+
+export default NewAlbumRoute;

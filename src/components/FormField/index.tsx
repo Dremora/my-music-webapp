@@ -9,7 +9,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-export default ({ label, children }: Props) => (
+const FormField = ({ label, children }: Props) => (
   <Container>
     <Label>
       <Text color="darkPlatinum" weight="bold">
@@ -19,3 +19,5 @@ export default ({ label, children }: Props) => (
     <Contents>{children}</Contents>
   </Container>
 );
+
+export default FormField;

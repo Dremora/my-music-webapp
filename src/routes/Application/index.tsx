@@ -11,7 +11,7 @@ import { Page, Section, Header, H1, GlobalStyles, HomeLink } from './styles';
 import logo from './logo.svg';
 import { LoginProvider } from '../../data/login';
 
-export default () => (
+const ApplicationRoute = () => (
   <LoginProvider>
     <Router>
       <GlobalStyles />
@@ -41,3 +41,5 @@ export default () => (
     </Router>
   </LoginProvider>
 );
+
+export default ApplicationRoute;

@@ -10,21 +10,22 @@ import GET_ALBUM from './query';
 import UPDATE_ALBUM from './mutation';
 import { useLogin } from '../../../data/login';
 
-export default ({
+const AlbumRoute = ({
   match: {
     params: { id }
   }
 }) => {
   const { isLoggedIn } = useLogin();
 
-  if (!isLoggedIn) {
-    return null;
-  }
-
   const { data, error, loading } = useQuery<GetAlbum, GetAlbumVariables>(GET_ALBUM, { variables: { id } });
   const [submit, { loading: isSubmitting, error: submitError }] = useMutation<UpdateAlbum, UpdateAlbumVariables>(
     UPDATE_ALBUM
   );
+
+  if (!isLoggedIn) {
+    return null;
+  }
+
   return (
     <AlbumForm
       data={data}
@@ -36,3 +37,5 @@ export default ({
     />
   );
 };
+
+export default AlbumRoute;

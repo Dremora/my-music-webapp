@@ -20,7 +20,7 @@ import useIsFirstRender from '../../data/useIsFirstRender';
 
 interface Props {}
 
-export default (_: Props) => {
+const FirstPlayedField = (_: Props) => {
   const { input } = useField('firstPlayed');
   const { value } = input;
 
@@ -134,3 +134,5 @@ export default (_: Props) => {
     </Container>
   );
 };
+
+export default FirstPlayedField;

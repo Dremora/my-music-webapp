@@ -17,7 +17,7 @@ interface Props {
   };
 }
 
-export default ({ album }: Props) => {
+const Album = ({ album }: Props) => {
   const { isLoggedIn } = useLogin();
   const firstPlayedFormatted = formatFirstPlayed(album.firstPlayed);
   return (
@@ -45,3 +45,5 @@ export default ({ album }: Props) => {
     </Anchor>
   );
 };
+
+export default Album;

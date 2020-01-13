@@ -8,9 +8,11 @@ interface Props {
   onChange: (value: string) => void;
 }
 
-export default ({ value, onChange }: Props) => (
+const Search = ({ value, onChange }: Props) => (
   <Root>
     <Image src={searchImage} width={20} height={20} />
     <Input placeholder="Search for music…" value={value} onChange={e => onChange(e.target.value)} />
   </Root>
 );
+
+export default Search;

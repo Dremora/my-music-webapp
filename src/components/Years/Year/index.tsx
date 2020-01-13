@@ -13,7 +13,7 @@ interface Props {
   onHoverEnd: (e: MouseEvent) => void;
 }
 
-const Year = memo(({ year, count, maxCount, onHoverStart, onHoverEnd }: Props) => {
+const Year = ({ year, count, maxCount, onHoverStart, onHoverEnd }: Props) => {
   const onHoverStartMemoized = useCallback(onHoverStart(year), [year]);
 
   return (
@@ -43,6 +43,6 @@ const Year = memo(({ year, count, maxCount, onHoverStart, onHoverEnd }: Props) =
       />
     </Root>
   );
-});
+};
 
-export default Year;
+export default memo(Year);
