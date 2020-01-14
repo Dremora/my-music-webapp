@@ -5,6 +5,7 @@ import Index from '../Index';
 import NewAlbum from '../Albums/NewAlbum';
 import Album from '../Albums/Album';
 import Years from '../Years';
+import FirstPlayed from '../FirstPlayed';
 import Login from '../../components/Login';
 
 import { Page, Section, Header, H1, GlobalStyles, HomeLink } from './styles';
@@ -29,6 +30,7 @@ const ApplicationRoute = () => (
             <Switch>
               <Route exact path="/" component={Index} />
               <Route exact path="/years" component={Years} />
+              <Route exact path="/first-played" component={FirstPlayed} />
               <Route exact path="/albums/new" component={NewAlbum} />
               <Route exact path="/albums/:id" component={Album} />
             </Switch>
