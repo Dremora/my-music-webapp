@@ -6,9 +6,9 @@ import { useLogin } from 'data/login';
 import Button from 'components/Button';
 import Input from 'components/Input';
 import Text from 'components/Text';
+import LOGIN from 'mutations/Login';
+import { Login as LoginType, LoginVariables } from 'mutations/Login/types/Login';
 
-import LOGIN from './mutation';
-import { Login as LoginType, LoginVariables } from './types/Login';
 import { Root, Spacer, LoginLink, NewAlbumLink } from './styles';
 
 const Footer = () => {
