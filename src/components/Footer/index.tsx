@@ -11,7 +11,7 @@ import LOGIN from './mutation';
 import { Login as LoginType, LoginVariables } from './types/Login';
 import { Root, Spacer, LoginLink, NewAlbumLink } from './styles';
 
-const Login = () => {
+const Footer = () => {
   const { isLoggedIn, onLoggedIn, onLoggedOut } = useLogin();
   const [loginRequest, { loading }] = useMutation<LoginType, LoginVariables>(LOGIN);
 
@@ -86,4 +86,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Footer;

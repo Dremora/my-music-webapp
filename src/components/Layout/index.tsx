@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-import Login from 'components/Login';
+import Footer from 'components/Footer';
 
 import { Page, Section, Header, H1, GlobalStyles, HomeLink } from './styles';
 
@@ -23,7 +23,7 @@ const Layout = ({ children }) => {
         <Section>{children}</Section>
       </div>
       <Section>
-        <Login />
+        <Footer />
       </Section>
     </Page>
   );
