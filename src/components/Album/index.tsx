@@ -1,9 +1,11 @@
 import React from 'react';
+
 import Link from 'next/link';
 
-import { formatFirstPlayed, FirstPlayed as FirstPlayedType } from 'utils';
-import { useLogin } from 'data/login';
 import Text from 'components/Text';
+import { useLogin } from 'data/login';
+
+import { formatFirstPlayed, FirstPlayed as FirstPlayedType } from 'utils';
 
 import { Root, Anchor, Column1, Column2, Column3, FirstPlayed } from './styles';
 
@@ -44,8 +46,9 @@ const Album = ({ album }: Props) => {
       </Column3>
     </>
   );
+
   return isLoggedIn ? (
-    <Link href="/albums/[id]" as={`/albums/${album.id}`}>
+    <Link as={`/albums/${album.id}`} href="/albums/[id]">
       <Anchor>{contents}</Anchor>
     </Link>
   ) : (

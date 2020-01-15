@@ -1,4 +1,5 @@
 import React, { useCallback, memo } from 'react';
+
 import { transform } from 'framer-motion';
 
 import { grey, lightGrey, lighterGrey } from 'styles/colors';
@@ -13,23 +14,23 @@ interface Props {
   onHoverEnd: (e: MouseEvent) => void;
 }
 
-const Year = ({ year, count, maxCount, onHoverStart, onHoverEnd }: Props) => {
+const Year = ({ count, maxCount, onHoverEnd, onHoverStart, year }: Props) => {
   const onHoverStartMemoized = useCallback(onHoverStart(year), [year]);
 
   return (
     <Root
-      initial="initial"
       animate="animate"
+      initial="initial"
+      onHoverEnd={onHoverEnd}
+      onHoverStart={onHoverStartMemoized}
+      transition={{ ease: 'easeOut' }}
       variants={{
         initial: { height: 0 },
         animate: {
           height: transform(count || 0, [0, maxCount], [0, 200])
         }
       }}
-      transition={{ ease: 'easeOut' }}
       whileHover="hover"
-      onHoverStart={onHoverStartMemoized}
-      onHoverEnd={onHoverEnd}
     >
       <Bar
         variants={{

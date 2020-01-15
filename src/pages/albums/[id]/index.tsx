@@ -1,14 +1,14 @@
 import React from 'react';
-import { useRouter } from 'next/router';
+
 import { useQuery, useMutation } from '@apollo/react-hooks';
+import { useRouter } from 'next/router';
 
 import AlbumForm from 'components/AlbumForm';
-import { GetAlbum, GetAlbumVariables } from 'queries/GetAlbum/types/GetAlbum';
-import { UpdateAlbum, UpdateAlbumVariables } from 'mutations/UpdateAlbum/types/UpdateAlbum';
-
-import GET_ALBUM from 'queries/GetAlbum';
-import UPDATE_ALBUM from 'mutations/UpdateAlbum';
 import { useLogin } from 'data/login';
+import UPDATE_ALBUM from 'mutations/UpdateAlbum';
+import { UpdateAlbum, UpdateAlbumVariables } from 'mutations/UpdateAlbum/types/UpdateAlbum';
+import GET_ALBUM from 'queries/GetAlbum';
+import { GetAlbum, GetAlbumVariables } from 'queries/GetAlbum/types/GetAlbum';
 
 const AlbumPage = () => {
   const router = useRouter();
@@ -16,7 +16,8 @@ const AlbumPage = () => {
   const { isLoggedIn } = useLogin();
 
   const { data, error, loading } = useQuery<GetAlbum, GetAlbumVariables>(GET_ALBUM, { variables: { id } });
-  const [submit, { loading: isSubmitting, error: submitError }] = useMutation<UpdateAlbum, UpdateAlbumVariables>(
+
+  const [submit, { error: submitError, loading: isSubmitting }] = useMutation<UpdateAlbum, UpdateAlbumVariables>(
     UPDATE_ALBUM
   );
 

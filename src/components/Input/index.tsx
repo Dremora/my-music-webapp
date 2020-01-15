@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Input as StyledInput, Textarea } from './styles';
 
 interface Props {
@@ -11,7 +12,7 @@ interface Props {
   value: string;
 }
 
-const Input = ({ value, multiline = false, type = 'text', ...props }: Props) =>
+const Input = ({ multiline = false, type = 'text', value, ...props }: Props) =>
   multiline ? <Textarea value={value || ''} {...props} /> : <StyledInput type={type} value={value || ''} {...props} />;
 
 export default Input;

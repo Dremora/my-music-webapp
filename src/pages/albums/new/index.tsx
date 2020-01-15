@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
+
 import { useMutation } from '@apollo/react-hooks';
+import { useRouter } from 'next/router';
 
 import AlbumForm from 'components/AlbumForm';
 import { useLogin } from 'data/login';
-
-import { CreateAlbumVariables } from 'mutations/CreateAlbum/types/CreateAlbum';
 import CreateAlbum from 'mutations/CreateAlbum';
-import { useRouter } from 'next/router';
+import { CreateAlbumVariables } from 'mutations/CreateAlbum/types/CreateAlbum';
 
 const createEmptyAlbum = (): { album: CreateAlbumVariables } => ({
   album: {
@@ -22,7 +22,7 @@ const NewAlbumPage = () => {
   const { isLoggedIn } = useLogin();
   const [emptyAlbum] = useState(createEmptyAlbum);
 
-  const [submit, { loading, error }] = useMutation(CreateAlbum, {
+  const [submit, { error, loading }] = useMutation(CreateAlbum, {
     onCompleted: ({ createAlbum: { id } }) => router.replace('/albums/[id]', `/albums/${id}`)
   });
 

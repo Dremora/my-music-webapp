@@ -2,22 +2,29 @@
 import 'utils/polyfill-fetch';
 
 import React from 'react';
+
 import { ApolloProvider } from '@apollo/react-hooks';
+import App from 'next/app';
 
 import Layout from 'components/Layout';
 import { LoginProvider } from 'data/login';
 import client from 'utils/apollo';
 
-const MyMusic = ({ Component, pageProps }) => (
-  <React.StrictMode>
-    <ApolloProvider client={client}>
-      <LoginProvider>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </LoginProvider>
-    </ApolloProvider>
-  </React.StrictMode>
-);
+class MyMusic extends App {
+  render() {
+    const { Component, pageProps } = this.props;
+    return (
+      <React.StrictMode>
+        <ApolloProvider client={client}>
+          <LoginProvider>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </LoginProvider>
+        </ApolloProvider>
+      </React.StrictMode>
+    );
+  }
+}
 
 export default MyMusic;

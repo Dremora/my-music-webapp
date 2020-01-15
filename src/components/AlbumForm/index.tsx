@@ -1,23 +1,25 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Field, Form } from 'react-final-form';
-import arrayMutators from 'final-form-arrays';
-import { FieldArray } from 'react-final-form-arrays';
-import { AnimatePresence } from 'framer-motion';
-import { ApolloError } from 'apollo-client';
-import { ExecutionResult } from 'graphql';
 
-import { CreateAlbumVariables, CreateAlbum } from 'mutations/CreateAlbum/types/CreateAlbum';
-import { UpdateAlbumVariables, UpdateAlbum } from 'mutations/UpdateAlbum/types/UpdateAlbum';
-import { GetAlbum } from 'queries/GetAlbum/types/GetAlbum';
-import useIsFirstRender from 'data/useIsFirstRender';
+import { ApolloError } from 'apollo-client';
+import arrayMutators from 'final-form-arrays';
+import { motion, AnimatePresence } from 'framer-motion';
+
+import { ExecutionResult } from 'graphql';
+import { Field, Form } from 'react-final-form';
+import { FieldArray } from 'react-final-form-arrays';
 
 import Button from 'components/Button';
+import FirstPlayedField from 'components/FirstPlayedField';
 import FormField from 'components/FormField';
 import Input from 'components/Input';
 import Source from 'components/Source';
 import Text from 'components/Text';
-import FirstPlayedField from 'components/FirstPlayedField';
+import useIsFirstRender from 'data/useIsFirstRender';
+import { CreateAlbumVariables, CreateAlbum } from 'mutations/CreateAlbum/types/CreateAlbum';
+
+import { UpdateAlbumVariables, UpdateAlbum } from 'mutations/UpdateAlbum/types/UpdateAlbum';
+import { GetAlbum } from 'queries/GetAlbum/types/GetAlbum';
+
 import { formatInteger, parseInteger, parseOptionalString } from 'utils';
 
 import { Form as StyledForm, Buttons } from './styles';
@@ -37,25 +39,26 @@ interface Props {
 const AlbumForm = ({ data, error, isNew, isSubmitting, loading, submit, submitError }: Props) => {
   const isFirstRender = useIsFirstRender();
 
-  const handleSubmit = async (data, { reset }) => {
+  const submitForm = async (formData, { reset }) => {
     await submit({
       variables: {
-        id: data.id,
-        title: data.title,
-        artist: data.artist,
-        comments: data.comments,
-        year: data.year,
-        sources: data.sources.map(({ __typename, ...rest }) => rest),
+        id: formData.id,
+        title: formData.title,
+        artist: formData.artist,
+        comments: formData.comments,
+        year: formData.year,
+        sources: formData.sources.map(({ __typename, ...rest }) => rest),
         firstPlayed: (() => {
-          if (data.firstPlayed) {
-            const { __typename, ...firstPlayed } = data.firstPlayed;
+          if (formData.firstPlayed) {
+            const { __typename, ...firstPlayed } = formData.firstPlayed;
             return firstPlayed;
           } else {
-            return data.firstPlayed;
+            return formData.firstPlayed;
           }
         })()
       }
     });
+
     setTimeout(reset, 0);
   };
 
@@ -71,15 +74,15 @@ const AlbumForm = ({ data, error, isNew, isSubmitting, loading, submit, submitEr
     return (
       <Form
         initialValues={data.album}
-        onSubmit={handleSubmit}
         mutators={{
           ...arrayMutators
         }}
+        onSubmit={submitForm}
         subscription={{}}
       >
         {({ handleSubmit }) => (
           <StyledForm onSubmit={handleSubmit}>
-            <Text color="grey" weight="bold" size="large">
+            <Text color="grey" size="large" weight="bold">
               {isNew ? 'Create album' : 'Edit album'}
             </Text>
             <FormField label="Title">
@@ -105,22 +108,24 @@ const AlbumForm = ({ data, error, isNew, isSubmitting, loading, submit, submitEr
                   <AnimatePresence>
                     {fields.map((name, i) => (
                       <motion.div
-                        initial={{ height: isFirstRender.current ? 'auto' : 0 }}
-                        style={{ overflow: 'hidden' }}
-                        key={i}
                         animate={{ height: 'auto' }}
                         exit={{ height: 0 }}
+                        initial={{ height: isFirstRender.current ? 'auto' : 0 }}
+                        // eslint-disable-next-line react/no-array-index-key
+                        key={i}
+                        style={{ overflow: 'hidden' }}
                         transition={{ type: 'tween' }}
                       >
-                        <Source index={i} disabled={isSubmitting} name={name} onRemove={fields.remove} />
+                        <Source disabled={isSubmitting} index={i} name={name} onRemove={fields.remove} />
                       </motion.div>
                     ))}
                   </AnimatePresence>
                   <Buttons>
+                    {/* eslint-disable-next-line react/jsx-no-bind */}
                     <Button onClick={() => fields.push({ location: 'APPLE_MUSIC' })} palette="link" size="small">
                       Add source
                     </Button>
-                    <Button type="submit" disabled={isSubmitting}>
+                    <Button disabled={isSubmitting} type="submit">
                       Submit
                     </Button>
                   </Buttons>

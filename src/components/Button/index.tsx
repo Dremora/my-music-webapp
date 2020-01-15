@@ -1,4 +1,5 @@
 import React from 'react';
+
 import StyledButton from './styles';
 
 interface Props {
@@ -10,8 +11,8 @@ interface Props {
   size?: 'medium' | 'small';
 }
 
-const Button = ({ type = 'button', palette = 'primary', size = 'medium', ...props }: Props) => (
-  <StyledButton palette={palette} type={type} size={size} {...props} />
+const Button = ({ palette = 'primary', size = 'medium', type = 'button', ...props }: Props) => (
+  <StyledButton palette={palette} size={size} type={type} {...props} />
 );
 
 export default Button;

@@ -1,11 +1,16 @@
 import React from 'react';
+
 import Link from 'next/link';
 
 import Footer from 'components/Footer';
 
 import { Page, Section, Header, H1, GlobalStyles, HomeLink } from './styles';
 
-const Layout = ({ children }) => {
+interface Props {
+  children: React.ReactNode;
+}
+
+const Layout = ({ children }: Props) => {
   return (
     <Page>
       <GlobalStyles />
@@ -14,7 +19,7 @@ const Layout = ({ children }) => {
           <Header>
             <Link href="/" passHref>
               <HomeLink>
-                <img alt="Logo" src="/logo.svg" height={48} />
+                <img alt="Logo" height={48} src="/logo.svg" />
                 <H1>My Music</H1>
               </HomeLink>
             </Link>

@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
+
 import { useQuery } from '@apollo/react-hooks';
 
-import FindAlbums from 'queries/FindAlbums';
 import Album from 'components/Album';
 import Search from 'components/Search';
+import FindAlbums from 'queries/FindAlbums';
 
 const IndexPage = () => {
   const [searchText, setSearchText] = useState('');
+
   const { data, error, loading } = useQuery(FindAlbums, {
     skip: !searchText,
     variables: { searchText }
@@ -14,10 +16,10 @@ const IndexPage = () => {
 
   return (
     <>
-      <Search value={searchText} onChange={setSearchText} />
+      <Search onChange={setSearchText} value={searchText} />
       <div>
         {!loading && !error && data && data.albums
-          ? data.albums.map(album => <Album key={album.id} album={album} />)
+          ? data.albums.map(album => <Album album={album} key={album.id} />)
           : null}
       </div>
     </>

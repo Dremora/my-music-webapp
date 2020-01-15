@@ -1,11 +1,13 @@
 import React, { useCallback, useState } from 'react';
-import { Field, useField } from 'react-final-form';
-import { AnimatePresence, motion } from 'framer-motion';
 
-import { formatInteger, parseInteger } from 'utils';
-import useIsFirstRender from 'data/useIsFirstRender';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Field, useField } from 'react-final-form';
+
 import Input from 'components/Input';
 import Text from 'components/Text';
+import useIsFirstRender from 'data/useIsFirstRender';
+
+import { formatInteger, parseInteger } from 'utils';
 
 import {
   Container,
@@ -18,9 +20,7 @@ import {
   MonthDayField
 } from './styles';
 
-interface Props {}
-
-const FirstPlayedField = (_: Props) => {
+const FirstPlayedField = () => {
   const { input } = useField('firstPlayed');
   const { value } = input;
 
@@ -33,6 +33,7 @@ const FirstPlayedField = (_: Props) => {
     e => {
       const newMode = e.target.value;
       setFirstPlayedMode(newMode);
+
       if (newMode === 'date') {
         input.onChange(value && value.year ? value : { year: undefined, month: undefined, day: undefined });
       } else if (newMode === 'timestamp') {
@@ -56,54 +57,54 @@ const FirstPlayedField = (_: Props) => {
       <RadioGroup>
         <RadioLabel>
           <RadioInput
-            name="firstPlayedMode"
-            type="radio"
             checked={firstPlayedMode === 'timestamp'}
-            value="timestamp"
+            name="firstPlayedMode"
             onChange={setMode}
+            type="radio"
+            value="timestamp"
           />
           <Text color="darkPlatinum">Timestamp</Text>
         </RadioLabel>
         <RadioLabel>
           <RadioInput
-            name="firstPlayedMode"
-            type="radio"
             checked={firstPlayedMode === 'date'}
-            value="date"
+            name="firstPlayedMode"
             onChange={setMode}
+            type="radio"
+            value="date"
           />
           <Text color="darkPlatinum">At a specific date</Text>
         </RadioLabel>
         <RadioLabel>
           <RadioInput
-            name="firstPlayedMode"
-            type="radio"
             checked={firstPlayedMode === 'unknown'}
-            value="unknown"
+            name="firstPlayedMode"
             onChange={setMode}
+            type="radio"
+            value="unknown"
           />
           <Text color="darkPlatinum">Unknown</Text>
         </RadioLabel>
       </RadioGroup>
 
       <motion.div
-        initial={{ height: firstPlayedMode === 'unknown' ? 0 : 'auto' }}
         animate={{ height: firstPlayedMode === 'unknown' ? 0 : 'auto' }}
+        initial={{ height: firstPlayedMode === 'unknown' ? 0 : 'auto' }}
         transition={{ type: 'tween' }}
       >
         <AnimatePresence exitBeforeEnter>
           {firstPlayedMode !== 'unknown' && (
             <motion.div
-              key={firstPlayedMode}
-              initial={{ opacity: isFirstRender.current ? 1 : 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
+              initial={{ opacity: isFirstRender.current ? 1 : 0 }}
+              key={firstPlayedMode}
               transition={{ type: 'tween', duration: 0.15 }}
             >
               {firstPlayedMode === 'timestamp' && (
                 <DateInputContainer>
-                  <Field name="firstPlayed.timestamp" format={formatInteger} parse={parseInteger}>
-                    {({ input }) => <Input {...input} />}
+                  <Field format={formatInteger} name="firstPlayed.timestamp" parse={parseInteger}>
+                    {({ input: firstPlayedInput }) => <Input {...firstPlayedInput} />}
                   </Field>
                 </DateInputContainer>
               )}
@@ -111,18 +112,20 @@ const FirstPlayedField = (_: Props) => {
               {firstPlayedMode === 'date' && (
                 <DateInputContainer>
                   <YearInputField>
-                    <Field name="firstPlayed.year" format={formatInteger} parse={parseInteger}>
-                      {({ input }) => <Input {...input} type="number" placeholder="YYYY" />}
+                    <Field format={formatInteger} name="firstPlayed.year" parse={parseInteger}>
+                      {({ input: firstPlayedInput }) => (
+                        <Input {...firstPlayedInput} placeholder="YYYY" type="number" />
+                      )}
                     </Field>
                   </YearInputField>
                   <MonthDayField>
-                    <Field name="firstPlayed.month" format={formatInteger} parse={parseInteger}>
-                      {({ input }) => <Input {...input} type="number" placeholder="MM" />}
+                    <Field format={formatInteger} name="firstPlayed.month" parse={parseInteger}>
+                      {({ input: firstPlayedInput }) => <Input {...firstPlayedInput} placeholder="MM" type="number" />}
                     </Field>
                   </MonthDayField>
                   <MonthDayField>
-                    <Field name="firstPlayed.day" format={formatInteger} parse={parseInteger}>
-                      {({ input }) => <Input {...input} type="number" placeholder="DD" />}
+                    <Field format={formatInteger} name="firstPlayed.day" parse={parseInteger}>
+                      {({ input: firstPlayedInput }) => <Input {...firstPlayedInput} placeholder="DD" type="number" />}
                     </Field>
                   </MonthDayField>
                 </DateInputContainer>

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+
 import { useMutation } from '@apollo/react-hooks';
 import Link from 'next/link';
 
-import { useLogin } from 'data/login';
 import Button from 'components/Button';
 import Input from 'components/Input';
 import Text from 'components/Text';
+import { useLogin } from 'data/login';
 import LOGIN from 'mutations/Login';
 import { Login as LoginType, LoginVariables } from 'mutations/Login/types/Login';
 
@@ -26,6 +27,7 @@ const Footer = () => {
   };
 
   const showLogin = () => setShowingLogin(true);
+
   const setPassword = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setWrongPassword(false);
     setPasswordInput(e.target.value);
@@ -34,6 +36,7 @@ const Footer = () => {
   const login = async () => {
     const result = await loginRequest({ variables: { password: passwordInput } });
     setPasswordInput('');
+
     if (!result.data || !result.data.login) {
       setWrongPassword(true);
     } else {

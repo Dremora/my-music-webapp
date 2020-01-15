@@ -1,4 +1,4 @@
-import React, { createContext, useState, useCallback, useContext, useEffect } from 'react';
+import React, { createContext, useState, useCallback, useContext, useEffect, ReactNode } from 'react';
 
 interface LoginContextType {
   isLoggedIn: boolean;
@@ -14,7 +14,11 @@ const LoginContext = createContext<LoginContextType>({
   token: null
 });
 
-export const LoginProvider = ({ children }) => {
+interface Props {
+  children: ReactNode;
+}
+
+export const LoginProvider = ({ children }: Props) => {
   const [token, setToken] = useState<string | null>(null);
 
   useEffect(() => {

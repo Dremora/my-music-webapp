@@ -1,12 +1,13 @@
 import React, { useMemo, useState, useCallback } from 'react';
+
 import { motion, AnimatePresence } from 'framer-motion';
 import { useToggleLayer } from 'react-laag';
 
 import Text from 'components/Text';
-import Year from './Year';
-import { AlbumPerYearCount_albumPerYearCount } from 'queries/AlbumPerYearCount/types/AlbumPerYearCount';
+import { AlbumPerYearCount_albumPerYearCount as Data } from 'queries/AlbumPerYearCount/types/AlbumPerYearCount';
 
 import { Root } from './styles';
+import Year from './Year';
 
 const getMaxValue = (numbers: number[]): number =>
   numbers.length === 0 ? 0 : numbers.reduce((acc, value) => Math.max(acc, value), numbers[0]);
@@ -17,24 +18,25 @@ const getMinValue = (numbers: number[]): number =>
 const range = (start: number, stop: number): number[] => Array.from({ length: stop - start + 1 }, (_, i) => start + i);
 
 interface Props {
-  data: ReadonlyArray<AlbumPerYearCount_albumPerYearCount>;
+  data: ReadonlyArray<Data>;
 }
 
 const Years = ({ data }: Props) => {
   const [selectedYear, setSelectedYear] = useState<number>();
+
   const [yearElement, toggleYearLayerProps] = useToggleLayer(
     ({ isOpen, layerProps }) => (
       <AnimatePresence>
         {isOpen ? (
           layerProps.style.left ? (
             <motion.div
-              key="year_popup"
+              animate={{ opacity: 1, left: layerProps.style.left }}
+              exit={{ opacity: 0 }}
               initial={{ opacity: 0, left: layerProps.style.left }}
+              key="year_popup"
               ref={layerProps.ref}
               style={layerProps.style}
-              animate={{ opacity: 1, left: layerProps.style.left }}
               transition={{ ease: 'easeOut', duration: 0.1 }}
-              exit={{ opacity: 0 }}
             >
               <Text color="grey" weight="bold">
                 {selectedYear}
@@ -64,7 +66,7 @@ const Years = ({ data }: Props) => {
 
   const yearMap = useMemo(() => {
     const map: { [key: number]: number } = {};
-    dataWithYear.forEach(({ year, count }) => (map[year] = count));
+    dataWithYear.forEach(({ count, year }) => (map[year] = count));
     return map;
   }, [dataWithYear]);
 
@@ -83,7 +85,7 @@ const Years = ({ data }: Props) => {
   );
 
   const hideYear = useCallback(
-    (e: MouseEvent) => {
+    () => {
       toggleYearLayerProps.close();
     },
     [] // eslint-disable-line react-hooks/exhaustive-deps
@@ -94,12 +96,12 @@ const Years = ({ data }: Props) => {
       <Root>
         {yearsWithoutGaps.map(year => (
           <Year
-            year={year}
+            count={yearMap[year] || 0}
             key={year}
             maxCount={maxCount}
-            count={yearMap[year] || 0}
-            onHoverStart={showYear}
             onHoverEnd={hideYear}
+            onHoverStart={showYear}
+            year={year}
           />
         ))}
       </Root>

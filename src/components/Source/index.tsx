@@ -2,14 +2,14 @@ import React, { memo, useCallback } from 'react';
 
 import { Field } from 'react-final-form';
 
-import Input from 'components/Input';
-import Text from 'components/Text';
-import Select from 'components/Select';
-import FormField from 'components/FormField';
 import Button from 'components/Button';
+import FormField from 'components/FormField';
+import Input from 'components/Input';
+import Select from 'components/Select';
+import Text from 'components/Text';
 
-import { formatInteger, parseInteger, parseOptionalString } from 'utils';
 import { Location, Format } from 'types/graphql';
+import { formatInteger, parseInteger, parseOptionalString } from 'utils';
 
 import { Hr, Title } from './styles';
 import { parseMbid } from './utils';
@@ -46,7 +46,7 @@ const Source = ({ disabled, index, name, onRemove }: Props) => {
     <>
       <Hr />
       <Title>
-        <Text color="grey" weight="bold" size="medium">
+        <Text color="grey" size="medium" weight="bold">
           Source {index + 1}
         </Text>
         <Button onClick={remove} size="small">
@@ -58,7 +58,7 @@ const Source = ({ disabled, index, name, onRemove }: Props) => {
           {({ input }) => (
             <Select disabled={disabled} {...input}>
               {locations.map(location => (
-                <option value={location.id} key={location.id}>
+                <option key={location.id} value={location.id}>
                   {location.label}
                 </option>
               ))}
@@ -114,18 +114,17 @@ const Source = ({ disabled, index, name, onRemove }: Props) => {
                   </Field>
                 </FormField>
                 <FormField label="Format">
-                  <Field
-                    name={`${name}.format`}
-                    render={({ input }) => (
+                  <Field name={`${name}.format`}>
+                    {({ input }) => (
                       <Select disabled={disabled} {...input}>
                         {formats.map(format => (
-                          <option value={format.id} key={format.id}>
+                          <option key={format.id} value={format.id}>
                             {format.label}
                           </option>
                         ))}
                       </Select>
                     )}
-                  />
+                  </Field>
                 </FormField>
               </>
             )}
