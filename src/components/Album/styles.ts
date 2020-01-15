@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
-import { Link } from 'react-router-dom';
-import { platinum } from '../../styles/colors';
 
-export const Anchor = styled(Link)`
+import { platinum } from 'styles/colors';
+
+export const Anchor = styled.a`
   text-decoration: none;
   display: flex;
   flex-direction: row;
@@ -10,14 +10,22 @@ export const Anchor = styled(Link)`
   cursor: pointer;
   flex-wrap: wrap;
 
-  ${props =>
-    props.to
-      ? css`
-          cursor: pointer;
-        `
-      : css`
-          cursor: default;
-        `};
+  &:hover {
+    background-color: ${platinum};
+  }
+
+  @media (min-width: 600px) {
+    flex-wrap: nowrap;
+  }
+`;
+
+export const Root = styled.div`
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  padding: 5px 10px;
+  cursor: pointer;
+  flex-wrap: wrap;
 
   &:hover {
     background-color: ${platinum};

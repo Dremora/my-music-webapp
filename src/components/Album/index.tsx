@@ -1,11 +1,11 @@
 import React from 'react';
+import Link from 'next/link';
 
-import { formatFirstPlayed, FirstPlayed as FirstPlayedType } from '../../utils';
-import { useLogin } from '../../data/login';
+import { formatFirstPlayed, FirstPlayed as FirstPlayedType } from 'utils';
+import { useLogin } from 'data/login';
+import Text from 'components/Text';
 
-import Text from '../Text';
-
-import { Anchor, Column1, Column2, Column3, FirstPlayed } from './styles';
+import { Root, Anchor, Column1, Column2, Column3, FirstPlayed } from './styles';
 
 interface Props {
   album: {
@@ -20,8 +20,9 @@ interface Props {
 const Album = ({ album }: Props) => {
   const { isLoggedIn } = useLogin();
   const firstPlayedFormatted = formatFirstPlayed(album.firstPlayed);
-  return (
-    <Anchor to={isLoggedIn && `/albums/${album.id}`}>
+
+  const contents = (
+    <>
       <Column1>
         <Text color="lighterGrey" size="small">
           {album.year}
@@ -34,7 +35,6 @@ const Album = ({ album }: Props) => {
 
         <Text color="grey">{album.artist}</Text>
       </Column2>
-
       <Column3>
         <FirstPlayed>
           <Text color="lighterGrey" size="small">
@@ -42,7 +42,14 @@ const Album = ({ album }: Props) => {
           </Text>
         </FirstPlayed>
       </Column3>
-    </Anchor>
+    </>
+  );
+  return isLoggedIn ? (
+    <Link href="/albums/[id]" as={`/albums/${album.id}`}>
+      <Anchor>{contents}</Anchor>
+    </Link>
+  ) : (
+    <Root>{contents}</Root>
   );
 };
 

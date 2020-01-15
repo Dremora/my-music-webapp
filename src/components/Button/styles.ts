@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
-import { vermilion, darkerPlatinum, white, grey, blue, darkerVermilion } from '../../styles/colors';
-import { base, medium } from '../../styles/fonts';
+import { vermilion, darkerPlatinum, white, grey, blue, darkerVermilion } from 'styles/colors';
+import { base, medium } from 'styles/fonts';
 
 interface Props {
   size: 'medium' | 'small';

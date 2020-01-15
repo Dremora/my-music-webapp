@@ -2,16 +2,17 @@ import React, { memo, useCallback } from 'react';
 
 import { Field } from 'react-final-form';
 
-import Input from '../../components/Input';
-import Text from '../../components/Text';
-import Select from '../../components/Select';
-import FormField from '../../components/FormField';
-import Button from '../../components/Button';
+import Input from 'components/Input';
+import Text from 'components/Text';
+import Select from 'components/Select';
+import FormField from 'components/FormField';
+import Button from 'components/Button';
+
+import { formatInteger, parseInteger, parseOptionalString } from 'utils';
+import { Location, Format } from 'types/graphql';
 
 import { Hr, Title } from './styles';
 import { parseMbid } from './utils';
-import { formatInteger, parseInteger, parseOptionalString } from '../utils';
-import { Location, Format } from '../../types/graphql';
 
 const locations: { id: Location; label: string }[] = [
   { id: Location.APPLE_MUSIC, label: 'Apple Music' },

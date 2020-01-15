@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
-import { platinum, darkPlatinum, darkerPlatinum } from '../../styles/colors';
-import { base } from '../../styles/fonts';
+import { platinum, darkPlatinum, darkerPlatinum } from 'styles/colors';
+import { base } from 'styles/fonts';
 
 const styles = css`
   ${base};

@@ -27,11 +27,7 @@ export const LoginLink = styled.div<LoginLinkProps>`
     `};
 `;
 
-export const NewAlbumLink = styled.div`
+export const NewAlbumLink = styled.a`
   margin-left: 20px;
-  cursor: pointer;
-
-  a {
-    text-decoration: none;
-  }
+  text-decoration: none;
 `;

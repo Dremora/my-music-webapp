@@ -1,4 +1,4 @@
-import React, { createContext, useState, useCallback, useContext } from 'react';
+import React, { createContext, useState, useCallback, useContext, useEffect } from 'react';
 
 interface LoginContextType {
   isLoggedIn: boolean;
@@ -15,7 +15,12 @@ const LoginContext = createContext<LoginContextType>({
 });
 
 export const LoginProvider = ({ children }) => {
-  const [token, setToken] = useState(localStorage.getItem('token'));
+  const [token, setToken] = useState<string | null>(null);
+
+  useEffect(() => {
+    setToken(localStorage.getItem('token'));
+  }, []);
+
   const onLoggedIn = useCallback(newToken => {
     localStorage.setItem('token', newToken);
     setToken(newToken);

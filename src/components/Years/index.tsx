@@ -2,9 +2,9 @@ import React, { useMemo, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useToggleLayer } from 'react-laag';
 
-import Text from '../../components/Text';
+import Text from 'components/Text';
 import Year from './Year';
-import { AlbumPerYearCount_albumPerYearCount } from '../../routes/Years/types/AlbumPerYearCount';
+import { AlbumPerYearCount_albumPerYearCount } from 'queries/AlbumPerYearCount/types/AlbumPerYearCount';
 
 import { Root } from './styles';
 

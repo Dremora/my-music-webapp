@@ -7,20 +7,20 @@ import { AnimatePresence } from 'framer-motion';
 import { ApolloError } from 'apollo-client';
 import { ExecutionResult } from 'graphql';
 
-import { CreateAlbumVariables, CreateAlbum } from '../../routes/Albums/NewAlbum/types/CreateAlbum';
-import { UpdateAlbumVariables, UpdateAlbum } from '../../routes/Albums/Album/types/UpdateAlbum';
+import { CreateAlbumVariables, CreateAlbum } from 'mutations/CreateAlbum/types/CreateAlbum';
+import { UpdateAlbumVariables, UpdateAlbum } from 'mutations/UpdateAlbum/types/UpdateAlbum';
+import { GetAlbum } from 'queries/GetAlbum/types/GetAlbum';
+import useIsFirstRender from 'data/useIsFirstRender';
 
-import { GetAlbum } from '../../routes/Albums/Album/types/GetAlbum';
-import useIsFirstRender from '../../data/useIsFirstRender';
-import Button from '../Button';
-import FormField from '../FormField';
-import Input from '../Input';
-import Source from '../Source';
-import Text from '../Text';
-import FirstPlayedField from '../FirstPlayedField';
+import Button from 'components/Button';
+import FormField from 'components/FormField';
+import Input from 'components/Input';
+import Source from 'components/Source';
+import Text from 'components/Text';
+import FirstPlayedField from 'components/FirstPlayedField';
+import { formatInteger, parseInteger, parseOptionalString } from 'utils';
 
 import { Form as StyledForm, Buttons } from './styles';
-import { formatInteger, parseInteger, parseOptionalString } from '../utils';
 
 interface Props {
   data?: { album: CreateAlbumVariables } | GetAlbum;

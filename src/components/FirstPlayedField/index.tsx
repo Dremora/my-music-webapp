@@ -2,8 +2,10 @@ import React, { useCallback, useState } from 'react';
 import { Field, useField } from 'react-final-form';
 import { AnimatePresence, motion } from 'framer-motion';
 
-import Input from '../Input';
-import Text from '../Text';
+import { formatInteger, parseInteger } from 'utils';
+import useIsFirstRender from 'data/useIsFirstRender';
+import Input from 'components/Input';
+import Text from 'components/Text';
 
 import {
   Container,
@@ -15,8 +17,6 @@ import {
   YearInputField,
   MonthDayField
 } from './styles';
-import { formatInteger, parseInteger } from '../utils';
-import useIsFirstRender from '../../data/useIsFirstRender';
 
 interface Props {}
 

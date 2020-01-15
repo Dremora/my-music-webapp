@@ -1,9 +1,8 @@
 {
-  "name": "webapp-react",
+  "name": "my-music-webapp",
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "@types/jest": "24.0.25",
     "@types/luxon": "^1.21.0",
     "@types/node": "13.1.6",
     "@types/react": "16.9.17",
@@ -11,6 +10,7 @@
     "@types/styled-components": "4.4.2",
     "@typescript-eslint/parser": "2.16.0",
     "apollo": "2.21.3",
+    "babel-plugin-module-resolver": "4.0.0",
     "eslint-config-prettier": "6.9.0",
     "eslint-config-react-app": "5.1.0",
     "eslint-import-resolver-typescript": "2.0.0",
@@ -32,6 +32,8 @@
     "graphql": "14.5.8",
     "graphql-tag": "2.10.1",
     "luxon": "1.21.3",
+    "next": "9.1.7",
+    "node-fetch": "2.6.0",
     "normalize.css": "8.0.1",
     "polished": "3.4.2",
     "react": "16.12.0",
@@ -39,25 +41,19 @@
     "react-final-form": "6.3.3",
     "react-final-form-arrays": "3.1.1",
     "react-laag": "1.6.2",
-    "react-router-dom": "5.1.2",
-    "serve": "11.3.0",
     "styled-components": "5.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
+    "dev": "next",
+    "start": "next start",
+    "build": "next build",
     "lint": "eslint src --ext js,ts,tsx",
     "lint:fix": "eslint src --ext js,ts,tsx --fix",
-    "now-start": "serve -s build",
-    "generate-typescript-graphql-types": "apollo client:codegen --useReadOnlyTypes --globalTypesFile=src/types/graphql.ts --target=typescript types && yarn prettier --write src/**/types/*.ts",
-    "deploy": "now && now alias"
+    "generate-typescript-graphql-types": "apollo client:codegen --useReadOnlyTypes --globalTypesFile=src/types/graphql.ts --target=typescript types && yarn prettier --write src/**/types/*.ts"
   },
   "engines": {
     "node": "12.x"
   },
-  "proxy": "http://localhost:4000",
   "browserslist": {
     "production": [
       ">0.2%",

@@ -4,6 +4,6 @@ module.exports = {
       name: 'my-music-api',
       url: 'http://localhost:4000'
     },
-    includes: ['./src/**/query.ts', './src/**/mutation.ts']
+    includes: ['./src/queries/**/*.ts', './src/mutations/**/*.ts']
   }
 };

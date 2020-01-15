@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
-import Button from '../../components/Button';
-import Input from '../../components/Input';
-import Text from '../../components/Text';
+import { useLogin } from 'data/login';
+import Button from 'components/Button';
+import Input from 'components/Input';
+import Text from 'components/Text';
 
 import LOGIN from './mutation';
 import { Login as LoginType, LoginVariables } from './types/Login';
 import { Root, Spacer, LoginLink, NewAlbumLink } from './styles';
-import { useLogin } from '../../data/login';
 
 const Login = () => {
   const { isLoggedIn, onLoggedIn, onLoggedOut } = useLogin();
@@ -72,13 +72,13 @@ const Login = () => {
             </Text>
           </LoginLink>
           {isLoggedIn && (
-            <NewAlbumLink>
-              <Link to="/albums/new">
+            <Link href="/albums/new" passHref>
+              <NewAlbumLink>
                 <Text color="lighterGrey" size="small">
                   New album
                 </Text>
-              </Link>
-            </NewAlbumLink>
+              </NewAlbumLink>
+            </Link>
           )}
         </>
       )}
