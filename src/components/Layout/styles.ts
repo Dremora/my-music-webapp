@@ -14,7 +14,7 @@ export const Page = styled.div`
 export const Header = styled.header`
   padding: 20px 0 20px 4px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
 `;
 

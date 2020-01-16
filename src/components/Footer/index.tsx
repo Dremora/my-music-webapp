@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 import { useMutation } from '@apollo/react-hooks';
-import Link from 'next/link';
 
 import Button from 'components/Button';
 import Input from 'components/Input';
@@ -10,7 +9,7 @@ import { useLogin } from 'data/login';
 import LOGIN from 'mutations/Login';
 import { Login as LoginType, LoginVariables } from 'mutations/Login/types/Login';
 
-import { Root, Spacer, LoginLink, NewAlbumLink } from './styles';
+import { Root, Spacer, LoginLink } from './styles';
 
 const Footer = () => {
   const { isLoggedIn, onLoggedIn, onLoggedOut } = useLogin();
@@ -68,22 +67,11 @@ const Footer = () => {
           </Button>
         </>
       ) : (
-        <>
-          <LoginLink disabled={loading} onClick={isLoggedIn ? onLoggedOut : showLogin}>
-            <Text color="lighterGrey" size="small">
-              {loading ? 'Loading…' : isLoggedIn ? 'Log out' : 'Login'}
-            </Text>
-          </LoginLink>
-          {isLoggedIn && (
-            <Link href="/albums/new" passHref>
-              <NewAlbumLink>
-                <Text color="lighterGrey" size="small">
-                  New album
-                </Text>
-              </NewAlbumLink>
-            </Link>
-          )}
-        </>
+        <LoginLink disabled={loading} onClick={isLoggedIn ? onLoggedOut : showLogin}>
+          <Text color="lighterGrey" size="small">
+            {loading ? 'Loading…' : isLoggedIn ? 'Log out' : 'Login'}
+          </Text>
+        </LoginLink>
       )}
     </Root>
   );

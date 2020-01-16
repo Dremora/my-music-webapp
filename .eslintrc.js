@@ -85,10 +85,11 @@ module.exports = {
     'react-hooks/rules-of-hooks': 'error',
     'react/forbid-component-props': 'off',
     'react/jsx-filename-extension': 'off',
+    'react/jsx-handler-names': 'off',
     'react/jsx-max-depth': 'off',
+    'react/jsx-no-bind': 'off',
     'react/jsx-no-literals': 'off',
     'react/jsx-props-no-spreading': 'off',
-    'react/jsx-handler-names': 'off',
     'sort-destructure-keys/sort-destructure-keys': 'error'
   }
 };

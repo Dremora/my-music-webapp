@@ -26,8 +26,3 @@ export const LoginLink = styled.div<LoginLinkProps>`
       cursor: auto;
     `};
 `;
-
-export const NewAlbumLink = styled.a`
-  margin-left: 20px;
-  text-decoration: none;
-`;

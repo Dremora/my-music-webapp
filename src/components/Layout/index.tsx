@@ -3,6 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 
 import Footer from 'components/Footer';
+import Menu from 'components/Menu';
 
 import { Page, Section, Header, H1, GlobalStyles, HomeLink } from './styles';
 
@@ -23,6 +24,7 @@ const Layout = ({ children }: Props) => {
                 <H1>My Music</H1>
               </HomeLink>
             </Link>
+            <Menu />
           </Header>
         </Section>
         <Section>{children}</Section>
