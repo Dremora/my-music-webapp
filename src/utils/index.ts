@@ -1,10 +1,18 @@
-import { DateTime } from 'luxon';
+import { format } from 'date-fns-tz';
 
-interface Date {
-  year: number;
-  month?: number;
-  day?: number;
-}
+type Date =
+  | {
+      year: number;
+    }
+  | {
+      year: number;
+      month: number;
+    }
+  | {
+      year: number;
+      month: number;
+      day: number;
+    };
 
 interface Timestamp {
   timestamp: number;
@@ -16,17 +24,15 @@ export function formatFirstPlayed(val: FirstPlayed): string {
   if (!val) {
     return '';
   } else if ('timestamp' in val) {
-    return DateTime.fromSeconds(val.timestamp, { zone: 'utc' }).toFormat('d MMM yyyy HH:mm');
+    return format(new Date(val.timestamp * 1000), 'd MMM yyyy HH:mm', { timeZone: 'UTC' });
+  } else if ('day' in val) {
+    return format(Date.UTC(val.year, val.month - 1, val.day), 'd MMM yyyy', { timeZone: 'UTC' });
+  } else if ('month' in val) {
+    return format(Date.UTC(val.year, val.month - 1), 'MMM yyyy', { timeZone: 'UTC' });
+  } else if ('year' in val) {
+    return format(Date.UTC(val.year, 1), 'yyyy', { timeZone: 'UTC' });
   } else {
-    if (val.day) {
-      return DateTime.utc(val.year, val.month, val.day).toFormat('d MMM yyyy');
-    } else if (val.month) {
-      return DateTime.utc(val.year, val.month).toFormat('MMM yyyy');
-    } else if (val.year) {
-      return DateTime.utc(val.year).toFormat('yyyy');
-    } else {
-      return '';
-    }
+    return '';
   }
 }
 
