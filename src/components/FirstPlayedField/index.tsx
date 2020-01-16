@@ -97,7 +97,7 @@ const FirstPlayedField = () => {
             <motion.div
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              initial={{ opacity: isFirstRender.current ? 1 : 0 }}
+              initial={{ opacity: isFirstRender ? 1 : 0 }}
               key={firstPlayedMode}
               transition={{ type: 'tween', duration: 0.15 }}
             >

@@ -2,10 +2,10 @@ import React from 'react';
 
 import { AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
-
 import { useRouter } from 'next/router';
 
 import Text from 'components/Text';
+import useIsFirstRender from 'data/useIsFirstRender';
 
 import { Anchor, ListItem, Bar } from './styles';
 
@@ -17,6 +17,8 @@ interface Props {
 
 const Item = ({ children, href, onClick }: Props) => {
   const router = useRouter();
+  const isFirstRender = useIsFirstRender();
+
   const current = router.pathname === href;
   return (
     <ListItem>
@@ -32,7 +34,7 @@ const Item = ({ children, href, onClick }: Props) => {
           <Bar
             animate={{ width: '100%' }}
             exit={{ width: 0 }}
-            initial={{ width: 0 }}
+            initial={{ width: isFirstRender ? '100%' : 0 }}
             key="bar"
             transition={{ type: 'tween', duration: 0.2 }}
           />

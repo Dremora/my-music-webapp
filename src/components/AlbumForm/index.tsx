@@ -110,7 +110,7 @@ const AlbumForm = ({ data, error, isNew, isSubmitting, loading, submit, submitEr
                       <motion.div
                         animate={{ height: 'auto' }}
                         exit={{ height: 0 }}
-                        initial={{ height: isFirstRender.current ? 'auto' : 0 }}
+                        initial={{ height: isFirstRender ? 'auto' : 0 }}
                         // eslint-disable-next-line react/no-array-index-key
                         key={i}
                         style={{ overflow: 'hidden' }}

@@ -7,7 +7,7 @@ const useIsFirstRender = () => {
     isFirstRender.current = false;
   }, []);
 
-  return isFirstRender;
+  return isFirstRender.current;
 };
 
 export default useIsFirstRender;
