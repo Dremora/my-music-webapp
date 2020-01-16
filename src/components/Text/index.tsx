@@ -1,10 +1,14 @@
 import React from 'react';
 
+import * as colors from 'styles/colors';
+
 import StyledText from './styles';
+
+type Color = keyof typeof colors;
 
 interface Props {
   children: React.ReactNode;
-  color: string;
+  color: Color;
   size?: 'small' | 'base' | 'medium' | 'large';
   weight?: 'normal' | 'bold';
 }
