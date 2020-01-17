@@ -5,9 +5,11 @@ const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === 'true'
 });
 
-module.exports = withBundleAnalyzer(phase => {
+module.exports = phase => {
   const isDev = phase === PHASE_DEVELOPMENT_SERVER;
   const isProd = phase === PHASE_PRODUCTION_BUILD;
+
+  console.log('phase', { phase });
 
   const env = {
     API_URL: (() => {
@@ -19,5 +21,5 @@ module.exports = withBundleAnalyzer(phase => {
     })()
   };
 
-  return { env };
-});
+  return withBundleAnalyzer({ env });
+};
