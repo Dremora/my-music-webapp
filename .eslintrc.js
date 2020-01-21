@@ -88,6 +88,7 @@ module.exports = {
     'react/jsx-handler-names': 'off',
     'react/jsx-max-depth': 'off',
     'react/jsx-no-bind': 'off',
+    'react/function-component-definition': 'off',
     'react/jsx-no-literals': 'off',
     'react/jsx-props-no-spreading': 'off',
     'sort-destructure-keys/sort-destructure-keys': 'error'
