@@ -13,6 +13,7 @@ export default styled.button<Props>`
   border: none;
   display: block;
   appearance: none;
+  background-color: transparent;
 
   ${props =>
     props.size === 'medium' &&
