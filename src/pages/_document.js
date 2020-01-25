@@ -34,6 +34,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
+          <title>My Music</title>
           <link href="/favicon.ico" rel="icon" />
           <link href="https://fonts.googleapis.com/css?family=Lato:400,700&amp;subset=latin-ext" rel="stylesheet" />
           <script src="https://polyfill.io/v3/polyfill.min.js?features=ResizeObserver" />
