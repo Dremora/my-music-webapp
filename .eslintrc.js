@@ -12,6 +12,7 @@ module.exports = {
   plugins: ['import', 'jsx-a11y', 'react', 'react-hooks', '@typescript-eslint', 'sort-destructure-keys', 'prettier'],
   extends: [
     'eslint:recommended',
+    'plugin:@typescript-eslint/eslint-recommended',
     'plugin:react/all',
     'plugin:prettier/recommended',
     'plugin:@typescript-eslint/recommended',
