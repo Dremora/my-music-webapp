@@ -4149,10 +4149,10 @@ fragment-cache@^0.2.1:
   dependencies:
     map-cache "^0.2.2"
 
-framer-motion@1.8.1:
-  version "1.8.1"
-  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-1.8.1.tgz#5ce9cbf1c92ab0c1321f3c61e1adcf0c1bd71757"
-  integrity sha512-fHP2wj9WbEklteTHXSkFL2ZyiJLKP+mg2Gy0b5HlYv9LDIfrud9VUcWAlGQUiKpPuMzdTTf/8Nk0CLChS5HwmA==
+framer-motion@1.8.2:
+  version "1.8.2"
+  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-1.8.2.tgz#96e6e191b3df949f0c797c6a89ba4b63db4d3a52"
+  integrity sha512-nQgFmiGvbNDwWq8uKz8OOIHmmdbWIvq45aN8OqzSdUEoI9kYkyylYayMPlE/LL1/CBLLmG7mvKeBgp2Y6DECdQ==
   dependencies:
     "@popmotion/easing" "^1.0.2"
     "@popmotion/popcorn" "^0.4.2"
