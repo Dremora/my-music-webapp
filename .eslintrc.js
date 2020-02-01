@@ -68,6 +68,7 @@ module.exports = {
     ],
     'jsx-a11y/no-autofocus': 'off',
     'no-restricted-globals': ['error'].concat(restrictedGlobals),
+    'no-restricted-imports': ['error', { patterns: ['../../*'] }],
     'no-shadow': 'error',
     'no-useless-constructor': 'error',
     'padding-line-between-statements': [
