@@ -1,6 +1,5 @@
-import React, { useCallback, memo } from 'react';
-
 import { transform } from 'framer-motion';
+import React, { useCallback, memo } from 'react';
 
 import { grey, lightGrey, lighterGrey } from 'styles/colors';
 

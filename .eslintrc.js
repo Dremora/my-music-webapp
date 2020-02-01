@@ -17,6 +17,7 @@ module.exports = {
     'plugin:prettier/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:jsx-a11y/strict',
+    'plugin:import/typescript',
     'prettier/react',
     'prettier/@typescript-eslint'
   ],
@@ -26,7 +27,6 @@ module.exports = {
     node: true
   },
   settings: {
-    'import/core-modules': ['react'],
     'import/resolver': {
       typescript: {}
     },
@@ -61,7 +61,7 @@ module.exports = {
       'error',
       {
         groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
-        'newlines-between': 'always-and-inside-groups',
+        'newlines-between': 'always',
         alphabetize: { order: 'asc', caseInsensitive: true }
       }
     ],

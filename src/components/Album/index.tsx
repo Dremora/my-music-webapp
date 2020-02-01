@@ -1,10 +1,8 @@
-import React from 'react';
-
 import Link from 'next/link';
+import React from 'react';
 
 import Text from 'components/Text';
 import { useLogin } from 'data/login';
-
 import { formatFirstPlayed, FirstPlayed as FirstPlayedType } from 'utils';
 
 import { Root, Anchor, Column1, Column2, Column3, FirstPlayed } from './styles';

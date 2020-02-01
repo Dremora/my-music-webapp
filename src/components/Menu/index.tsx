@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { ToggleLayer } from 'react-laag';
 
 import BurgerIcon from 'components/BurgerIcon';

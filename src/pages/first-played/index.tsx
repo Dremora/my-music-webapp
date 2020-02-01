@@ -1,9 +1,7 @@
+import { useQuery } from '@apollo/react-hooks';
 import React from 'react';
 
-import { useQuery } from '@apollo/react-hooks';
-
 import Years from 'components/Years';
-
 import ALBUM_PER_FIRST_PLAYED_YEAR_COUNT from 'queries/AlbumPerFirstPlayedYearCount';
 import { AlbumPerFirstPlayedYearCount } from 'queries/AlbumPerFirstPlayedYearCount/types/AlbumPerFirstPlayedYearCount';
 

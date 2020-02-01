@@ -1,6 +1,5 @@
-import React from 'react';
-
 import { useQuery } from '@apollo/react-hooks';
+import React from 'react';
 
 import Years from 'components/Years';
 import ALBUM_PER_YEAR_COUNT from 'queries/AlbumPerYearCount';

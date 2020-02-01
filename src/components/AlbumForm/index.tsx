@@ -1,10 +1,8 @@
-import React from 'react';
-
 import { ApolloError } from 'apollo-client';
 import arrayMutators from 'final-form-arrays';
 import { motion, AnimatePresence } from 'framer-motion';
-
 import { ExecutionResult } from 'graphql';
+import React from 'react';
 import { Field, Form } from 'react-final-form';
 import { FieldArray } from 'react-final-form-arrays';
 
@@ -16,10 +14,8 @@ import Source from 'components/Source';
 import Text from 'components/Text';
 import useIsFirstRender from 'data/useIsFirstRender';
 import { CreateAlbumVariables, CreateAlbum } from 'mutations/CreateAlbum/types/CreateAlbum';
-
 import { UpdateAlbumVariables, UpdateAlbum } from 'mutations/UpdateAlbum/types/UpdateAlbum';
 import { GetAlbum } from 'queries/GetAlbum/types/GetAlbum';
-
 import { formatInteger, parseInteger, parseOptionalString } from 'utils';
 
 import { Form as StyledForm, Buttons } from './styles';

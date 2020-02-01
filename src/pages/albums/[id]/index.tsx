@@ -1,7 +1,6 @@
-import React from 'react';
-
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { useRouter } from 'next/router';
+import React from 'react';
 
 import AlbumForm from 'components/AlbumForm';
 import { useLogin } from 'data/login';

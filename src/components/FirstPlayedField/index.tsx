@@ -1,12 +1,10 @@
-import React, { useCallback, useState } from 'react';
-
 import { AnimatePresence, motion } from 'framer-motion';
+import React, { useCallback, useState } from 'react';
 import { Field, useField } from 'react-final-form';
 
 import Input from 'components/Input';
 import Text from 'components/Text';
 import useIsFirstRender from 'data/useIsFirstRender';
-
 import { formatInteger, parseInteger } from 'utils';
 
 import {

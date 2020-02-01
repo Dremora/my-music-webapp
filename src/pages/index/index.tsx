@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-
 import { useQuery } from '@apollo/react-hooks';
+import React, { useState } from 'react';
 
 import Album from 'components/Album';
 import Search from 'components/Search';
