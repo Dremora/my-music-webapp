@@ -1,6 +1,6 @@
 import { css } from 'styled-components';
 
-export const common = css`
+const common = css`
   font-family: 'Lato';
   font-weight: 400;
   font-style: normal;
@@ -11,16 +11,6 @@ export const common = css`
 export const h1 = css`
   ${common};
   font-size: 32px;
-`;
-
-export const h2 = css`
-  ${common};
-  font-size: 28px;
-`;
-
-export const h3 = css`
-  ${common};
-  font-size: 24px;
 `;
 
 export const large = css`

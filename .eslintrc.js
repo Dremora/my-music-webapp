@@ -55,6 +55,7 @@ module.exports = {
     'import/no-named-default': 'error',
     'import/no-self-import': 'error',
     'import/no-unresolved': 'error',
+    'import/no-unused-modules': ['error', { unusedExports: true, missingExports: true }],
     'import/no-useless-path-segments': 'error',
     'import/no-webpack-loader-syntax': 'error',
     'import/order': [
