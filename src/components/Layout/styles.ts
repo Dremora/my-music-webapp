@@ -1,6 +1,6 @@
 import styled, { createGlobalStyle } from 'styled-components';
 
-import { whiteSmoke, vermilion } from 'styles/colors';
+import { vermilion, whiteSmoke } from 'styles/colors';
 import { h1 } from 'styles/fonts';
 
 export const Page = styled.div`

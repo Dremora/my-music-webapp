@@ -6,7 +6,7 @@ import FormField from 'components/FormField';
 import Input from 'components/Input';
 import Select from 'components/Select';
 import Text from 'components/Text';
-import { Location, Format } from 'types/graphql';
+import { Format, Location } from 'types/graphql';
 import { formatInteger, parseInteger, parseOptionalString } from 'utils';
 
 import { Hr, Title } from './styles';

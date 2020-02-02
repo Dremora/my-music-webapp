@@ -94,6 +94,7 @@ module.exports = {
     'react/function-component-definition': 'off',
     'react/jsx-no-literals': 'off',
     'react/jsx-props-no-spreading': 'off',
+    'sort-imports': ['error', { ignoreDeclarationSort: true }],
     'sort-destructure-keys/sort-destructure-keys': 'error'
   }
 };

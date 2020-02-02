@@ -6,7 +6,7 @@ import React from 'react';
 import Text from 'components/Text';
 import useIsFirstRender from 'data/useIsFirstRender';
 
-import { Anchor, ListItem, Bar } from './styles';
+import { Anchor, Bar, ListItem } from './styles';
 
 interface Props {
   href: string;

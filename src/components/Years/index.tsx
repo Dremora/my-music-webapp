@@ -1,5 +1,5 @@
-import { motion, AnimatePresence } from 'framer-motion';
-import React, { useMemo, useState, useCallback } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import React, { useCallback, useMemo, useState } from 'react';
 import { useToggleLayer } from 'react-laag';
 
 import Text from 'components/Text';

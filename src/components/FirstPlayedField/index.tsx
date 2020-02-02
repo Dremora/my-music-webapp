@@ -9,13 +9,13 @@ import { formatInteger, parseInteger } from 'utils';
 
 import {
   Container,
-  Label,
-  RadioGroup,
-  RadioLabel,
-  RadioInput,
   DateInputContainer,
-  YearInputField,
-  MonthDayField
+  Label,
+  MonthDayField,
+  RadioGroup,
+  RadioInput,
+  RadioLabel,
+  YearInputField
 } from './styles';
 
 const FirstPlayedField = () => {

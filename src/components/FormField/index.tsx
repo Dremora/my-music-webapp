@@ -2,7 +2,7 @@ import React from 'react';
 
 import Text from 'components/Text';
 
-import { Container, Label, Contents } from './styles';
+import { Container, Contents, Label } from './styles';
 
 interface Props {
   label: string;

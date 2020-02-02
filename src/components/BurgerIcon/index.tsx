@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Container, Bar } from './styles';
+import { Bar, Container } from './styles';
 
 const BurgerIcon = () => {
   return (

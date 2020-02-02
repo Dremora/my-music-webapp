@@ -8,7 +8,7 @@ import { useLogin } from 'data/login';
 import LOGIN from 'mutations/Login';
 import { Login as LoginType, LoginVariables } from 'mutations/Login/types/Login';
 
-import { Root, Spacer, LoginLink } from './styles';
+import { LoginLink, Root, Spacer } from './styles';
 
 const Footer = () => {
   const { isLoggedIn, onLoggedIn, onLoggedOut } = useLogin();

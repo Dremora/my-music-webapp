@@ -4,7 +4,7 @@ import React from 'react';
 import Footer from 'components/Footer';
 import Menu from 'components/Menu';
 
-import { Page, Section, Header, H1, GlobalStyles, HomeLink } from './styles';
+import { GlobalStyles, H1, Header, HomeLink, Page, Section } from './styles';
 
 interface Props {
   children: React.ReactNode;

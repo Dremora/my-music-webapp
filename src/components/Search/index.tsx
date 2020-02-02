@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 
-import { Root, Image, Input } from './styles';
+import { Image, Input, Root } from './styles';
 
 interface Props {
   value: string;

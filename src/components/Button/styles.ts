@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { vermilion, darkerPlatinum, white, grey, blue, darkerVermilion } from 'styles/colors';
+import { blue, darkerPlatinum, darkerVermilion, grey, vermilion, white } from 'styles/colors';
 import { base, medium } from 'styles/fonts';
 
 interface Props {

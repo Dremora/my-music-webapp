@@ -4,7 +4,7 @@ import { ToggleLayer } from 'react-laag';
 import BurgerIcon from 'components/BurgerIcon';
 
 import MenuItems from './MenuItems';
-import { MenuButton, SmallScreen, LargeScreen } from './styles';
+import { LargeScreen, MenuButton, SmallScreen } from './styles';
 
 const Menu = () => {
   return (

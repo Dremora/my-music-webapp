@@ -1,9 +1,9 @@
 import { transform } from 'framer-motion';
-import React, { useCallback, memo } from 'react';
+import React, { memo, useCallback } from 'react';
 
 import { grey, lightGrey, lighterGrey } from 'styles/colors';
 
-import { Root, Bar } from './styles';
+import { Bar, Root } from './styles';
 
 interface Props {
   year: number;

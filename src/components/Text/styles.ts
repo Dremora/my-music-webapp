@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 import * as colors from 'styles/colors';
-import { small, base, medium, large } from 'styles/fonts';
+import { base, large, medium, small } from 'styles/fonts';
 
 const weights = {
   normal: 400,

@@ -3,9 +3,9 @@ import React from 'react';
 
 import Text from 'components/Text';
 import { useLogin } from 'data/login';
-import { formatFirstPlayed, FirstPlayed as FirstPlayedType } from 'utils';
+import { FirstPlayed as FirstPlayedType, formatFirstPlayed } from 'utils';
 
-import { Root, Anchor, Column1, Column2, Column3, FirstPlayed } from './styles';
+import { Anchor, Column1, Column2, Column3, FirstPlayed, Root } from './styles';
 
 interface Props {
   album: {
