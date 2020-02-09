@@ -6983,10 +6983,10 @@ react-is@^16.7.0, react-is@^16.8.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.12.0.tgz#2cc0fe0fba742d97fd527c42a13bec4eeb06241c"
   integrity sha512-rPCkf/mWBtKc97aLL9/txD8DZdemK0vkA3JMLShjlJB3Pj3s+lpf1KaBzMfQrAmhMQB0n1cU/SUGgKKBCe837Q==
 
-react-laag@1.6.2:
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/react-laag/-/react-laag-1.6.2.tgz#b7dbdd51ade5fda1833002e7c726642ffa25d8a7"
-  integrity sha512-sjdSigdARwRkGbAxZF2n16AAfH2Fd5ZTsMQRnTrv6tuf2UINggYaqZVSBBF5XhHpsRNxjsqQEtw9LBjgEbfbPQ==
+react-laag@1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/react-laag/-/react-laag-1.7.0.tgz#34d408e78656d72690e96f537769ab533118d543"
+  integrity sha512-+t9ePIRmqgoRU7qx6hABSJmSKRMHCe74VEONzROS+Qnkbzwbgif6b9aSdhBlAhhjvpodwRfYk7UbC17yfSAPHA==
 
 react@16.12.0:
   version "16.12.0"
