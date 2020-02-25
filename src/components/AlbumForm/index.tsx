@@ -22,6 +22,7 @@ import {
   UpdateAlbumVariables,
 } from "mutations/UpdateAlbum/types/UpdateAlbum";
 import { GetAlbum } from "queries/GetAlbum/types/GetAlbum";
+import { FirstPlayedInput, Location } from "types/graphql";
 import { formatInteger, parseInteger, parseOptionalString } from "utils";
 
 import { Buttons, Form as StyledForm } from "./styles";
@@ -42,6 +43,33 @@ interface Props {
   submitError?: ApolloError;
 }
 
+type FormData = {
+  id: string;
+  title: string;
+  artist: string;
+  comments: string | null | undefined;
+  year: number | null | undefined;
+  firstPlayed:
+    | (FirstPlayedInput & {
+        __typename?: string;
+      })
+    | null;
+  sources: readonly {
+    readonly __typename?: string;
+    readonly accurateRip?: string | null;
+    readonly comments?: string | null;
+    readonly cueIssues?: string | null;
+    readonly discs?: number | null;
+    readonly download?: string | null;
+    readonly edition?: string | null;
+    readonly format?: string | null;
+    readonly id?: string | null;
+    readonly location: Location;
+    readonly mbid?: string | null;
+    readonly tagIssues?: string | null;
+  }[];
+};
+
 const AlbumForm = ({
   data,
   error,
@@ -53,7 +81,10 @@ const AlbumForm = ({
 }: Props) => {
   const isFirstRender = useIsFirstRender();
 
-  const submitForm = async (formData, { reset }) => {
+  const submitForm = async (
+    formData: FormData,
+    { reset }: { reset: () => void }
+  ) => {
     await submit({
       variables: {
         id: formData.id,
