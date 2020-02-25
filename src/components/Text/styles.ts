@@ -3,12 +3,15 @@ import styled, { css } from "styled-components";
 import * as colors from "styles/colors";
 import { base, large, medium, small } from "styles/fonts";
 
+type Color = keyof typeof colors;
+
 const weights = {
   normal: 400,
   bold: 700,
 };
 
 interface Props {
+  color: Color;
   size: "small" | "base" | "medium" | "large";
   weight: "normal" | "bold";
 }
