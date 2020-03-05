@@ -35,7 +35,7 @@
     "date-fns-tz": "1.0.10",
     "final-form": "4.18.7",
     "final-form-arrays": "3.0.2",
-    "framer-motion": "1.8.4",
+    "framer-motion": "1.9.0",
     "graphql": "14.6.0",
     "graphql-tag": "2.10.3",
     "next": "9.2.2",
