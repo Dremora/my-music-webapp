@@ -16,7 +16,7 @@ module.exports = phase => {
       if (isDev) return 'http://localhost:4000';
 
       if (isProd) {
-        return 'https://my-music-api.dremora.com';
+        return 'https://my-music-api.onrender.com';
       }
     })()
   };
