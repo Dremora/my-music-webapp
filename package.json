@@ -29,7 +29,7 @@
     "@next/bundle-analyzer": "9.3.4",
     "apollo-cache-inmemory": "1.6.5",
     "apollo-client": "2.6.8",
-    "apollo-link-context": "1.0.19",
+    "apollo-link-context": "1.0.20",
     "apollo-link-http": "1.5.16",
     "date-fns": "2.11.1",
     "date-fns-tz": "1.0.10",
