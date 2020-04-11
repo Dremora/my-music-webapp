@@ -1,1 +1,1 @@
-export const parseMbid = mbid => mbid || null;
+export const parseMbid = (mbid) => mbid || null;

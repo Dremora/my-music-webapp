@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
 
 export const Root = styled.div`
   padding: 10px 0;
@@ -19,7 +19,7 @@ export const LoginLink = styled.div<LoginLinkProps>`
   margin-left: 62px;
   cursor: pointer;
 
-  ${props =>
+  ${(props) =>
     props.disabled &&
     css`
       pointer-events: none;

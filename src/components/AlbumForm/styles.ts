@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { white } from 'styles/colors';
+import { white } from "styles/colors";
 
 export const Form = styled.form`
   background: ${white};

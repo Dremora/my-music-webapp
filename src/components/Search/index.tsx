@@ -1,6 +1,6 @@
-import React, { useCallback } from 'react';
+import React, { useCallback } from "react";
 
-import { Image, Input, Root } from './styles';
+import { Image, Input, Root } from "./styles";
 
 interface Props {
   value: string;
@@ -8,12 +8,16 @@ interface Props {
 }
 
 const Search = ({ onChange, value }: Props) => {
-  const updateValue = useCallback(e => onChange(e.target.value), [onChange]);
+  const updateValue = useCallback((e) => onChange(e.target.value), [onChange]);
 
   return (
     <Root>
       <Image height={20} src="/search.svg" width={20} />
-      <Input onChange={updateValue} placeholder="Search for music…" value={value} />
+      <Input
+        onChange={updateValue}
+        placeholder="Search for music…"
+        value={value}
+      />
     </Root>
   );
 };

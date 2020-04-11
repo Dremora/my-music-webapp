@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { lighterGrey } from 'styles/colors';
+import { lighterGrey } from "styles/colors";
 
 export const Container = styled.div`
   display: flex;

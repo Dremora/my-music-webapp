@@ -1,10 +1,10 @@
-import Link from 'next/link';
-import React from 'react';
+import Link from "next/link";
+import React from "react";
 
-import Footer from 'components/Footer';
-import Menu from 'components/Menu';
+import Footer from "components/Footer";
+import Menu from "components/Menu";
 
-import { GlobalStyles, H1, Header, HomeLink, Page, Section } from './styles';
+import { GlobalStyles, H1, Header, HomeLink, Page, Section } from "./styles";
 
 interface Props {
   children: React.ReactNode;

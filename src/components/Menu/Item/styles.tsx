@@ -1,7 +1,7 @@
-import { motion } from 'framer-motion';
-import styled from 'styled-components';
+import { motion } from "framer-motion";
+import styled from "styled-components";
 
-import { grey, lighterGrey } from 'styles/colors';
+import { grey, lighterGrey } from "styles/colors";
 
 export const ListItem = styled.li`
   display: block;

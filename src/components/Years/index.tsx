@@ -1,20 +1,25 @@
-import { AnimatePresence, motion } from 'framer-motion';
-import React, { useCallback, useMemo, useState } from 'react';
-import { useToggleLayer } from 'react-laag';
+import { AnimatePresence, motion } from "framer-motion";
+import React, { useCallback, useMemo, useState } from "react";
+import { useToggleLayer } from "react-laag";
 
-import Text from 'components/Text';
-import { AlbumPerYearCount_albumPerYearCount as Data } from 'queries/AlbumPerYearCount/types/AlbumPerYearCount';
+import Text from "components/Text";
+import { AlbumPerYearCount_albumPerYearCount as Data } from "queries/AlbumPerYearCount/types/AlbumPerYearCount";
 
-import { Root } from './styles';
-import Year from './Year';
+import { Root } from "./styles";
+import Year from "./Year";
 
 const getMaxValue = (numbers: number[]): number =>
-  numbers.length === 0 ? 0 : numbers.reduce((acc, value) => Math.max(acc, value), numbers[0]);
+  numbers.length === 0
+    ? 0
+    : numbers.reduce((acc, value) => Math.max(acc, value), numbers[0]);
 
 const getMinValue = (numbers: number[]): number =>
-  numbers.length === 0 ? 0 : numbers.reduce((acc, value) => Math.min(acc, value), numbers[0]);
+  numbers.length === 0
+    ? 0
+    : numbers.reduce((acc, value) => Math.min(acc, value), numbers[0]);
 
-const range = (start: number, stop: number): number[] => Array.from({ length: stop - start + 1 }, (_, i) => start + i);
+const range = (start: number, stop: number): number[] =>
+  Array.from({ length: stop - start + 1 }, (_, i) => start + i);
 
 interface Props {
   data: ReadonlyArray<Data>;
@@ -35,14 +40,18 @@ const Years = ({ data }: Props) => {
               key="year_popup"
               ref={layerProps.ref}
               style={layerProps.style}
-              transition={{ ease: 'easeOut', duration: 0.1 }}
+              transition={{ ease: "easeOut", duration: 0.1 }}
             >
               <Text color="grey" weight="bold">
                 {selectedYear}
               </Text>
             </motion.div>
           ) : (
-            <div key="year_popup_invisible" ref={layerProps.ref} style={{ visibility: 'hidden', ...layerProps.style }}>
+            <div
+              key="year_popup_invisible"
+              ref={layerProps.ref}
+              style={{ visibility: "hidden", ...layerProps.style }}
+            >
               <Text color="grey" weight="bold">
                 {selectedYear}
               </Text>
@@ -53,14 +62,21 @@ const Years = ({ data }: Props) => {
     ),
     {
       placement: {
-        anchor: 'BOTTOM_CENTER'
-      }
+        anchor: "BOTTOM_CENTER",
+      },
     }
   );
 
-  const dataWithYear = useMemo<typeof data>(() => data.filter(({ year }) => year !== 0), [data]);
+  const dataWithYear = useMemo<typeof data>(
+    () => data.filter(({ year }) => year !== 0),
+    [data]
+  );
 
-  const counts = useMemo<number[]>(() => dataWithYear.map(({ count }) => count), [dataWithYear]);
+  const counts = useMemo<number[]>(
+    () => dataWithYear.map(({ count }) => count),
+    [dataWithYear]
+  );
+
   const maxCount = useMemo(() => getMaxValue(counts), [counts]);
 
   const yearMap = useMemo(() => {
@@ -71,7 +87,10 @@ const Years = ({ data }: Props) => {
 
   const years = dataWithYear.map(({ year }) => year);
 
-  const yearsWithoutGaps = useMemo(() => range(getMinValue(years), getMaxValue(years)), [years]);
+  const yearsWithoutGaps = useMemo(
+    () => range(getMinValue(years), getMaxValue(years)),
+    [years]
+  );
 
   const showYear = useCallback(
     (year: number) => (e: MouseEvent) => {
@@ -93,7 +112,7 @@ const Years = ({ data }: Props) => {
   return (
     <>
       <Root>
-        {yearsWithoutGaps.map(year => (
+        {yearsWithoutGaps.map((year) => (
           <Year
             count={yearMap[year] || 0}
             key={year}

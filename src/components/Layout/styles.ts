@@ -1,7 +1,7 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from "styled-components";
 
-import { vermilion, whiteSmoke } from 'styles/colors';
-import { h1 } from 'styles/fonts';
+import { vermilion, whiteSmoke } from "styles/colors";
+import { h1 } from "styles/fonts";
 
 export const Page = styled.div`
   min-height: 100vh;

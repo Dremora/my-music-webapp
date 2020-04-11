@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import StyledSelect from './styles';
+import StyledSelect from "./styles";
 
 interface Props {
   children: React.ReactNode;
@@ -8,6 +8,8 @@ interface Props {
   value: string;
 }
 
-const Select = ({ value, ...props }: Props) => <StyledSelect value={value || ''} {...props} />;
+const Select = ({ value, ...props }: Props) => (
+  <StyledSelect value={value || ""} {...props} />
+);
 
 export default Select;

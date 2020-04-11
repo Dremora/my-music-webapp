@@ -1,7 +1,7 @@
-import { css } from 'styled-components';
+import { css } from "styled-components";
 
 const common = css`
-  font-family: 'Lato';
+  font-family: "Lato";
   font-weight: 400;
   font-style: normal;
   line-height: 1.5;

@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { darkPlatinum, darkerPlatinum, platinum } from 'styles/colors';
-import { base } from 'styles/fonts';
+import { darkPlatinum, darkerPlatinum, platinum } from "styles/colors";
+import { base } from "styles/fonts";
 
 export default styled.select`
   ${base};

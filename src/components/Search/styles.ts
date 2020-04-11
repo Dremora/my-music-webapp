@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { grey, lightGrey, white } from 'styles/colors';
-import { medium } from 'styles/fonts';
+import { grey, lightGrey, white } from "styles/colors";
+import { medium } from "styles/fonts";
 
 export const Root = styled.div`
   border: 2px solid ${lightGrey};
