@@ -1,11 +1,18 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
 
-import { blue, darkerPlatinum, darkerVermilion, grey, vermilion, white } from 'styles/colors';
-import { base, medium } from 'styles/fonts';
+import {
+  blue,
+  darkerPlatinum,
+  darkerVermilion,
+  grey,
+  vermilion,
+  white,
+} from "styles/colors";
+import { base, medium } from "styles/fonts";
 
 interface Props {
-  size: 'medium' | 'small';
-  palette: 'primary' | 'secondary' | 'link';
+  size: "medium" | "small";
+  palette: "primary" | "secondary" | "link";
   full?: boolean;
 }
 
@@ -15,9 +22,9 @@ export default styled.button<Props>`
   appearance: none;
   background-color: transparent;
 
-  ${props =>
-    props.size === 'medium' &&
-    props.palette !== 'link' &&
+  ${(props) =>
+    props.size === "medium" &&
+    props.palette !== "link" &&
     css`
       padding: 7px 20px;
       ${medium};
@@ -26,17 +33,17 @@ export default styled.button<Props>`
       letter-spacing: 1px;
     `};
 
-  ${props =>
-    props.size === 'small' &&
-    props.palette !== 'link' &&
+  ${(props) =>
+    props.size === "small" &&
+    props.palette !== "link" &&
     css`
       padding: 3px 10px;
       ${base};
       font-weight: 700;
     `};
 
-  ${props =>
-    props.palette === 'primary' &&
+  ${(props) =>
+    props.palette === "primary" &&
     css`
       color: ${white};
       background-color: ${darkerVermilion};
@@ -48,16 +55,16 @@ export default styled.button<Props>`
       }
     `};
 
-  ${props =>
-    props.palette === 'secondary' &&
+  ${(props) =>
+    props.palette === "secondary" &&
     css`
       color: ${white};
       background-color: ${grey};
       box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.09);
     `};
 
-  ${props =>
-    props.palette === 'link' &&
+  ${(props) =>
+    props.palette === "link" &&
     css`
       color: ${blue};
       ${base};
@@ -69,12 +76,12 @@ export default styled.button<Props>`
       }
     `};
 
-  ${props =>
+  ${(props) =>
     props.full &&
     css`
       width: 100%;
     `};
-  ${props =>
+  ${(props) =>
     props.disabled
       ? css`
           background-color: ${darkerPlatinum};

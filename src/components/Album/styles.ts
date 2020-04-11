@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { platinum } from 'styles/colors';
+import { platinum } from "styles/colors";
 
 export const Anchor = styled.a`
   text-decoration: none;

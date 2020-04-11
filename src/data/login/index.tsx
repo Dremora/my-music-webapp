@@ -1,4 +1,11 @@
-import React, { ReactNode, createContext, useCallback, useContext, useEffect, useState } from 'react';
+import React, {
+  ReactNode,
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 interface LoginContextType {
   isLoggedIn: boolean;
@@ -11,7 +18,7 @@ const LoginContext = createContext<LoginContextType>({
   isLoggedIn: false,
   onLoggedIn: () => {},
   onLoggedOut: () => {},
-  token: null
+  token: null,
 });
 
 interface Props {
@@ -22,21 +29,23 @@ export const LoginProvider = ({ children }: Props) => {
   const [token, setToken] = useState<string | null>(null);
 
   useEffect(() => {
-    setToken(localStorage.getItem('token'));
+    setToken(localStorage.getItem("token"));
   }, []);
 
-  const onLoggedIn = useCallback(newToken => {
-    localStorage.setItem('token', newToken);
+  const onLoggedIn = useCallback((newToken) => {
+    localStorage.setItem("token", newToken);
     setToken(newToken);
   }, []);
 
   const onLoggedOut = useCallback(() => {
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
     setToken(null);
   }, []);
 
   return (
-    <LoginContext.Provider value={{ onLoggedOut, onLoggedIn, isLoggedIn: !!token, token }}>
+    <LoginContext.Provider
+      value={{ onLoggedOut, onLoggedIn, isLoggedIn: !!token, token }}
+    >
       {children}
     </LoginContext.Provider>
   );

@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
-import { useLogin } from 'data/login';
+import { useLogin } from "data/login";
 
-import Item from '../Item';
+import Item from "../Item";
 
-import { Items } from './styles';
+import { Items } from "./styles";
 
 interface Props {
   closeMenu?: () => void;

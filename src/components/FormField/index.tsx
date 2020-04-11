@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
-import Text from 'components/Text';
+import Text from "components/Text";
 
-import { Container, Contents, Label } from './styles';
+import { Container, Contents, Label } from "./styles";
 
 interface Props {
   label: string;

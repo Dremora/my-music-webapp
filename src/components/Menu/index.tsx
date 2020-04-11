@@ -1,10 +1,10 @@
-import React from 'react';
-import { ToggleLayer } from 'react-laag';
+import React from "react";
+import { ToggleLayer } from "react-laag";
 
-import BurgerIcon from 'components/BurgerIcon';
+import BurgerIcon from "components/BurgerIcon";
 
-import MenuItems from './MenuItems';
-import { LargeScreen, MenuButton, SmallScreen } from './styles';
+import MenuItems from "./MenuItems";
+import { LargeScreen, MenuButton, SmallScreen } from "./styles";
 
 const Menu = () => {
   return (
@@ -13,12 +13,12 @@ const Menu = () => {
         <ToggleLayer
           closeOnOutsideClick
           placement={{
-            anchor: 'BOTTOM_RIGHT',
+            anchor: "BOTTOM_RIGHT",
             possibleAnchors: [],
             autoAdjust: true,
             snapToAnchor: false,
             triggerOffset: 12,
-            scrollOffset: 16
+            scrollOffset: 16,
           }}
           renderLayer={({ close, isOpen, layerProps }) =>
             isOpen && (

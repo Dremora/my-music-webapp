@@ -1,7 +1,7 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
 
-import { darkPlatinum, darkerPlatinum, platinum } from 'styles/colors';
-import { base } from 'styles/fonts';
+import { darkPlatinum, darkerPlatinum, platinum } from "styles/colors";
+import { base } from "styles/fonts";
 
 const styles = css`
   ${base};
@@ -16,7 +16,7 @@ const styles = css`
   transition: all 0.2s;
   background: white;
 
-  &[type='number'] {
+  &[type="number"] {
     &::-webkit-inner-spin-button {
       -webkit-appearance: none;
       margin: 0;

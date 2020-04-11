@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { whiteSmoke } from 'styles/colors';
+import { whiteSmoke } from "styles/colors";
 
 export const Hr = styled.hr`
   margin: 20px 0;

@@ -1,9 +1,9 @@
-import { transform } from 'framer-motion';
-import React, { memo, useCallback } from 'react';
+import { transform } from "framer-motion";
+import React, { memo, useCallback } from "react";
 
-import { grey, lightGrey, lighterGrey } from 'styles/colors';
+import { grey, lightGrey, lighterGrey } from "styles/colors";
 
-import { Bar, Root } from './styles';
+import { Bar, Root } from "./styles";
 
 interface Props {
   year: number;
@@ -22,23 +22,31 @@ const Year = ({ count, maxCount, onHoverEnd, onHoverStart, year }: Props) => {
       initial="initial"
       onHoverEnd={onHoverEnd}
       onHoverStart={onHoverStartMemoized}
-      transition={{ ease: 'easeOut' }}
+      transition={{ ease: "easeOut" }}
       variants={{
         initial: { height: 0 },
         animate: {
-          height: transform(count || 0, [0, maxCount], [0, 200])
-        }
+          height: transform(count || 0, [0, maxCount], [0, 200]),
+        },
       }}
       whileHover="hover"
     >
       <Bar
         variants={{
           animate: {
-            backgroundColor: transform(count || 0, [0, maxCount], [lightGrey, lighterGrey])
+            backgroundColor: transform(
+              count || 0,
+              [0, maxCount],
+              [lightGrey, lighterGrey]
+            ),
           },
           hover: {
-            backgroundColor: transform(count || 0, [0, maxCount], [lighterGrey, grey])
-          }
+            backgroundColor: transform(
+              count || 0,
+              [0, maxCount],
+              [lighterGrey, grey]
+            ),
+          },
         }}
       />
     </Root>
