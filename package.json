@@ -31,7 +31,7 @@
     "apollo-client": "2.6.8",
     "apollo-link-context": "1.0.20",
     "apollo-link-http": "1.5.16",
-    "date-fns": "2.11.1",
+    "date-fns": "2.12.0",
     "date-fns-tz": "1.0.10",
     "final-form": "4.18.7",
     "final-form-arrays": "3.0.2",
