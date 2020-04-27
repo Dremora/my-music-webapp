@@ -7,7 +7,7 @@
     "@types/react": "16.9.34",
     "@types/react-dom": "16.9.7",
     "@types/styled-components": "5.1.0",
-    "@typescript-eslint/eslint-plugin": "2.29.0",
+    "@typescript-eslint/eslint-plugin": "2.30.0",
     "@typescript-eslint/parser": "2.30.0",
     "apollo": "2.27.3",
     "babel-plugin-module-resolver": "4.0.0",
