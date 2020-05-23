@@ -58,7 +58,7 @@
     "generate-typescript-graphql-types": "apollo client:codegen --useReadOnlyTypes --globalTypesFile=src/types/graphql.ts --target=typescript types && yarn prettier --write src/**/types/*.ts"
   },
   "engines": {
-    "node": "12.x"
+    "node": "14.3.0"
   },
   "browserslist": {
     "production": [
