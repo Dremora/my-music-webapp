@@ -16,8 +16,12 @@ interface LoginContextType {
 
 const LoginContext = createContext<LoginContextType>({
   isLoggedIn: false,
-  onLoggedIn: () => {},
-  onLoggedOut: () => {},
+  onLoggedIn: () => {
+    throw new Error();
+  },
+  onLoggedOut: () => {
+    throw new Error();
+  },
   token: null,
 });
 

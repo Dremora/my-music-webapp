@@ -6,9 +6,10 @@ import ALBUM_PER_FIRST_PLAYED_YEAR_COUNT from "queries/AlbumPerFirstPlayedYearCo
 import { AlbumPerFirstPlayedYearCount } from "queries/AlbumPerFirstPlayedYearCount/types/AlbumPerFirstPlayedYearCount";
 
 const FirstPlayedYearsPage = () => {
-  const { data, error, loading } = useQuery<AlbumPerFirstPlayedYearCount, {}>(
-    ALBUM_PER_FIRST_PLAYED_YEAR_COUNT
-  );
+  const { data, error, loading } = useQuery<
+    AlbumPerFirstPlayedYearCount,
+    undefined
+  >(ALBUM_PER_FIRST_PLAYED_YEAR_COUNT);
 
   if (loading || error || !data) {
     return null;
