@@ -2,6 +2,7 @@
 
 import { ApolloProvider } from "@apollo/react-hooks";
 import App from "next/app";
+import Head from "next/head";
 import React from "react";
 
 import Layout from "components/Layout";
@@ -13,6 +14,9 @@ class MyMusic extends App {
     const { Component, pageProps } = this.props;
     return (
       <React.StrictMode>
+        <Head>
+          <title>My Music</title>
+        </Head>
         <ApolloProvider client={client}>
           <LoginProvider>
             <Layout>
