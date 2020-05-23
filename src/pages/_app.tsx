@@ -1,5 +1,4 @@
 // import 'normalize.css';
-import "utils/polyfill-fetch";
 
 import { ApolloProvider } from "@apollo/react-hooks";
 import App from "next/app";
