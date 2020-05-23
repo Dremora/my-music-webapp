@@ -14,7 +14,10 @@ interface Props {
 }
 
 const Year = ({ count, maxCount, onHoverEnd, onHoverStart, year }: Props) => {
-  const onHoverStartMemoized = useCallback(onHoverStart(year), [year]);
+  const onHoverStartMemoized = useCallback(
+    (e: MouseEvent) => onHoverStart(year)(e),
+    [onHoverStart, year]
+  );
 
   return (
     <Root
