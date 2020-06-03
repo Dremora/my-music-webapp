@@ -1,5 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
+// @generated
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -7,11 +8,13 @@
 // ====================================================
 
 export interface AlbumPerFirstPlayedYearCount_albumPerFirstPlayedYearCount {
-  readonly __typename: 'AlbumPerYearCount';
+  readonly __typename: "AlbumPerYearCount";
   readonly year: number;
   readonly count: number;
 }
 
 export interface AlbumPerFirstPlayedYearCount {
-  readonly albumPerFirstPlayedYearCount: ReadonlyArray<AlbumPerFirstPlayedYearCount_albumPerFirstPlayedYearCount>;
+  readonly albumPerFirstPlayedYearCount: ReadonlyArray<
+    AlbumPerFirstPlayedYearCount_albumPerFirstPlayedYearCount
+  >;
 }

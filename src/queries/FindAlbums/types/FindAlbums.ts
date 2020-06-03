@@ -1,18 +1,21 @@
 /* tslint:disable */
 /* eslint-disable */
+// @generated
 // This file was automatically generated and should not be edited.
+
+import { AlbumFilterInput } from "./../../../types/graphql";
 
 // ====================================================
 // GraphQL query operation: FindAlbums
 // ====================================================
 
 export interface FindAlbums_albums_firstPlayed_FirstPlayedTime {
-  readonly __typename: 'FirstPlayedTime';
+  readonly __typename: "FirstPlayedTime";
   readonly timestamp: number;
 }
 
 export interface FindAlbums_albums_firstPlayed_FirstPlayedDate {
-  readonly __typename: 'FirstPlayedDate';
+  readonly __typename: "FirstPlayedDate";
   readonly year: number;
   readonly month: number | null;
   readonly day: number | null;
@@ -23,7 +26,7 @@ export type FindAlbums_albums_firstPlayed =
   | FindAlbums_albums_firstPlayed_FirstPlayedDate;
 
 export interface FindAlbums_albums {
-  readonly __typename: 'Album';
+  readonly __typename: "Album";
   readonly id: any;
   readonly artist: string;
   readonly title: string;
@@ -36,5 +39,5 @@ export interface FindAlbums {
 }
 
 export interface FindAlbumsVariables {
-  readonly searchText: string;
+  readonly filter: AlbumFilterInput;
 }

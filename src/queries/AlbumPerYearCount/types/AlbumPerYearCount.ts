@@ -1,5 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
+// @generated
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -7,11 +8,13 @@
 // ====================================================
 
 export interface AlbumPerYearCount_albumPerYearCount {
-  readonly __typename: 'AlbumPerYearCount';
+  readonly __typename: "AlbumPerYearCount";
   readonly year: number;
   readonly count: number;
 }
 
 export interface AlbumPerYearCount {
-  readonly albumPerYearCount: ReadonlyArray<AlbumPerYearCount_albumPerYearCount>;
+  readonly albumPerYearCount: ReadonlyArray<
+    AlbumPerYearCount_albumPerYearCount
+  >;
 }

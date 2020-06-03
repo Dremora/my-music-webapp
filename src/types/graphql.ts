@@ -1,5 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
+// @generated
 // This file was automatically generated and should not be edited.
 
 //==============================================================
@@ -7,21 +8,25 @@
 //==============================================================
 
 export enum Format {
-  APE = 'APE',
-  FLAC = 'FLAC',
-  MIXED = 'MIXED',
-  MP3 = 'MP3',
-  MPC = 'MPC',
-  OFT = 'OFT',
-  TAK = 'TAK',
-  WMA = 'WMA'
+  APE = "APE",
+  FLAC = "FLAC",
+  MIXED = "MIXED",
+  MP3 = "MP3",
+  MPC = "MPC",
+  OFT = "OFT",
+  TAK = "TAK",
+  WMA = "WMA",
 }
 
 export enum Location {
-  APPLE_MUSIC = 'APPLE_MUSIC',
-  FOOBAR2000 = 'FOOBAR2000',
-  GOOGLE_MUSIC = 'GOOGLE_MUSIC',
-  SPOTIFY = 'SPOTIFY'
+  APPLE_MUSIC = "APPLE_MUSIC",
+  FOOBAR2000 = "FOOBAR2000",
+  GOOGLE_MUSIC = "GOOGLE_MUSIC",
+  SPOTIFY = "SPOTIFY",
+}
+
+export interface AlbumFilterInput {
+  readonly query?: string | null;
 }
 
 export interface FirstPlayedInput {

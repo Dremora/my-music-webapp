@@ -3,15 +3,22 @@ import React, { useState } from "react";
 
 import Album from "components/Album";
 import Search from "components/Search";
-import FindAlbums from "queries/FindAlbums";
+import FIND_ALBUMS from "queries/FindAlbums";
+import {
+  FindAlbums,
+  FindAlbumsVariables,
+} from "queries/FindAlbums/types/FindAlbums";
 
 const IndexPage = () => {
   const [searchText, setSearchText] = useState("");
 
-  const { data, error, loading } = useQuery(FindAlbums, {
-    skip: !searchText,
-    variables: { searchText },
-  });
+  const { data, error, loading } = useQuery<FindAlbums, FindAlbumsVariables>(
+    FIND_ALBUMS,
+    {
+      skip: !searchText,
+      variables: { filter: { query: searchText } },
+    }
+  );
 
   return (
     <>

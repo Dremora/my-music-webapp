@@ -1,20 +1,21 @@
 /* tslint:disable */
 /* eslint-disable */
+// @generated
 // This file was automatically generated and should not be edited.
 
-import { Format, Location } from './../../../types/graphql';
+import { Format, Location } from "./../../../types/graphql";
 
 // ====================================================
 // GraphQL query operation: GetAlbum
 // ====================================================
 
 export interface GetAlbum_album_firstPlayed_FirstPlayedTime {
-  readonly __typename: 'FirstPlayedTime';
+  readonly __typename: "FirstPlayedTime";
   readonly timestamp: number;
 }
 
 export interface GetAlbum_album_firstPlayed_FirstPlayedDate {
-  readonly __typename: 'FirstPlayedDate';
+  readonly __typename: "FirstPlayedDate";
   readonly year: number;
   readonly month: number | null;
   readonly day: number | null;
@@ -25,7 +26,7 @@ export type GetAlbum_album_firstPlayed =
   | GetAlbum_album_firstPlayed_FirstPlayedDate;
 
 export interface GetAlbum_album_sources {
-  readonly __typename: 'Source';
+  readonly __typename: "Source";
   readonly id: string;
   readonly accurateRip: string | null;
   readonly comments: string | null;
@@ -40,7 +41,7 @@ export interface GetAlbum_album_sources {
 }
 
 export interface GetAlbum_album {
-  readonly __typename: 'Album';
+  readonly __typename: "Album";
   readonly id: any;
   readonly artist: string;
   readonly title: string;

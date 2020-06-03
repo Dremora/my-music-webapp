@@ -1,20 +1,26 @@
 /* tslint:disable */
 /* eslint-disable */
+// @generated
 // This file was automatically generated and should not be edited.
 
-import { FirstPlayedInput, NewSourceInput, Format, Location } from './../../../types/graphql';
+import {
+  FirstPlayedInput,
+  NewSourceInput,
+  Format,
+  Location,
+} from "./../../../types/graphql";
 
 // ====================================================
 // GraphQL mutation operation: CreateAlbum
 // ====================================================
 
 export interface CreateAlbum_createAlbum_firstPlayed_FirstPlayedTime {
-  readonly __typename: 'FirstPlayedTime';
+  readonly __typename: "FirstPlayedTime";
   readonly timestamp: number;
 }
 
 export interface CreateAlbum_createAlbum_firstPlayed_FirstPlayedDate {
-  readonly __typename: 'FirstPlayedDate';
+  readonly __typename: "FirstPlayedDate";
   readonly year: number;
   readonly month: number | null;
   readonly day: number | null;
@@ -25,7 +31,7 @@ export type CreateAlbum_createAlbum_firstPlayed =
   | CreateAlbum_createAlbum_firstPlayed_FirstPlayedDate;
 
 export interface CreateAlbum_createAlbum_sources {
-  readonly __typename: 'Source';
+  readonly __typename: "Source";
   readonly id: string;
   readonly accurateRip: string | null;
   readonly comments: string | null;
@@ -40,7 +46,7 @@ export interface CreateAlbum_createAlbum_sources {
 }
 
 export interface CreateAlbum_createAlbum {
-  readonly __typename: 'Album';
+  readonly __typename: "Album";
   readonly id: any;
   readonly artist: string;
   readonly title: string;

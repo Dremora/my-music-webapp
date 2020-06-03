@@ -11,7 +11,7 @@ interface Props {
   album: {
     id: string;
     artist: string;
-    year: string;
+    year: number | null;
     title: string;
     firstPlayed: FirstPlayedType;
   };
