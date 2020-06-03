@@ -18,7 +18,7 @@ const Item = ({ children, href, onClick }: Props) => {
   const router = useRouter();
   const isFirstRender = useIsFirstRender();
 
-  const current = router.pathname === href;
+  const current = router.pathname.startsWith(href);
   return (
     <ListItem>
       <Link href={href} passHref>
