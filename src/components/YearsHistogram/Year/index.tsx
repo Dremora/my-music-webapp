@@ -11,18 +11,32 @@ interface Props {
   maxCount: number;
   onHoverStart: (year: number) => (e: MouseEvent) => void;
   onHoverEnd: (e: MouseEvent) => void;
+  onClick?: (year: number) => void;
 }
 
-const Year = ({ count, maxCount, onHoverEnd, onHoverStart, year }: Props) => {
+const Year = ({
+  count,
+  maxCount,
+  onClick,
+  onHoverEnd,
+  onHoverStart,
+  year,
+}: Props) => {
   const onHoverStartMemoized = useCallback(
     (e: MouseEvent) => onHoverStart(year)(e),
     [onHoverStart, year]
   );
 
+  const onClickWithYear = useCallback(() => onClick && onClick(year), [
+    onClick,
+    year,
+  ]);
+
   return (
     <Root
       animate="animate"
       initial="initial"
+      onClick={onClickWithYear}
       onHoverEnd={onHoverEnd}
       onHoverStart={onHoverStartMemoized}
       transition={{ ease: "easeOut" }}

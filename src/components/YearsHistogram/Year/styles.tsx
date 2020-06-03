@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import styled from "styled-components";
 
 export const Root = styled(motion.div)`
+  cursor: pointer;
   padding: 0 1px 0 1px;
   flex-basis: 0;
   flex-grow: 1;

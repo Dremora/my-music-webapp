@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/react-hooks";
 import React, { useState } from "react";
 
-import Album from "components/Album";
+import AlbumList from "components/AlbumList";
 import Search from "components/Search";
 import FIND_ALBUMS from "queries/FindAlbums";
 import {
@@ -12,22 +12,15 @@ import {
 const IndexPage = () => {
   const [searchText, setSearchText] = useState("");
 
-  const { data, error, loading } = useQuery<FindAlbums, FindAlbumsVariables>(
-    FIND_ALBUMS,
-    {
-      skip: !searchText,
-      variables: { filter: { query: searchText } },
-    }
-  );
+  const { data } = useQuery<FindAlbums, FindAlbumsVariables>(FIND_ALBUMS, {
+    skip: !searchText,
+    variables: { filter: { query: searchText } },
+  });
 
   return (
     <>
       <Search onChange={setSearchText} value={searchText} />
-      <div>
-        {!loading && !error && data && data.albums
-          ? data.albums.map((album) => <Album album={album} key={album.id} />)
-          : null}
-      </div>
+      {data ? <AlbumList albums={data.albums} /> : null}
     </>
   );
 };

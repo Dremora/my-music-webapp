@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/react-hooks";
 import React from "react";
 
-import Years from "components/Years";
+import YearsHistogram from "components/YearsHistogram";
 import ALBUM_PER_FIRST_PLAYED_YEAR_COUNT from "queries/AlbumPerFirstPlayedYearCount";
 import { AlbumPerFirstPlayedYearCount } from "queries/AlbumPerFirstPlayedYearCount/types/AlbumPerFirstPlayedYearCount";
 
@@ -15,7 +15,7 @@ const FirstPlayedYearsPage = () => {
     return null;
   }
 
-  return <Years data={data.albumPerFirstPlayedYearCount} />;
+  return <YearsHistogram data={data.albumPerFirstPlayedYearCount} />;
 };
 
 export default FirstPlayedYearsPage;

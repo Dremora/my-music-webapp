@@ -27,6 +27,7 @@ export enum Location {
 
 export interface AlbumFilterInput {
   readonly query?: string | null;
+  readonly year?: number | null;
 }
 
 export interface FirstPlayedInput {

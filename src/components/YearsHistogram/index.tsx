@@ -23,9 +23,10 @@ const range = (start: number, stop: number): number[] =>
 
 interface Props {
   data: ReadonlyArray<Data>;
+  onYearClick?: (year: number) => void;
 }
 
-const Years = ({ data }: Props) => {
+const YearsHistogram = ({ data, onYearClick }: Props) => {
   const [selectedYear, setSelectedYear] = useState<number>();
 
   const [yearElement, toggleYearLayerProps] = useToggleLayer(
@@ -117,6 +118,7 @@ const Years = ({ data }: Props) => {
             count={yearMap[year] || 0}
             key={year}
             maxCount={maxCount}
+            onClick={onYearClick}
             onHoverEnd={hideYear}
             onHoverStart={showYear}
             year={year}
@@ -128,4 +130,4 @@ const Years = ({ data }: Props) => {
   );
 };
 
-export default Years;
+export default YearsHistogram;
