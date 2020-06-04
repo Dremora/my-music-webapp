@@ -4,8 +4,11 @@ import React, { useState } from "react";
 
 import AlbumForm from "components/AlbumForm";
 import { useLogin } from "data/login";
-import CreateAlbum from "mutations/CreateAlbum";
-import { CreateAlbumVariables } from "mutations/CreateAlbum/types/CreateAlbum";
+import CREATE_ALBUM from "mutations/CreateAlbum";
+import {
+  CreateAlbum,
+  CreateAlbumVariables,
+} from "mutations/CreateAlbum/types/CreateAlbum";
 
 const createEmptyAlbum = (): { album: CreateAlbumVariables } => ({
   album: {
@@ -21,7 +24,10 @@ const NewAlbumPage = () => {
   const { isLoggedIn } = useLogin();
   const [emptyAlbum] = useState(createEmptyAlbum);
 
-  const [submit, { error, loading }] = useMutation(CreateAlbum, {
+  const [submit, { data, error, loading }] = useMutation<
+    CreateAlbum,
+    CreateAlbumVariables
+  >(CREATE_ALBUM, {
     onCompleted: ({ createAlbum: { id } }) =>
       router.replace("/albums/[id]", `/albums/${id}`),
   });
@@ -32,8 +38,8 @@ const NewAlbumPage = () => {
 
   return (
     <AlbumForm
-      data={emptyAlbum}
-      isNew
+      data={data?.createAlbum ? { album: data.createAlbum } : emptyAlbum}
+      isNew={!data}
       isSubmitting={loading}
       onSubmit={submit}
       submitError={error}
