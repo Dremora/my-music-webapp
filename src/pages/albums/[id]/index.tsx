@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useCallback } from "react";
 
 import AlbumForm from "components/AlbumForm";
 import { useLogin } from "data/login";
@@ -37,7 +37,7 @@ const AlbumPage = () => {
       error={error}
       isSubmitting={isSubmitting}
       loading={loading}
-      submit={submit}
+      onSubmit={submit}
       submitError={submitError}
     />
   );

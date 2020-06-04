@@ -35,7 +35,7 @@ const NewAlbumPage = () => {
       data={emptyAlbum}
       isNew
       isSubmitting={loading}
-      submit={submit}
+      onSubmit={submit}
       submitError={error}
     />
   );

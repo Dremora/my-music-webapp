@@ -25,6 +25,7 @@
     "typescript": "3.9.5"
   },
   "dependencies": {
+    "@apollo/react-common": "3.1.4",
     "@apollo/react-hooks": "3.1.5",
     "@next/bundle-analyzer": "9.4.4",
     "apollo-cache-inmemory": "1.6.6",
@@ -36,7 +37,7 @@
     "final-form": "4.20.0",
     "final-form-arrays": "3.0.2",
     "framer-motion": "1.11.0",
-    "graphql": "14.6.0",
+    "graphql": "15.0.0",
     "graphql-tag": "2.10.3",
     "next": "9.4.4",
     "node-fetch": "2.6.0",

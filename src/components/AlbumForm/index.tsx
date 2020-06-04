@@ -1,7 +1,7 @@
+import { ExecutionResult } from "@apollo/react-common/lib/types/types";
 import { ApolloError } from "apollo-client";
 import arrayMutators from "final-form-arrays";
 import { AnimatePresence, motion } from "framer-motion";
-import { ExecutionResult } from "graphql";
 import React from "react";
 import { Field, Form } from "react-final-form";
 import { FieldArray } from "react-final-form-arrays";
@@ -33,7 +33,7 @@ interface Props {
   isNew?: boolean;
   isSubmitting: boolean;
   loading?: boolean;
-  submit:
+  onSubmit:
     | ((data: {
         variables?: CreateAlbumVariables;
       }) => Promise<ExecutionResult<CreateAlbum>>)
@@ -76,7 +76,7 @@ const AlbumForm = ({
   isNew,
   isSubmitting,
   loading,
-  submit,
+  onSubmit,
   submitError,
 }: Props) => {
   const isFirstRender = useIsFirstRender();
@@ -85,7 +85,7 @@ const AlbumForm = ({
     formData: FormData,
     { reset }: { reset: () => void }
   ) => {
-    await submit({
+    await onSubmit({
       variables: {
         id: formData.id,
         title: formData.title,
