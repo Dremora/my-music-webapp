@@ -18,7 +18,11 @@ import {
   YearInputField,
 } from "./styles";
 
-const FirstPlayedField = () => {
+type Props = {
+  disabled: boolean;
+};
+
+const FirstPlayedField = ({ disabled }: Props) => {
   const { input } = useField("firstPlayed");
   const { value } = input;
 
@@ -66,6 +70,7 @@ const FirstPlayedField = () => {
         <RadioLabel>
           <RadioInput
             checked={firstPlayedMode === "timestamp"}
+            disabled={disabled}
             name="firstPlayedMode"
             onChange={setMode}
             type="radio"
@@ -76,6 +81,7 @@ const FirstPlayedField = () => {
         <RadioLabel>
           <RadioInput
             checked={firstPlayedMode === "date"}
+            disabled={disabled}
             name="firstPlayedMode"
             onChange={setMode}
             type="radio"
@@ -86,6 +92,7 @@ const FirstPlayedField = () => {
         <RadioLabel>
           <RadioInput
             checked={firstPlayedMode === "unknown"}
+            disabled={disabled}
             name="firstPlayedMode"
             onChange={setMode}
             type="radio"
@@ -117,7 +124,7 @@ const FirstPlayedField = () => {
                     parse={parseInteger}
                   >
                     {({ input: firstPlayedInput }) => (
-                      <Input {...firstPlayedInput} />
+                      <Input disabled={disabled} {...firstPlayedInput} />
                     )}
                   </Field>
                 </DateInputContainer>
@@ -134,6 +141,7 @@ const FirstPlayedField = () => {
                       {({ input: firstPlayedInput }) => (
                         <Input
                           {...firstPlayedInput}
+                          disabled={disabled}
                           placeholder="YYYY"
                           type="number"
                         />
@@ -149,6 +157,7 @@ const FirstPlayedField = () => {
                       {({ input: firstPlayedInput }) => (
                         <Input
                           {...firstPlayedInput}
+                          disabled={disabled}
                           placeholder="MM"
                           type="number"
                         />
@@ -164,6 +173,7 @@ const FirstPlayedField = () => {
                       {({ input: firstPlayedInput }) => (
                         <Input
                           {...firstPlayedInput}
+                          disabled={disabled}
                           placeholder="DD"
                           type="number"
                         />

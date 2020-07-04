@@ -145,7 +145,7 @@ const AlbumForm = ({
                 {({ input }) => <Input disabled={isSubmitting} {...input} />}
               </Field>
             </FormField>
-            <FirstPlayedField />
+            <FirstPlayedField disabled={isSubmitting} />
             <FormField label="Comments">
               <Field name="comments" parse={parseOptionalString}>
                 {({ input }) => (
