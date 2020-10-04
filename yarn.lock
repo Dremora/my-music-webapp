@@ -7373,13 +7373,12 @@ react-final-form-arrays@3.1.2:
   dependencies:
     "@babel/runtime" "^7.4.5"
 
-react-final-form@6.3.3:
-  version "6.3.3"
-  resolved "https://registry.yarnpkg.com/react-final-form/-/react-final-form-6.3.3.tgz#8856a92278de2733f83e88c75d9ef347294a66a0"
-  integrity sha512-hFLwLpLasywky46SovNEGlym7+N+3RKge1/cg+/fVec/YY0l4g0ihgjRof6PbkiYe4qGjKbwbrvlgfZ9/Uf8vw==
+react-final-form@6.5.1:
+  version "6.5.1"
+  resolved "https://registry.yarnpkg.com/react-final-form/-/react-final-form-6.5.1.tgz#baf798129d459c669cfda5ce60a77801ef52badc"
+  integrity sha512-+Hzd9PqYY1Cv3MnWzw64QOl5BjC5BtSDakx+N7Re49r0FASdFhgpXLFFCJ31fvegq2euP6hz6Ow9K6XM9BSqCA==
   dependencies:
-    "@babel/runtime" "^7.4.5"
-    ts-essentials "^3.0.2"
+    "@babel/runtime" "^7.10.0"
 
 react-is@16.13.1, react-is@^16.7.0, react-is@^16.8.1:
   version "16.13.1"
@@ -8604,11 +8603,6 @@ tryer@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/tryer/-/tryer-1.0.1.tgz#f2c85406800b9b0f74c9f7465b81eaad241252f8"
   integrity sha512-c3zayb8/kWWpycWYg87P71E1S1ZL6b6IJxfb5fvsUgsf0S2MVGaDhDXXjDMpdCpfWXqptc+4mXwmiy1ypXqRAA==
-
-ts-essentials@^3.0.2:
-  version "3.0.5"
-  resolved "https://registry.yarnpkg.com/ts-essentials/-/ts-essentials-3.0.5.tgz#34a45f9f2b3817ed6756a4a876a0543a1cedc12a"
-  integrity sha512-2aZyDplUuZ44ABrP9Z8kWzgrCLgntyro+WZMXgJOp5Lhx7e/N3eIDeDQUOHNUKDVyGrGtlOYy1WMkOrZBqLiUA==
 
 ts-invariant@^0.4.0, ts-invariant@^0.4.4:
   version "0.4.4"
