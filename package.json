@@ -42,7 +42,7 @@
     "next": "9.4.4",
     "node-fetch": "2.6.1",
     "normalize.css": "8.0.1",
-    "polished": "3.6.7",
+    "polished": "4.0.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-final-form": "6.3.3",
