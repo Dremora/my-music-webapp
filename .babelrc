@@ -1,13 +1,7 @@
 {
   "presets": ["next/babel"],
   "plugins": [
-    [
-      "module-resolver",
-      {
-        "root": "./src",
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
-      }
-    ],
+  
     "babel-plugin-styled-components"
   ]
 }
