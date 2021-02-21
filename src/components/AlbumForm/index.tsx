@@ -1,7 +1,7 @@
-import { ExecutionResult } from "@apollo/react-common/lib/types/types";
-import { ApolloError } from "apollo-client";
+import { ApolloError } from "@apollo/client";
 import arrayMutators from "final-form-arrays";
 import { AnimatePresence, motion } from "framer-motion";
+import { ExecutionResult } from "graphql";
 import React from "react";
 import { Field, Form } from "react-final-form";
 import { FieldArray } from "react-final-form-arrays";

@@ -9,7 +9,7 @@
     "@types/styled-components": "5.1.7",
     "@typescript-eslint/eslint-plugin": "4.15.1",
     "@typescript-eslint/parser": "4.15.1",
-    "apollo": "2.31.1",
+    "apollo": "2.32.5",
     "babel-plugin-module-resolver": "4.0.0",
     "confusing-browser-globals": "1.0.10",
     "eslint": "7.20.0",
@@ -25,13 +25,8 @@
     "typescript": "4.1.5"
   },
   "dependencies": {
-    "@apollo/react-common": "3.1.4",
-    "@apollo/react-hooks": "3.1.5",
+    "@apollo/client": "3.3.11",
     "@next/bundle-analyzer": "9.5.5",
-    "apollo-cache-inmemory": "1.6.6",
-    "apollo-client": "2.6.10",
-    "apollo-link-context": "1.0.20",
-    "apollo-link-http": "1.5.17",
     "date-fns": "2.17.0",
     "date-fns-tz": "1.1.2",
     "final-form": "4.20.1",
@@ -56,7 +51,7 @@
     "build": "next build",
     "lint": "eslint src --ext js,ts,tsx",
     "lint:fix": "eslint src --ext js,ts,tsx --fix",
-    "generate-typescript-graphql-types": "apollo client:codegen --useReadOnlyTypes --globalTypesFile=src/types/graphql.ts --target=typescript types && yarn prettier --write src/**/types/*.ts"
+    "types:generate:graphql": "apollo client:codegen --useReadOnlyTypes --globalTypesFile=src/types/graphql.ts --target=typescript types && yarn prettier --write src/**/types/*.ts"
   },
   "engines": {
     "node": "12.x"

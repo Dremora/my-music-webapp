@@ -14,7 +14,5 @@ export interface AlbumPerFirstPlayedYearCount_albumPerFirstPlayedYearCount {
 }
 
 export interface AlbumPerFirstPlayedYearCount {
-  readonly albumPerFirstPlayedYearCount: ReadonlyArray<
-    AlbumPerFirstPlayedYearCount_albumPerFirstPlayedYearCount
-  >;
+  readonly albumPerFirstPlayedYearCount: ReadonlyArray<AlbumPerFirstPlayedYearCount_albumPerFirstPlayedYearCount>;
 }

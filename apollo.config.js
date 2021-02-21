@@ -1,9 +1,9 @@
 module.exports = {
   client: {
     service: {
-      name: 'my-music-api',
-      url: 'http://localhost:4000'
+      name: "my-music-api",
+      url: "http://localhost:4000",
     },
-    includes: ['./src/queries/**/*.ts', './src/mutations/**/*.ts']
-  }
+    includes: ["./src/queries/**/*.ts", "./src/mutations/**/*.ts"],
+  },
 };

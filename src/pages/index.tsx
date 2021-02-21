@@ -1,4 +1,4 @@
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import React, { useState } from "react";
 
 import AlbumList from "components/AlbumList";

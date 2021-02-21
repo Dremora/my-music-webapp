@@ -14,7 +14,5 @@ export interface AlbumPerYearCount_albumPerYearCount {
 }
 
 export interface AlbumPerYearCount {
-  readonly albumPerYearCount: ReadonlyArray<
-    AlbumPerYearCount_albumPerYearCount
-  >;
+  readonly albumPerYearCount: ReadonlyArray<AlbumPerYearCount_albumPerYearCount>;
 }
