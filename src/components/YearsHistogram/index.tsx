@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useCallback, useMemo, useState } from "react";
-import { useToggleLayer } from "react-laag";
+import { IBounds, useLayer } from "react-laag";
 
 import Text from "components/Text";
 import { AlbumPerYearCount_albumPerYearCount as Data } from "queries/AlbumPerYearCount/types/AlbumPerYearCount";
@@ -28,45 +28,18 @@ interface Props {
 
 const YearsHistogram = ({ data, onYearClick }: Props) => {
   const [selectedYear, setSelectedYear] = useState<number>();
+  const [isOpen, setOpen] = useState(false);
+  const [triggerBounds, setTriggerBounds] = useState<IBounds | null>(null);
 
-  const [yearElement, toggleYearLayerProps] = useToggleLayer(
-    ({ isOpen, layerProps }) => (
-      <AnimatePresence>
-        {isOpen ? (
-          layerProps.style.left ? (
-            <motion.div
-              animate={{ opacity: 1, left: layerProps.style.left }}
-              exit={{ opacity: 0 }}
-              initial={{ opacity: 0, left: layerProps.style.left }}
-              key="year_popup"
-              ref={layerProps.ref}
-              style={layerProps.style}
-              transition={{ ease: "easeOut", duration: 0.1 }}
-            >
-              <Text color="grey" weight="bold">
-                {selectedYear}
-              </Text>
-            </motion.div>
-          ) : (
-            <div
-              key="year_popup_invisible"
-              ref={layerProps.ref}
-              style={{ visibility: "hidden", ...layerProps.style }}
-            >
-              <Text color="grey" weight="bold">
-                {selectedYear}
-              </Text>
-            </div>
-          )
-        ) : null}
-      </AnimatePresence>
-    ),
-    {
-      placement: {
-        anchor: "BOTTOM_CENTER",
-      },
-    }
-  );
+  const { layerProps, renderLayer } = useLayer({
+    isOpen,
+    placement: "bottom-center",
+    trigger: triggerBounds
+      ? {
+          getBounds: () => triggerBounds,
+        }
+      : undefined,
+  });
 
   const dataWithYear = useMemo<typeof data>(
     () => data.filter(({ year }) => year !== 0),
@@ -97,18 +70,15 @@ const YearsHistogram = ({ data, onYearClick }: Props) => {
     (year: number) => (e: MouseEvent) => {
       setSelectedYear(year);
       const currentTarget = e.currentTarget as HTMLElement;
-      const clientRect = () => currentTarget.getBoundingClientRect();
-      toggleYearLayerProps.open({ clientRect, target: currentTarget });
+      setTriggerBounds(currentTarget.getBoundingClientRect());
+      setOpen(true);
     },
-    [] // eslint-disable-line react-hooks/exhaustive-deps
+    []
   );
 
-  const hideYear = useCallback(
-    () => {
-      toggleYearLayerProps.close();
-    },
-    [] // eslint-disable-line react-hooks/exhaustive-deps
-  );
+  const hideYear = useCallback(() => {
+    setOpen(false);
+  }, []);
 
   return (
     <>
@@ -125,7 +95,35 @@ const YearsHistogram = ({ data, onYearClick }: Props) => {
           />
         ))}
       </Root>
-      {yearElement}
+
+      {renderLayer(
+        <AnimatePresence>
+          {isOpen && layerProps.style.left ? (
+            <motion.div
+              animate={{ opacity: 1, left: layerProps.style.left }}
+              exit={{ opacity: 0 }}
+              initial={{ opacity: 0, left: layerProps.style.left }}
+              key="year_popup"
+              {...layerProps}
+              transition={{ ease: "easeOut", duration: 0.1 }}
+            >
+              <Text color="grey" weight="bold">
+                {selectedYear}
+              </Text>
+            </motion.div>
+          ) : (
+            <div
+              key="year_popup_invisible"
+              ref={layerProps.ref}
+              style={{ visibility: "hidden", ...layerProps.style }}
+            >
+              <Text color="grey" weight="bold">
+                {selectedYear}
+              </Text>
+            </div>
+          )}
+        </AnimatePresence>
+      )}
     </>
   );
 };

@@ -1,5 +1,5 @@
-import React from "react";
-import { ToggleLayer } from "react-laag";
+import React, { useState } from "react";
+import { useLayer } from "react-laag";
 
 import BurgerIcon from "components/BurgerIcon";
 
@@ -7,33 +7,28 @@ import MenuItems from "./MenuItems";
 import { LargeScreen, MenuButton, SmallScreen } from "./styles";
 
 const Menu = () => {
+  const [isOpen, setOpen] = useState(false);
+
+  const { layerProps, renderLayer, triggerProps } = useLayer({
+    containerOffset: 16,
+    isOpen,
+    onOutsideClick: () => setOpen(false),
+    placement: "bottom-end",
+    triggerOffset: 12,
+  });
+
   return (
     <>
       <SmallScreen>
-        <ToggleLayer
-          closeOnOutsideClick
-          placement={{
-            anchor: "BOTTOM_RIGHT",
-            possibleAnchors: [],
-            autoAdjust: true,
-            snapToAnchor: false,
-            triggerOffset: 12,
-            scrollOffset: 16,
-          }}
-          renderLayer={({ close, isOpen, layerProps }) =>
-            isOpen && (
-              <div ref={layerProps.ref} style={layerProps.style}>
-                <MenuItems closeMenu={close} />
-              </div>
-            )
-          }
-        >
-          {({ toggle, triggerRef }) => (
-            <MenuButton onClick={toggle} ref={triggerRef}>
-              <BurgerIcon />
-            </MenuButton>
+        <MenuButton {...triggerProps} onClick={() => setOpen(!isOpen)}>
+          <BurgerIcon />
+        </MenuButton>
+        {isOpen &&
+          renderLayer(
+            <div {...layerProps}>
+              <MenuItems closeMenu={() => setOpen(false)} />
+            </div>
           )}
-        </ToggleLayer>
       </SmallScreen>
       <LargeScreen>
         <MenuItems />
