@@ -19,7 +19,7 @@ const AlbumPage = () => {
 
   const { data, error, loading } = useQuery<GetAlbum, GetAlbumVariables>(
     GET_ALBUM,
-    { variables: { id } }
+    { variables: { id }, skip: !id }
   );
 
   const [submit, { error: submitError, loading: isSubmitting }] = useMutation<
