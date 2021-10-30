@@ -2,7 +2,7 @@ import gql from "graphql-tag";
 
 export default gql`
   mutation UpdateAlbum(
-    $id: BinaryId!
+    $id: UUID!
     $title: String!
     $artist: String!
     $comments: String

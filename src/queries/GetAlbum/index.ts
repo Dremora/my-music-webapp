@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 
 export default gql`
-  query GetAlbum($id: BinaryId!) {
+  query GetAlbum($id: UUID!) {
     album(id: $id) {
       id
       artist
