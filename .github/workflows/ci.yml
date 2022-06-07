@@ -9,19 +9,26 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: node:16
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16.15.1
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 7.1.9
 
       - name: Install dependencies
-        run: yarn
+        run: pnpm install
 
       - name: Run typecheck
-        run: yarn tsc --noEmit
+        run: pnpm types:check
 
       - name: Run ESLint
-        run: yarn eslint
+        run: pnpm eslint
 
       - name: Run build
-        run: yarn build
+        run: pnpm build

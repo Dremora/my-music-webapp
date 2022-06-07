@@ -50,7 +50,8 @@
     "build": "next build",
     "lint": "eslint src --ext js,ts,tsx",
     "lint:fix": "eslint src --ext js,ts,tsx --fix",
-    "types:generate:graphql": "apollo client:codegen --useReadOnlyTypes --globalTypesFile=src/types/graphql.ts --target=typescript types && yarn prettier --write src/**/types/*.ts"
+    "types:check": "tsc --noEmit",
+    "types:generate:graphql": "apollo client:codegen --useReadOnlyTypes --globalTypesFile=src/types/graphql.ts --target=typescript types && prettier --write src/**/types/*.ts"
   },
   "engines": {
     "node": "16.x"
