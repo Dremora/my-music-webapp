@@ -28,6 +28,8 @@ const Item = ({ children, href, onClick }: Props) => {
           </Text>
         </Anchor>
       </Link>
+      {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+      {/* @ts-ignore https://github.com/framer/motion/pull/1573 */}
       <AnimatePresence>
         {current && (
           <Bar

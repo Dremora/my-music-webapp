@@ -36,7 +36,7 @@ export const LoginProvider = ({ children }: Props) => {
     setToken(localStorage.getItem("token"));
   }, []);
 
-  const onLoggedIn = useCallback((newToken) => {
+  const onLoggedIn = useCallback((newToken: string) => {
     localStorage.setItem("token", newToken);
     setToken(newToken);
   }, []);

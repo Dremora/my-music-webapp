@@ -97,6 +97,8 @@ const YearsHistogram = ({ data, onYearClick }: Props) => {
       </Root>
 
       {renderLayer(
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore https://github.com/framer/motion/pull/1573
         <AnimatePresence>
           {isOpen && layerProps.style.left ? (
             <motion.div

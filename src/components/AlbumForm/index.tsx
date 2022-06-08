@@ -199,6 +199,8 @@ const AlbumForm = ({
           onChange={onCommentsChange}
         />
       </FormField>
+      {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+      {/* @ts-ignore https://github.com/framer/motion/pull/1573 */}
       <AnimatePresence>
         {album.sources.map((source, i) => (
           <motion.div

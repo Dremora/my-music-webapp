@@ -8,7 +8,10 @@ interface Props {
 }
 
 const Search = ({ onChange, value }: Props) => {
-  const updateValue = useCallback((e) => onChange(e.target.value), [onChange]);
+  const updateValue = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.value),
+    [onChange]
+  );
 
   return (
     <Root>

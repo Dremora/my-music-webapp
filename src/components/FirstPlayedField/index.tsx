@@ -34,7 +34,7 @@ const FirstPlayedField = ({ disabled, onChange, value }: Props) => {
   );
 
   const setMode = useCallback(
-    (e) => {
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       const newMode = e.target.value;
       setFirstPlayedMode(newMode);
 
@@ -56,7 +56,7 @@ const FirstPlayedField = ({ disabled, onChange, value }: Props) => {
   const isFirstRender = useIsFirstRender();
 
   const onTimestampChange = useCallback(
-    (e) => {
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       const timestamp = parseInteger(e.target.value);
       onChange({ timestamp });
     },
@@ -64,7 +64,7 @@ const FirstPlayedField = ({ disabled, onChange, value }: Props) => {
   );
 
   const onYearChange = useCallback(
-    (e) => {
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       const year = parseInteger(e.target.value);
       onChange({ year });
     },
@@ -72,7 +72,7 @@ const FirstPlayedField = ({ disabled, onChange, value }: Props) => {
   );
 
   const onMonthChange = useCallback(
-    (e) => {
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       const month = parseInteger(e.target.value);
       onChange({ month });
     },
@@ -80,7 +80,7 @@ const FirstPlayedField = ({ disabled, onChange, value }: Props) => {
   );
 
   const onDayChange = useCallback(
-    (e) => {
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       const day = parseInteger(e.target.value);
       onChange({ day });
     },
@@ -135,6 +135,8 @@ const FirstPlayedField = ({ disabled, onChange, value }: Props) => {
         initial={{ height: firstPlayedMode === "unknown" ? 0 : "auto" }}
         transition={{ type: "tween" }}
       >
+        {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+        {/* @ts-ignore https://github.com/framer/motion/pull/1573 */}
         <AnimatePresence exitBeforeEnter>
           {firstPlayedMode !== "unknown" && (
             <motion.div
