@@ -13,7 +13,6 @@ export enum Format {
   MIXED = "MIXED",
   MP3 = "MP3",
   MPC = "MPC",
-  OFT = "OFT",
   TAK = "TAK",
   WMA = "WMA",
 }
@@ -33,8 +32,8 @@ export interface AlbumFilterInput {
 export interface FirstPlayedInput {
   readonly day?: number | null;
   readonly month?: number | null;
-  readonly timestamp?: number | null;
   readonly year?: number | null;
+  readonly timestamp?: number | null;
 }
 
 export interface NewSourceInput {
@@ -44,21 +43,21 @@ export interface NewSourceInput {
   readonly discs?: number | null;
   readonly download?: string | null;
   readonly edition?: string | null;
-  readonly format?: string | null;
+  readonly format?: Format | null;
   readonly location: Location;
   readonly mbid?: any | null;
   readonly tagIssues?: string | null;
 }
 
 export interface SourceInput {
+  readonly id?: string | null;
   readonly accurateRip?: string | null;
   readonly comments?: string | null;
   readonly cueIssues?: string | null;
   readonly discs?: number | null;
   readonly download?: string | null;
   readonly edition?: string | null;
-  readonly format?: string | null;
-  readonly id?: string | null;
+  readonly format?: Format | null;
   readonly location: Location;
   readonly mbid?: any | null;
   readonly tagIssues?: string | null;
