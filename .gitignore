@@ -1,17 +1,13 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
-
 # dependencies
 node_modules
 
-# testing
-coverage
-
-# production
+# build
 .next
+*.tsbuildinfo
 
 # misc
 .DS_Store
-.env
-npm-debug.log
-/.vscode
-/.env*.local
+
+# env
+.env.local
+.env*.local
