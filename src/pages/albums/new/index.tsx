@@ -41,7 +41,7 @@ const NewAlbumPage = () => {
         <Text color="grey">Loading...</Text>
       </div>
     );
-  } else if (error || !data) {
+  } else if (error) {
     return <span>error</span>;
   }
 
