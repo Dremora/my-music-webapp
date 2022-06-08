@@ -22,7 +22,7 @@ import {
   UpdateAlbumVariables,
 } from "mutations/UpdateAlbum/types/UpdateAlbum";
 import { GetAlbum } from "queries/GetAlbum/types/GetAlbum";
-import { FirstPlayedInput, Location } from "types/graphql";
+import { FirstPlayedInput, Format, Location } from "types/graphql";
 import { formatInteger, parseInteger, parseOptionalString } from "utils";
 
 import { Buttons, Form as StyledForm } from "./styles";
@@ -62,7 +62,7 @@ type FormData = {
     readonly discs?: number | null;
     readonly download?: string | null;
     readonly edition?: string | null;
-    readonly format?: string | null;
+    readonly format?: Format | null;
     readonly id?: string | null;
     readonly location: Location;
     readonly mbid?: string | null;
@@ -170,8 +170,9 @@ const AlbumForm = ({
                         <Source
                           disabled={isSubmitting}
                           index={i}
-                          name={name}
                           onRemove={fields.remove}
+                          onUpdate={fields.update}
+                          source={fields.value[i]}
                         />
                       </motion.div>
                     ))}
