@@ -27,10 +27,10 @@ const Year = ({
     [onHoverStart, year]
   );
 
-  const onClickWithYear = useCallback(() => onClick && onClick(year), [
-    onClick,
-    year,
-  ]);
+  const onClickWithYear = useCallback(
+    () => onClick && onClick(year),
+    [onClick, year]
+  );
 
   return (
     <Root
