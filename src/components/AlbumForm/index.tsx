@@ -1,10 +1,7 @@
 import { ApolloError } from "@apollo/client";
-import arrayMutators from "final-form-arrays";
 import { AnimatePresence, motion } from "framer-motion";
 import { ExecutionResult } from "graphql";
-import React from "react";
-import { Field, Form } from "react-final-form";
-import { FieldArray } from "react-final-form-arrays";
+import React, { useCallback, useState } from "react";
 
 import Button from "components/Button";
 import FirstPlayedField from "components/FirstPlayedField";
@@ -21,18 +18,19 @@ import {
   UpdateAlbum,
   UpdateAlbumVariables,
 } from "mutations/UpdateAlbum/types/UpdateAlbum";
-import { GetAlbum } from "queries/GetAlbum/types/GetAlbum";
-import { FirstPlayedInput, Format, Location } from "types/graphql";
+import {
+  GetAlbum_album,
+  GetAlbum_album_sources,
+} from "queries/GetAlbum/types/GetAlbum";
+import { FirstPlayedInput, Location, NewSourceInput } from "types/graphql";
 import { formatInteger, parseInteger, parseOptionalString } from "utils";
 
 import { Buttons, Form as StyledForm } from "./styles";
 
 interface Props {
-  data?: { album: CreateAlbumVariables } | GetAlbum;
-  error?: ApolloError;
+  initialValues: CreateAlbumVariables | GetAlbum_album;
   isNew?: boolean;
   isSubmitting: boolean;
-  loading?: boolean;
   onSubmit:
     | ((data: {
         variables?: CreateAlbumVariables;
@@ -43,164 +41,197 @@ interface Props {
   submitError?: ApolloError;
 }
 
-type FormData = {
-  id: string;
-  title: string;
-  artist: string;
-  comments: string | null | undefined;
-  year: number | null | undefined;
-  firstPlayed:
+type AlbumSource = NewSourceInput | GetAlbum_album_sources;
+
+type FormData = Omit<CreateAlbumVariables, "sources"> & {
+  id?: string | undefined;
+  firstPlayed?:
     | (FirstPlayedInput & {
         __typename?: string;
       })
-    | null;
-  sources: readonly {
+    | null
+    | undefined;
+  sources: readonly (NewSourceInput & {
     readonly __typename?: string;
-    readonly accurateRip?: string | null;
-    readonly comments?: string | null;
-    readonly cueIssues?: string | null;
-    readonly discs?: number | null;
-    readonly download?: string | null;
-    readonly edition?: string | null;
-    readonly format?: Format | null;
-    readonly id?: string | null;
-    readonly location: Location;
-    readonly mbid?: string | null;
-    readonly tagIssues?: string | null;
-  }[];
+  })[];
 };
 
 const AlbumForm = ({
-  data,
-  error,
+  initialValues,
   isNew,
   isSubmitting,
-  loading,
   onSubmit,
   submitError,
 }: Props) => {
   const isFirstRender = useIsFirstRender();
+  const [album, setAlbum] = useState<FormData>(initialValues);
 
-  const submitForm = async (
-    formData: FormData,
-    { reset }: { reset: () => void }
-  ) => {
-    await onSubmit({
+  const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    onSubmit({
       variables: {
-        id: formData.id,
-        title: formData.title,
-        artist: formData.artist,
-        comments: formData.comments,
-        year: formData.year,
-        sources: formData.sources.map(({ __typename, ...rest }) => rest),
-        firstPlayed: (() => {
-          if (formData.firstPlayed) {
-            const { __typename, ...firstPlayed } = formData.firstPlayed;
-            return firstPlayed;
+        id: "id" in album ? album.id : undefined,
+        title: album.title,
+        artist: album.artist,
+        comments: album.comments,
+        year: album.year,
+        sources: album.sources.map((source) => {
+          if ("__typename" in source) {
+            const { __typename, ...rest } = source;
+            return rest;
           } else {
-            return formData.firstPlayed;
+            return source;
+          }
+        }),
+        firstPlayed: (() => {
+          if (album.firstPlayed) {
+            if ("__typename" in album.firstPlayed) {
+              const { __typename, ...rest } = album.firstPlayed;
+              return rest;
+            } else {
+              return album.firstPlayed;
+            }
+          } else {
+            return album.firstPlayed;
           }
         })(),
       },
     });
-
-    setTimeout(reset, 0);
   };
 
-  if (loading) {
-    return (
-      <div>
-        <Text color="grey">Loading...</Text>
-      </div>
-    );
-  } else if (error || !data) {
-    return <span>error</span>;
-  } else {
-    return (
-      <Form
-        initialValues={data.album}
-        mutators={{
-          ...arrayMutators,
-        }}
-        onSubmit={submitForm}
-        subscription={{}}
-      >
-        {({ handleSubmit }) => (
-          <StyledForm onSubmit={handleSubmit}>
-            <Text color="grey" size="large" weight="bold">
-              {isNew ? "Create album" : "Edit album"}
-            </Text>
-            <FormField label="Title">
-              <Field name="title">
-                {({ input }) => <Input disabled={isSubmitting} {...input} />}
-              </Field>
-            </FormField>
-            <FormField label="Artist">
-              <Field name="artist">
-                {({ input }) => <Input disabled={isSubmitting} {...input} />}
-              </Field>
-            </FormField>
-            <FormField label="Year">
-              <Field format={formatInteger} name="year" parse={parseInteger}>
-                {({ input }) => <Input disabled={isSubmitting} {...input} />}
-              </Field>
-            </FormField>
-            <FirstPlayedField disabled={isSubmitting} />
-            <FormField label="Comments">
-              <Field name="comments" parse={parseOptionalString}>
-                {({ input }) => (
-                  <Input disabled={isSubmitting} multiline {...input} />
-                )}
-              </Field>
-            </FormField>
-            <FieldArray name="sources">
-              {({ fields }) => (
-                <>
-                  <AnimatePresence>
-                    {fields.map((name, i) => (
-                      <motion.div
-                        animate={{ height: "auto" }}
-                        exit={{ height: 0 }}
-                        initial={{ height: isFirstRender ? "auto" : 0 }}
-                        // eslint-disable-next-line react/no-array-index-key
-                        key={i}
-                        style={{ overflow: "hidden" }}
-                        transition={{ type: "tween" }}
-                      >
-                        <Source
-                          disabled={isSubmitting}
-                          index={i}
-                          onRemove={fields.remove}
-                          onUpdate={fields.update}
-                          source={fields.value[i]}
-                        />
-                      </motion.div>
-                    ))}
-                  </AnimatePresence>
-                  <Buttons>
-                    {/* eslint-disable-next-line react/jsx-no-bind */}
-                    <Button
-                      onClick={() => fields.push({ location: "APPLE_MUSIC" })}
-                      palette="link"
-                      size="small"
-                    >
-                      Add source
-                    </Button>
-                    <Button disabled={isSubmitting} type="submit">
-                      Submit
-                    </Button>
-                  </Buttons>
-                </>
-              )}
-            </FieldArray>
-            {submitError && (
-              <Text color="vermilion">{submitError.message}</Text>
-            )}
-          </StyledForm>
-        )}
-      </Form>
-    );
-  }
+  const onSourceUpdate = useCallback(
+    (index: number, source: AlbumSource) => {
+      const sources = [...album.sources];
+      sources[index] = source;
+      setAlbum({ ...album, sources });
+    },
+    [album]
+  );
+
+  const onSourceRemove = useCallback(
+    (index: number) => {
+      const sources = [...album.sources];
+      sources.splice(index, 1);
+      setAlbum({ ...album, sources });
+    },
+    [album]
+  );
+
+  const onSourceAdd = useCallback(() => {
+    setAlbum({
+      ...album,
+      sources: [...album.sources, { location: Location.APPLE_MUSIC }],
+    });
+  }, [album]);
+
+  const onFirstPlayedChange = useCallback(
+    (firstPlayed: FirstPlayedInput | null) => {
+      setAlbum({ ...album, firstPlayed });
+    },
+    [album]
+  );
+
+  const onTitleChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setAlbum({ ...album, title: e.target.value });
+    },
+    [album]
+  );
+
+  const onArtistChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setAlbum({ ...album, artist: e.target.value });
+    },
+    [album]
+  );
+
+  const onYearChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setAlbum({ ...album, year: parseInteger(e.target.value) });
+    },
+    [album]
+  );
+
+  const onCommentsChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setAlbum({ ...album, comments: parseOptionalString(e.target.value) });
+    },
+    [album]
+  );
+
+  return (
+    <StyledForm onSubmit={submitForm}>
+      <Text color="grey" size="large" weight="bold">
+        {isNew ? "Create album" : "Edit album"}
+      </Text>
+      <FormField label="Artist">
+        <Input
+          disabled={isSubmitting}
+          onChange={onArtistChange}
+          value={album.artist}
+        />
+      </FormField>
+      <FormField label="Title">
+        <Input
+          disabled={isSubmitting}
+          value={album.title}
+          onChange={onTitleChange}
+        />
+      </FormField>
+      <FormField label="Year">
+        <Input
+          disabled={isSubmitting}
+          value={formatInteger(album.year ?? null)}
+          onChange={onYearChange}
+        />
+      </FormField>
+      <FirstPlayedField
+        disabled={isSubmitting}
+        value={album.firstPlayed}
+        onChange={onFirstPlayedChange}
+      />
+      <FormField label="Comments">
+        <Input
+          multiline
+          disabled={isSubmitting}
+          value={album.comments ?? ""}
+          onChange={onCommentsChange}
+        />
+      </FormField>
+      <AnimatePresence>
+        {album.sources.map((source, i) => (
+          <motion.div
+            animate={{ height: "auto" }}
+            exit={{ height: 0 }}
+            initial={{ height: isFirstRender ? "auto" : 0 }}
+            // eslint-disable-next-line react/no-array-index-key
+            key={i}
+            style={{ overflow: "hidden" }}
+            transition={{ type: "tween" }}
+          >
+            <Source
+              disabled={isSubmitting}
+              index={i}
+              onRemove={onSourceRemove}
+              onUpdate={onSourceUpdate}
+              source={source}
+            />
+          </motion.div>
+        ))}
+      </AnimatePresence>
+      <Buttons>
+        {/* eslint-disable-next-line react/jsx-no-bind */}
+        <Button onClick={onSourceAdd} palette="link" size="small">
+          Add source
+        </Button>
+        <Button disabled={isSubmitting} type="submit">
+          Submit
+        </Button>
+      </Buttons>
+      {submitError && <Text color="vermilion">{submitError.message}</Text>}
+    </StyledForm>
+  );
 };
 
 export default AlbumForm;

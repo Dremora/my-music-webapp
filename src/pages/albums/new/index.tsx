@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 
 import AlbumForm from "components/AlbumForm";
+import Text from "components/Text";
 import { useLogin } from "data/login";
 import CREATE_ALBUM from "mutations/CreateAlbum";
 import {
@@ -10,13 +11,11 @@ import {
   CreateAlbumVariables,
 } from "mutations/CreateAlbum/types/CreateAlbum";
 
-const createEmptyAlbum = (): { album: CreateAlbumVariables } => ({
-  album: {
-    title: "",
-    artist: "",
-    firstPlayed: { timestamp: Math.floor(new Date().getTime() / 1000) },
-    sources: [],
-  },
+const createEmptyAlbum = (): CreateAlbumVariables => ({
+  title: "",
+  artist: "",
+  firstPlayed: { timestamp: Math.floor(new Date().getTime() / 1000) },
+  sources: [],
 });
 
 const NewAlbumPage = () => {
@@ -36,9 +35,19 @@ const NewAlbumPage = () => {
     return null;
   }
 
+  if (loading) {
+    return (
+      <div>
+        <Text color="grey">Loading...</Text>
+      </div>
+    );
+  } else if (error || !data) {
+    return <span>error</span>;
+  }
+
   return (
     <AlbumForm
-      data={data?.createAlbum ? { album: data.createAlbum } : emptyAlbum}
+      initialValues={data?.createAlbum ? data.createAlbum : emptyAlbum}
       isNew={!data}
       isSubmitting={loading}
       onSubmit={submit}

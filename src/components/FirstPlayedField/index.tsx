@@ -1,10 +1,10 @@
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useCallback, useState } from "react";
-import { Field, useField } from "react-final-form";
 
 import Input from "components/Input";
 import Text from "components/Text";
 import useIsFirstRender from "data/useIsFirstRender";
+import { FirstPlayedInput } from "types/graphql";
 import { formatInteger, parseInteger } from "utils";
 
 import {
@@ -20,15 +20,13 @@ import {
 
 type Props = {
   disabled: boolean;
+  onChange: (value: FirstPlayedInput | null) => void;
+  value: FirstPlayedInput | null | undefined;
 };
 
-const FirstPlayedField = ({ disabled }: Props) => {
-  const { input } = useField("firstPlayed");
-  const { value } = input;
-
+const FirstPlayedField = ({ disabled, onChange, value }: Props) => {
   const [firstPlayedMode, setFirstPlayedMode] = useState(() =>
-    // TODO figure out why this can ever be ''
-    value === "" || value === null || value === undefined
+    value === null || value === undefined
       ? "unknown"
       : "year" in value
       ? "date"
@@ -41,29 +39,59 @@ const FirstPlayedField = ({ disabled }: Props) => {
       setFirstPlayedMode(newMode);
 
       if (newMode === "date") {
-        input.onChange(
+        onChange(
           value && value.year
             ? value
             : { year: undefined, month: undefined, day: undefined }
         );
       } else if (newMode === "timestamp") {
-        input.onChange(
-          value && value.timestamp ? value : { timestamp: undefined }
-        );
+        onChange(value && value.timestamp ? value : { timestamp: undefined });
       } else {
-        input.onChange(null);
+        onChange(null);
       }
     },
-    [input, value]
+    [onChange, value]
   );
 
   const isFirstRender = useIsFirstRender();
+
+  const onTimestampChange = useCallback(
+    (e) => {
+      const timestamp = parseInteger(e.target.value);
+      onChange({ timestamp });
+    },
+    [onChange]
+  );
+
+  const onYearChange = useCallback(
+    (e) => {
+      const year = parseInteger(e.target.value);
+      onChange({ year });
+    },
+    [onChange]
+  );
+
+  const onMonthChange = useCallback(
+    (e) => {
+      const month = parseInteger(e.target.value);
+      onChange({ month });
+    },
+    [onChange]
+  );
+
+  const onDayChange = useCallback(
+    (e) => {
+      const day = parseInteger(e.target.value);
+      onChange({ day });
+    },
+    [onChange]
+  );
 
   return (
     <Container>
       <Label>
         <Text color="darkPlatinum" weight="bold">
-          First played
+          First played {firstPlayedMode}
         </Text>
       </Label>
       <RadioGroup>
@@ -118,67 +146,42 @@ const FirstPlayedField = ({ disabled }: Props) => {
             >
               {firstPlayedMode === "timestamp" && (
                 <DateInputContainer>
-                  <Field
-                    format={formatInteger}
-                    name="firstPlayed.timestamp"
-                    parse={parseInteger}
-                  >
-                    {({ input: firstPlayedInput }) => (
-                      <Input disabled={disabled} {...firstPlayedInput} />
-                    )}
-                  </Field>
+                  <Input
+                    disabled={disabled}
+                    value={formatInteger(value?.timestamp ?? null)}
+                    onChange={onTimestampChange}
+                  />
                 </DateInputContainer>
               )}
 
               {firstPlayedMode === "date" && (
                 <DateInputContainer>
                   <YearInputField>
-                    <Field
-                      format={formatInteger}
-                      name="firstPlayed.year"
-                      parse={parseInteger}
-                    >
-                      {({ input: firstPlayedInput }) => (
-                        <Input
-                          {...firstPlayedInput}
-                          disabled={disabled}
-                          placeholder="YYYY"
-                          type="number"
-                        />
-                      )}
-                    </Field>
+                    <Input
+                      disabled={disabled}
+                      placeholder="YYYY"
+                      type="number"
+                      value={formatInteger(value?.year ?? null)}
+                      onChange={onYearChange}
+                    />
                   </YearInputField>
                   <MonthDayField>
-                    <Field
-                      format={formatInteger}
-                      name="firstPlayed.month"
-                      parse={parseInteger}
-                    >
-                      {({ input: firstPlayedInput }) => (
-                        <Input
-                          {...firstPlayedInput}
-                          disabled={disabled}
-                          placeholder="MM"
-                          type="number"
-                        />
-                      )}
-                    </Field>
+                    <Input
+                      disabled={disabled}
+                      placeholder="MM"
+                      type="number"
+                      value={formatInteger(value?.month ?? null)}
+                      onChange={onMonthChange}
+                    />
                   </MonthDayField>
                   <MonthDayField>
-                    <Field
-                      format={formatInteger}
-                      name="firstPlayed.day"
-                      parse={parseInteger}
-                    >
-                      {({ input: firstPlayedInput }) => (
-                        <Input
-                          {...firstPlayedInput}
-                          disabled={disabled}
-                          placeholder="DD"
-                          type="number"
-                        />
-                      )}
-                    </Field>
+                    <Input
+                      disabled={disabled}
+                      placeholder="DD"
+                      type="number"
+                      value={formatInteger(value?.day ?? null)}
+                      onChange={onDayChange}
+                    />
                   </MonthDayField>
                 </DateInputContainer>
               )}

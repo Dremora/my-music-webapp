@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import React from "react";
 
 import AlbumForm from "components/AlbumForm";
+import Text from "components/Text";
 import { useLogin } from "data/login";
 import UPDATE_ALBUM from "mutations/UpdateAlbum";
 import {
@@ -31,12 +32,20 @@ const AlbumPage = () => {
     return null;
   }
 
+  if (loading) {
+    return (
+      <div>
+        <Text color="grey">Loading...</Text>
+      </div>
+    );
+  } else if (error || !data) {
+    return <span>error</span>;
+  }
+
   return (
     <AlbumForm
-      data={data}
-      error={error}
+      initialValues={data?.album}
       isSubmitting={isSubmitting}
-      loading={loading}
       onSubmit={submit}
       submitError={submitError}
     />
