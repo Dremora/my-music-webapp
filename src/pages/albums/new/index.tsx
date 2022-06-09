@@ -35,16 +35,6 @@ const NewAlbumPage = () => {
     return null;
   }
 
-  if (loading) {
-    return (
-      <div>
-        <Text color="grey">Loading...</Text>
-      </div>
-    );
-  } else if (error) {
-    return <span>error</span>;
-  }
-
   return (
     <AlbumForm
       initialValues={data?.createAlbum ? data.createAlbum : emptyAlbum}
