@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 
-import { Image, Input, Root } from "./styles";
+import { imageStyle, inputStyle, rootStyle } from "./styles.css";
 
 interface Props {
   value: string;
@@ -14,14 +14,21 @@ const Search = ({ onChange, value }: Props) => {
   );
 
   return (
-    <Root>
-      <Image height={20} src="/search.svg" width={20} />
-      <Input
+    <div className={rootStyle}>
+      <img
+        className={imageStyle}
+        height={20}
+        src="/search.svg"
+        width={20}
+        alt=""
+      />
+      <input
+        className={inputStyle}
         onChange={updateValue}
         placeholder="Search for music…"
         value={value}
       />
-    </Root>
+    </div>
   );
 };
 
