@@ -8,11 +8,6 @@ const common = css`
   -webkit-font-smoothing: antialiased;
 `;
 
-export const h1 = css`
-  ${common};
-  font-size: 32px;
-`;
-
 export const large = css`
   ${common};
   font-size: 21px;

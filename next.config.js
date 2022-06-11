@@ -9,6 +9,7 @@ const withBundleAnalyzer = bundleAnalyzer({
 
 module.exports = withVanillaExtract(
   withBundleAnalyzer({
+    ignoreDuringBuilds: true,
     async rewrites() {
       return [
         {
