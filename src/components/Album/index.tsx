@@ -18,7 +18,7 @@ interface Props {
   album: FindAlbumsQuery["albums"][number];
 }
 
-const Album = ({ album }: Props) => {
+function Album({ album }: Props) {
   const { isLoggedIn } = useLogin();
   const firstPlayedFormatted = formatFirstPlayed(album.firstPlayed);
 
@@ -56,6 +56,6 @@ const Album = ({ album }: Props) => {
   ) : (
     <div className={rootStyle}>{contents}</div>
   );
-};
+}
 
 export default Album;

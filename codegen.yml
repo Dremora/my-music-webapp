@@ -9,6 +9,7 @@ generates:
     config:
       avoidOptionals:
         field: true
+      inputMaybeValue: T | null | undefined
       enumsAsConst: true
       scalars:
         UUID: string

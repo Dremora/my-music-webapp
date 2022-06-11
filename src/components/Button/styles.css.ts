@@ -17,11 +17,6 @@ export const buttonStyle = recipe({
     appearance: "none",
     backgroundColor: "transparent",
   },
-  defaultVariants: {
-    full: false,
-    palette: "primary",
-    disabled: false,
-  },
   variants: {
     full: {
       true: {

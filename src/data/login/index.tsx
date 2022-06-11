@@ -4,6 +4,7 @@ import {
   useCallback,
   useContext,
   useEffect,
+  useMemo,
   useState,
 } from "react";
 
@@ -29,7 +30,7 @@ interface Props {
   children: ReactNode;
 }
 
-export const LoginProvider = ({ children }: Props) => {
+export function LoginProvider({ children }: Props) {
   const [token, setToken] = useState<string | null>(null);
 
   useEffect(() => {
@@ -46,14 +47,22 @@ export const LoginProvider = ({ children }: Props) => {
     setToken(null);
   }, []);
 
+  const contextValue = useMemo(
+    () => ({
+      onLoggedOut,
+      onLoggedIn,
+      isLoggedIn: !!token,
+      token,
+    }),
+    [token, onLoggedIn, onLoggedOut]
+  );
+
   return (
-    <LoginContext.Provider
-      value={{ onLoggedOut, onLoggedIn, isLoggedIn: !!token, token }}
-    >
+    <LoginContext.Provider value={contextValue}>
       {children}
     </LoginContext.Provider>
   );
-};
+}
 
 export const useLogin = () => {
   return useContext(LoginContext);

@@ -8,7 +8,7 @@ interface Props {
   closeMenu?: () => void;
 }
 
-const MenuItems = ({ closeMenu }: Props) => {
+function MenuItems({ closeMenu }: Props) {
   const { isLoggedIn } = useLogin();
 
   return (
@@ -19,13 +19,13 @@ const MenuItems = ({ closeMenu }: Props) => {
       <Item href="/years" onClick={closeMenu}>
         Years
       </Item>
-      {isLoggedIn && (
+      {isLoggedIn ? (
         <Item href="/albums/new" onClick={closeMenu}>
           New album
         </Item>
-      )}
+      ) : null}
     </ul>
   );
-};
+}
 
 export default MenuItems;

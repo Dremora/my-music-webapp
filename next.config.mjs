@@ -10,6 +10,7 @@ const withBundleAnalyzer = bundleAnalyzer({
 export default withVanillaExtract(
   withBundleAnalyzer({
     ignoreDuringBuilds: true,
+    reactStrictMode: true,
     async rewrites() {
       return [
         {

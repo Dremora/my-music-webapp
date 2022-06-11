@@ -1,6 +1,6 @@
 import { barStyle, containerStyle } from "./styles.css";
 
-const BurgerIcon = () => {
+function BurgerIcon() {
   return (
     <div className={containerStyle}>
       <div className={barStyle} />
@@ -8,6 +8,6 @@ const BurgerIcon = () => {
       <div className={barStyle} />
     </div>
   );
-};
+}
 
 export default BurgerIcon;

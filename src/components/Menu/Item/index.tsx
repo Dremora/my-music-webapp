@@ -10,10 +10,10 @@ import { anchorStyle, barStyle, listItemStyle } from "./styles.css";
 interface Props {
   href: string;
   children: string;
-  onClick?: () => void;
+  onClick?: (() => void) | undefined;
 }
 
-const Item = ({ children, href, onClick }: Props) => {
+function Item({ children, href, onClick }: Props) {
   const router = useRouter();
   const isFirstRender = useIsFirstRender();
 
@@ -31,19 +31,19 @@ const Item = ({ children, href, onClick }: Props) => {
       {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
       {/* @ts-ignore https://github.com/framer/motion/pull/1573 */}
       <AnimatePresence>
-        {current && (
+        {current ? (
           <motion.div
-            className={barStyle}
             animate={{ width: "100%" }}
+            className={barStyle}
             exit={{ width: 0 }}
             initial={{ width: isFirstRender ? "100%" : 0 }}
             key="bar"
             transition={{ type: "tween", duration: 0.2 }}
           />
-        )}
+        ) : null}
       </AnimatePresence>
     </li>
   );
-};
+}
 
 export default Item;

@@ -1,7 +1,7 @@
 import YearsHistogram from "components/YearsHistogram";
 import { useAlbumPerFirstPlayedYearCountQuery } from "generated/graphql";
 
-const FirstPlayedYearsPage = () => {
+function FirstPlayedYearsPage() {
   const { data, error, loading } = useAlbumPerFirstPlayedYearCountQuery();
 
   if (loading || error || !data) {
@@ -9,6 +9,6 @@ const FirstPlayedYearsPage = () => {
   }
 
   return <YearsHistogram data={data.albumPerFirstPlayedYearCount} />;
-};
+}
 
 export default FirstPlayedYearsPage;

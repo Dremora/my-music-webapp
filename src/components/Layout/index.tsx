@@ -15,7 +15,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-const Layout = ({ children }: Props) => {
+function Layout({ children }: Props) {
   return (
     <div className={pageStyle}>
       <div>
@@ -38,6 +38,6 @@ const Layout = ({ children }: Props) => {
       </div>
     </div>
   );
-};
+}
 
 export default Layout;

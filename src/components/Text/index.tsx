@@ -11,8 +11,10 @@ interface Props {
   weight?: "normal" | "bold";
 }
 
-const Text = ({ children, color, size, weight }: Props) => (
-  <span className={textStyle({ color, size, weight })}>{children}</span>
-);
+function Text({ children, color, size = "base", weight = "normal" }: Props) {
+  return (
+    <span className={textStyle({ color, size: size, weight })}>{children}</span>
+  );
+}
 
 export default Text;

@@ -5,12 +5,14 @@ type Props = {
   albums: FindAlbumsQuery["albums"];
 };
 
-const AlbumList = ({ albums }: Props) => (
-  <div>
-    {albums.map((album) => (
-      <Album album={album} key={album.id} />
-    ))}
-  </div>
-);
+function AlbumList({ albums }: Props) {
+  return (
+    <div>
+      {albums.map((album) => (
+        <Album album={album} key={album.id} />
+      ))}
+    </div>
+  );
+}
 
 export default AlbumList;

@@ -12,11 +12,35 @@ interface Props {
   value: string;
 }
 
-const Input = ({ multiline = false, type = "text", value, ...props }: Props) =>
-  multiline ? (
-    <textarea className={inputStyle} value={value || ""} {...props} />
+function Input({
+  autoFocus,
+  disabled,
+  multiline = false,
+  onChange,
+  placeholder,
+  type = "text",
+  value,
+}: Props) {
+  return multiline ? (
+    <textarea
+      autoFocus={autoFocus}
+      className={inputStyle}
+      disabled={disabled}
+      onChange={onChange}
+      placeholder={placeholder}
+      value={value || ""}
+    />
   ) : (
-    <input className={inputStyle} type={type} value={value || ""} {...props} />
+    <input
+      autoFocus={autoFocus}
+      className={inputStyle}
+      disabled={disabled}
+      onChange={onChange}
+      placeholder={placeholder}
+      type={type}
+      value={value || ""}
+    />
   );
+}
 
 export default Input;

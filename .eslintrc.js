@@ -3,11 +3,12 @@ const restrictedGlobals = require("confusing-browser-globals");
 module.exports = {
   parser: "@typescript-eslint/parser",
   parserOptions: {
-    ecmaVersion: 2018,
+    ecmaVersion: 2020,
     sourceType: "module",
     ecmaFeatures: {
       jsx: true,
     },
+    project: "./tsconfig.json",
   },
   plugins: [
     "import",
@@ -16,13 +17,15 @@ module.exports = {
     "react-hooks",
     "@typescript-eslint",
     "sort-destructure-keys",
+    "no-type-assertion",
   ],
   extends: [
     "eslint:recommended",
-    "plugin:react/recommended",
+    "plugin:react/all",
     "plugin:react/jsx-runtime",
     "plugin:prettier/recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "plugin:jsx-a11y/strict",
     "plugin:import/typescript",
     "prettier",
@@ -90,6 +93,7 @@ module.exports = {
     "no-restricted-globals": ["error"].concat(restrictedGlobals),
     "no-restricted-imports": ["error", { patterns: ["../../*"] }],
     "no-shadow": "error",
+    "no-type-assertion/no-type-assertion": "error",
     "no-useless-constructor": "error",
     "padding-line-between-statements": [
       "error",
@@ -106,11 +110,13 @@ module.exports = {
     "prefer-object-spread": "error",
     "react-hooks/exhaustive-deps": "error",
     "react-hooks/rules-of-hooks": "error",
-    "react/jsx-filename-extension": ["error", { extensions: ["tsx", "js"] }],
-    "react/no-array-index-key": "error",
-    "react/prefer-stateless-function": "error",
-    "react/self-closing-comp": "error",
-    "react/jsx-boolean-value": "error",
+    "react/jsx-filename-extension": [
+      "error",
+      { allow: "as-needed", extensions: ["tsx"] },
+    ],
+    "react/jsx-max-depth": "off",
+    "react/jsx-no-literals": "off",
+    "react/require-default-props": "off",
     "sort-imports": ["error", { ignoreDeclarationSort: true }],
     "sort-destructure-keys/sort-destructure-keys": "error",
   },

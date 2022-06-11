@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 import Button from "components/Button";
 import Input from "components/Input";
@@ -8,7 +8,7 @@ import { useLoginMutation } from "generated/graphql";
 
 import { loginLinkStyle, rootStyle, spacerStyle } from "./styles.css";
 
-const Footer = () => {
+function Footer() {
   const { isLoggedIn, onLoggedIn, onLoggedOut } = useLogin();
 
   const [loginRequest, { loading }] = useLoginMutation();
@@ -17,22 +17,21 @@ const Footer = () => {
   const [showingLogin, setShowingLogin] = useState(false);
   const [wrongPassword, setWrongPassword] = useState(false);
 
-  const cancelLogin = () => {
+  const cancelLogin = useCallback(() => {
     setPasswordInput("");
     setShowingLogin(false);
     setWrongPassword(false);
-  };
+  }, []);
 
-  const showLogin = () => setShowingLogin(true);
+  const setPassword = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setWrongPassword(false);
+      setPasswordInput(e.target.value);
+    },
+    []
+  );
 
-  const setPassword = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setWrongPassword(false);
-    setPasswordInput(e.target.value);
-  };
-
-  const login = async () => {
+  const login = useCallback(async () => {
     const result = await loginRequest({
       variables: { password: passwordInput },
     });
@@ -46,10 +45,15 @@ const Footer = () => {
       setWrongPassword(false);
       onLoggedIn(passwordInput);
     }
-  };
+  }, [loginRequest, onLoggedIn, passwordInput]);
+
+  const submit = useCallback(
+    () => (isLoggedIn ? onLoggedOut() : setShowingLogin(true)),
+    [isLoggedIn, onLoggedOut]
+  );
 
   return (
-    <div className={rootStyle}>
+    <form className={rootStyle} onSubmit={submit}>
       {showingLogin ? (
         <>
           <Input
@@ -74,17 +78,14 @@ const Footer = () => {
           </Button>
         </>
       ) : (
-        <button
-          className={loginLinkStyle({ disabled: loading })}
-          onClick={isLoggedIn ? onLoggedOut : showLogin}
-        >
+        <button className={loginLinkStyle({ disabled: loading })} type="submit">
           <Text color="lighterGrey" size="small">
             {loading ? "Loading…" : isLoggedIn ? "Log out" : "Login"}
           </Text>
         </button>
       )}
-    </div>
+    </form>
   );
-};
+}
 
 export default Footer;

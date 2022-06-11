@@ -24,7 +24,7 @@ type Props = {
   value: FirstPlayedInput | null | undefined;
 };
 
-const FirstPlayedField = ({ disabled, onChange, value }: Props) => {
+function FirstPlayedField({ disabled, onChange, value }: Props) {
   const [firstPlayedMode, setFirstPlayedMode] = useState(() =>
     value === null || value === undefined
       ? "unknown"
@@ -97,8 +97,8 @@ const FirstPlayedField = ({ disabled, onChange, value }: Props) => {
       <div className={radioGroupStyle}>
         <label className={radioLabelStyle}>
           <input
-            className={radioInputStyle}
             checked={firstPlayedMode === "timestamp"}
+            className={radioInputStyle}
             disabled={disabled}
             name="firstPlayedMode"
             onChange={setMode}
@@ -109,8 +109,8 @@ const FirstPlayedField = ({ disabled, onChange, value }: Props) => {
         </label>
         <label className={radioLabelStyle}>
           <input
-            className={radioInputStyle}
             checked={firstPlayedMode === "date"}
+            className={radioInputStyle}
             disabled={disabled}
             name="firstPlayedMode"
             onChange={setMode}
@@ -121,8 +121,8 @@ const FirstPlayedField = ({ disabled, onChange, value }: Props) => {
         </label>
         <label className={radioLabelStyle}>
           <input
-            className={radioInputStyle}
             checked={firstPlayedMode === "unknown"}
+            className={radioInputStyle}
             disabled={disabled}
             name="firstPlayedMode"
             onChange={setMode}
@@ -153,8 +153,8 @@ const FirstPlayedField = ({ disabled, onChange, value }: Props) => {
                 <div className={dateInputContainerStyle}>
                   <Input
                     disabled={disabled}
-                    value={formatInteger(value?.timestamp ?? null)}
                     onChange={onTimestampChange}
+                    value={formatInteger(value?.timestamp ?? null)}
                   />
                 </div>
               )}
@@ -164,28 +164,28 @@ const FirstPlayedField = ({ disabled, onChange, value }: Props) => {
                   <div className={yearInputFieldStyle}>
                     <Input
                       disabled={disabled}
+                      onChange={onYearChange}
                       placeholder="YYYY"
                       type="number"
                       value={formatInteger(value?.year ?? null)}
-                      onChange={onYearChange}
                     />
                   </div>
                   <div className={monthDayFieldStyle}>
                     <Input
                       disabled={disabled}
+                      onChange={onMonthChange}
                       placeholder="MM"
                       type="number"
                       value={formatInteger(value?.month ?? null)}
-                      onChange={onMonthChange}
                     />
                   </div>
                   <div className={monthDayFieldStyle}>
                     <Input
                       disabled={disabled}
+                      onChange={onDayChange}
                       placeholder="DD"
                       type="number"
                       value={formatInteger(value?.day ?? null)}
-                      onChange={onDayChange}
                     />
                   </div>
                 </div>
@@ -196,6 +196,6 @@ const FirstPlayedField = ({ disabled, onChange, value }: Props) => {
       </motion.div>
     </div>
   );
-};
+}
 
 export default FirstPlayedField;

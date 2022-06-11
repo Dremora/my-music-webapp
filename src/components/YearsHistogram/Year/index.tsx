@@ -11,17 +11,17 @@ interface Props {
   maxCount: number;
   onHoverStart: (year: number) => (e: MouseEvent) => void;
   onHoverEnd: (e: MouseEvent) => void;
-  onClick?: (year: number) => void;
+  onClick?: ((year: number) => void) | undefined;
 }
 
-const Year = ({
+function Year({
   count,
   maxCount,
   onClick,
   onHoverEnd,
   onHoverStart,
   year,
-}: Props) => {
+}: Props) {
   const onHoverStartMemoized = useCallback(
     (e: MouseEvent) => onHoverStart(year)(e),
     [onHoverStart, year]
@@ -34,8 +34,8 @@ const Year = ({
 
   return (
     <motion.div
-      className={rootStyle}
       animate="animate"
+      className={rootStyle}
       initial="initial"
       onClick={onClickWithYear}
       onHoverEnd={onHoverEnd}
@@ -70,6 +70,6 @@ const Year = ({
       />
     </motion.div>
   );
-};
+}
 
 export default memo(Year);

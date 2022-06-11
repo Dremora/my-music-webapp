@@ -4,12 +4,12 @@ import { useCallback } from "react";
 import YearsHistogram from "components/YearsHistogram";
 import { useAlbumPerYearCountQuery } from "generated/graphql";
 
-const AlbumsByYearSelector = () => {
+function AlbumsByYearSelector() {
   const router = useRouter();
 
   const navigateToYear = useCallback(
     (year: number) => {
-      router.push("/years/[year]", `/years/${year}`);
+      void router.push("/years/[year]", `/years/${year}`);
     },
     [router]
   );
@@ -26,6 +26,6 @@ const AlbumsByYearSelector = () => {
       onYearClick={navigateToYear}
     />
   );
-};
+}
 
 export default AlbumsByYearSelector;

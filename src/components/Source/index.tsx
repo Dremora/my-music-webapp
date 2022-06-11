@@ -36,7 +36,7 @@ interface Props {
   source: SourceInput;
 }
 
-const Source = ({ disabled, index, onRemove, onUpdate, source }: Props) => {
+function Source({ disabled, index, onRemove, onUpdate, source }: Props) {
   const remove = useCallback(() => onRemove(index), [index, onRemove]);
 
   const onLocationChange = useCallback(
@@ -140,15 +140,15 @@ const Source = ({ disabled, index, onRemove, onUpdate, source }: Props) => {
         <Text color="grey" size="medium" weight="bold">
           Source {index + 1}
         </Text>
-        <Button onClick={remove} disabled={disabled} size="small">
+        <Button disabled={disabled} onClick={remove} size="small">
           Delete source
         </Button>
       </div>
       <FormField label="Location">
         <Select<Location>
           disabled={disabled}
-          value={source.location}
           onChange={onLocationChange}
+          value={source.location}
         >
           {locations.map((location) => (
             <option key={location.id} value={location.id}>
@@ -160,23 +160,23 @@ const Source = ({ disabled, index, onRemove, onUpdate, source }: Props) => {
       <FormField label="MBID">
         <Input
           disabled={disabled}
-          value={source.mbid ?? ""}
           onChange={onMbidChange}
+          value={source.mbid ?? ""}
         />
       </FormField>
       <FormField label="Comments">
         <Input
           disabled={disabled}
-          value={source.comments || ""}
           onChange={onCommentsChange}
+          value={source.comments || ""}
         />
       </FormField>
       {source.location !== "SPOTIFY" && (
         <FormField label="Tag issues">
           <Input
             disabled={disabled}
-            value={source.tagIssues || ""}
             onChange={onTagIssuesChange}
+            value={source.tagIssues || ""}
           />
         </FormField>
       )}
@@ -185,43 +185,43 @@ const Source = ({ disabled, index, onRemove, onUpdate, source }: Props) => {
           <FormField label="Accurate rip">
             <Input
               disabled={disabled}
-              value={source.accurateRip ?? ""}
               onChange={onAccurateRipChange}
+              value={source.accurateRip ?? ""}
             />
           </FormField>
           <FormField label="Cue issues">
             <Input
               disabled={disabled}
-              value={source.cueIssues ?? ""}
               onChange={onCueIssuesChange}
+              value={source.cueIssues ?? ""}
             />
           </FormField>
           <FormField label="Discs">
             <Input
               disabled={disabled}
-              value={formatInteger(source.discs ?? null)}
               onChange={onDiscsChange}
+              value={formatInteger(source.discs ?? null)}
             />
           </FormField>
           <FormField label="Download">
             <Input
               disabled={disabled}
-              value={source.download ?? ""}
               onChange={onDownloadChange}
+              value={source.download ?? ""}
             />
           </FormField>
           <FormField label="Edition">
             <Input
               disabled={disabled}
-              value={source.edition ?? ""}
               onChange={onEditionChange}
+              value={source.edition ?? ""}
             />
           </FormField>
           <FormField label="Format">
             <Select
               disabled={disabled}
-              value={source.format ?? null}
               onChange={onFormatChange}
+              value={source.format ?? null}
             >
               {formats.map((format) => (
                 <option key={format.id} value={format.id}>
@@ -234,6 +234,6 @@ const Source = ({ disabled, index, onRemove, onUpdate, source }: Props) => {
       )}
     </>
   );
-};
+}
 
 export default memo(Source);

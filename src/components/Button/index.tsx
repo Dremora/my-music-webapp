@@ -3,25 +3,34 @@ import { buttonStyle } from "./styles.css";
 interface Props {
   children: React.ReactNode;
   disabled?: boolean;
-  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  onClick?: (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => void | Promise<void>;
   type?: "button" | "submit";
   palette?: "primary" | "secondary" | "link";
   size?: "medium" | "small";
   full?: boolean;
 }
 
-const Button = ({
-  full,
-  palette,
+function Button({
+  children,
+  disabled = false,
+  full = false,
+  onClick,
+  palette = "primary",
   size = "medium",
   type = "button",
-  ...props
-}: Props) => (
-  <button
-    className={buttonStyle({ full, disabled: props.disabled, size, palette })}
-    type={type}
-    {...props}
-  />
-);
+}: Props) {
+  return (
+    <button
+      className={buttonStyle({ full, disabled, size, palette })}
+      disabled={disabled}
+      onClick={onClick}
+      type={type === "submit" ? "submit" : "button"}
+    >
+      {children}
+    </button>
+  );
+}
 
 export default Button;

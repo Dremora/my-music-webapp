@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useCallback, useState } from "react";
+import { useCallback, useMemo } from "react";
 
 import AlbumForm, { Props as AlbumFormProps } from "components/AlbumForm";
 import { useLogin } from "data/login";
@@ -15,14 +15,17 @@ const createEmptyAlbum = (): CreateAlbumMutationVariables => ({
   sources: [],
 });
 
-const NewAlbumPage = () => {
+function NewAlbumPage() {
   const router = useRouter();
   const { isLoggedIn } = useLogin();
-  const [emptyAlbum] = useState(createEmptyAlbum);
+
+  const emptyAlbum = useMemo(() => {
+    return createEmptyAlbum();
+  }, []);
 
   const [submit, { data, error, loading }] = useCreateAlbumMutation({
     onCompleted: ({ createAlbum: { id } }) =>
-      router.replace("/albums/[id]", `/albums/${id}`),
+      void router.replace("/albums/[id]", `/albums/${id}`),
   });
 
   const handleSubmit = useCallback(
@@ -49,6 +52,6 @@ const NewAlbumPage = () => {
       submitError={error}
     />
   );
-};
+}
 
 export default NewAlbumPage;

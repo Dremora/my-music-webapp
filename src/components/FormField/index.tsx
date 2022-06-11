@@ -7,15 +7,17 @@ interface Props {
   children: React.ReactNode;
 }
 
-const FormField = ({ children, label }: Props) => (
-  <label className={containerStyle}>
-    <div className={labelStyle}>
-      <Text color="darkPlatinum" weight="bold">
-        {label}
-      </Text>
-    </div>
-    <div className={contentsStyle}>{children}</div>
-  </label>
-);
+function FormField({ children, label }: Props) {
+  return (
+    <label className={containerStyle}>
+      <div className={labelStyle}>
+        <Text color="darkPlatinum" weight="bold">
+          {label}
+        </Text>
+      </div>
+      <div className={contentsStyle}>{children}</div>
+    </label>
+  );
+}
 
 export default FormField;

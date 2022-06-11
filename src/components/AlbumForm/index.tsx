@@ -1,6 +1,5 @@
 import { ApolloError } from "@apollo/client";
 import { AnimatePresence, motion } from "framer-motion";
-import { ExecutionResult } from "graphql";
 import { useCallback, useState } from "react";
 
 import Button from "components/Button";
@@ -11,13 +10,11 @@ import Source from "components/Source";
 import Text from "components/Text";
 import useIsFirstRender from "data/useIsFirstRender";
 import {
-  CreateAlbumMutation,
   CreateAlbumMutationVariables,
   FirstPlayedInput,
   GetAlbumQuery,
   Location,
   NewSourceInput,
-  UpdateAlbumMutation,
   UpdateAlbumMutationVariables,
 } from "generated/graphql";
 import { formatInteger, parseInteger, parseOptionalString } from "utils";
@@ -29,13 +26,9 @@ export interface Props {
   isNew?: boolean;
   isSubmitting: boolean;
   onSubmit:
-    | ((
-        data: CreateAlbumMutationVariables
-      ) => Promise<ExecutionResult<CreateAlbumMutation>>)
-    | ((
-        data: Omit<UpdateAlbumMutationVariables, "id">
-      ) => Promise<ExecutionResult<UpdateAlbumMutation>>);
-  submitError?: ApolloError;
+    | ((data: CreateAlbumMutationVariables) => Promise<unknown>)
+    | ((data: Omit<UpdateAlbumMutationVariables, "id">) => Promise<unknown>);
+  submitError?: ApolloError | undefined;
 }
 
 type AlbumSource = NewSourceInput | GetAlbumQuery["album"]["sources"][number];
@@ -52,46 +45,49 @@ type FormData = Omit<CreateAlbumMutationVariables, "sources"> & {
   })[];
 };
 
-const AlbumForm = ({
+function AlbumForm({
   initialValues,
   isNew,
   isSubmitting,
   onSubmit,
   submitError,
-}: Props) => {
+}: Props) {
   const isFirstRender = useIsFirstRender();
   const [album, setAlbum] = useState<FormData>(initialValues);
 
-  const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const submitForm = useCallback(
+    (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
 
-    onSubmit({
-      title: album.title,
-      artist: album.artist,
-      comments: album.comments,
-      year: album.year,
-      sources: album.sources.map((source) => {
-        if ("__typename" in source) {
-          const { __typename, ...rest } = source;
-          return rest;
-        } else {
-          return source;
-        }
-      }),
-      firstPlayed: (() => {
-        if (album.firstPlayed) {
-          if ("__typename" in album.firstPlayed) {
-            const { __typename, ...rest } = album.firstPlayed;
+      void onSubmit({
+        title: album.title,
+        artist: album.artist,
+        comments: album.comments,
+        year: album.year,
+        sources: album.sources.map((source) => {
+          if ("__typename" in source) {
+            const { __typename, ...rest } = source;
             return rest;
+          } else {
+            return source;
+          }
+        }),
+        firstPlayed: (() => {
+          if (album.firstPlayed) {
+            if ("__typename" in album.firstPlayed) {
+              const { __typename, ...rest } = album.firstPlayed;
+              return rest;
+            } else {
+              return album.firstPlayed;
+            }
           } else {
             return album.firstPlayed;
           }
-        } else {
-          return album.firstPlayed;
-        }
-      })(),
-    });
-  };
+        })(),
+      });
+    },
+    [album, onSubmit]
+  );
 
   const onSourceUpdate = useCallback(
     (index: number, source: AlbumSource) => {
@@ -168,28 +164,28 @@ const AlbumForm = ({
       <FormField label="Title">
         <Input
           disabled={isSubmitting}
-          value={album.title}
           onChange={onTitleChange}
+          value={album.title}
         />
       </FormField>
       <FormField label="Year">
         <Input
           disabled={isSubmitting}
-          value={formatInteger(album.year ?? null)}
           onChange={onYearChange}
+          value={formatInteger(album.year ?? null)}
         />
       </FormField>
       <FirstPlayedField
         disabled={isSubmitting}
-        value={album.firstPlayed}
         onChange={onFirstPlayedChange}
+        value={album.firstPlayed}
       />
       <FormField label="Comments">
         <Input
-          multiline
           disabled={isSubmitting}
-          value={album.comments ?? ""}
+          multiline
           onChange={onCommentsChange}
+          value={album.comments ?? ""}
         />
       </FormField>
       {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
@@ -224,9 +220,11 @@ const AlbumForm = ({
           Submit
         </Button>
       </div>
-      {submitError && <Text color="vermilion">{submitError.message}</Text>}
+      {submitError ? (
+        <Text color="vermilion">{submitError.message}</Text>
+      ) : null}
     </form>
   );
-};
+}
 
 export default AlbumForm;

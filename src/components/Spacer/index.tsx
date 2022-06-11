@@ -1,3 +1,5 @@
 import { spacerStyle } from "./index.css";
 
-export const Spacer = () => <div className={spacerStyle} />;
+export function Spacer() {
+  return <div className={spacerStyle} />;
+}

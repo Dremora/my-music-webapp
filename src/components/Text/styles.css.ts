@@ -5,10 +5,6 @@ import { size } from "styles/typography.css";
 
 export const textStyle = recipe({
   base: {},
-  defaultVariants: {
-    size: "base",
-    weight: "normal",
-  },
   variants: {
     color: colorVariant,
     size: {

@@ -1,5 +1,7 @@
 import AlbumsByYearSelector from "components/AlbumsByYearSelector";
 
-const YearsPage = () => <AlbumsByYearSelector />;
+function YearsPage() {
+  return <AlbumsByYearSelector />;
+}
 
 export default YearsPage;

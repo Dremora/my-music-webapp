@@ -9,9 +9,15 @@ interface Props<T extends string> {
   onChange: (value: T) => void;
 }
 
-function Select<T extends string>({ onChange, value, ...props }: Props<T>) {
+function Select<T extends string>({
+  children,
+  disabled,
+  onChange,
+  value,
+}: Props<T>) {
   const onChangeHtmlEvent = useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>) => {
+      // eslint-disable-next-line no-type-assertion/no-type-assertion
       onChange(e.target.value as T);
     },
     [onChange]
@@ -20,10 +26,12 @@ function Select<T extends string>({ onChange, value, ...props }: Props<T>) {
   return (
     <select
       className={selectStyle}
-      value={value || ""}
-      {...props}
+      disabled={disabled}
       onChange={onChangeHtmlEvent}
-    />
+      value={value || ""}
+    >
+      {children}
+    </select>
   );
 }
 

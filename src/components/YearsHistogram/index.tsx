@@ -11,12 +11,12 @@ import Year from "./Year";
 const getMaxValue = (numbers: number[]): number =>
   numbers.length === 0
     ? 0
-    : numbers.reduce((acc, value) => Math.max(acc, value), numbers[0]);
+    : numbers.reduce((acc, value) => Math.max(acc, value), -Infinity);
 
 const getMinValue = (numbers: number[]): number =>
   numbers.length === 0
     ? 0
-    : numbers.reduce((acc, value) => Math.min(acc, value), numbers[0]);
+    : numbers.reduce((acc, value) => Math.min(acc, value), Infinity);
 
 const range = (start: number, stop: number): number[] =>
   Array.from({ length: stop - start + 1 }, (_, i) => start + i);
@@ -26,9 +26,9 @@ interface Props {
   onYearClick?: (year: number) => void;
 }
 
-const YearsHistogram = ({ data, onYearClick }: Props) => {
+function YearsHistogram({ data, onYearClick }: Props) {
   const [selectedYear, setSelectedYear] = useState<number>();
-  const [isOpen, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [triggerBounds, setTriggerBounds] = useState<IBounds | null>(null);
 
   const { layerProps, renderLayer } = useLayer({
@@ -69,15 +69,18 @@ const YearsHistogram = ({ data, onYearClick }: Props) => {
   const showYear = useCallback(
     (year: number) => (e: MouseEvent) => {
       setSelectedYear(year);
-      const currentTarget = e.currentTarget as HTMLElement;
-      setTriggerBounds(currentTarget.getBoundingClientRect());
-      setOpen(true);
+
+      if (e.currentTarget instanceof HTMLElement) {
+        const currentTarget = e.currentTarget;
+        setTriggerBounds(currentTarget.getBoundingClientRect());
+        setIsOpen(true);
+      }
     },
     []
   );
 
   const hideYear = useCallback(() => {
-    setOpen(false);
+    setIsOpen(false);
   }, []);
 
   return (
@@ -106,7 +109,8 @@ const YearsHistogram = ({ data, onYearClick }: Props) => {
               exit={{ opacity: 0 }}
               initial={{ opacity: 0, left: layerProps.style.left }}
               key="year_popup"
-              {...layerProps}
+              ref={layerProps.ref}
+              style={layerProps.style}
               transition={{ ease: "easeOut", duration: 0.1 }}
             >
               <Text color="grey" weight="bold">
@@ -128,6 +132,6 @@ const YearsHistogram = ({ data, onYearClick }: Props) => {
       )}
     </>
   );
-};
+}
 
 export default YearsHistogram;

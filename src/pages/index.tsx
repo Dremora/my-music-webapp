@@ -4,7 +4,7 @@ import AlbumList from "components/AlbumList";
 import Search from "components/Search";
 import { useFindAlbumsQuery } from "generated/graphql";
 
-const IndexPage = () => {
+function IndexPage() {
   const [searchText, setSearchText] = useState("");
 
   const { data } = useFindAlbumsQuery({
@@ -18,6 +18,6 @@ const IndexPage = () => {
       {data ? <AlbumList albums={data.albums} /> : null}
     </>
   );
-};
+}
 
 export default IndexPage;

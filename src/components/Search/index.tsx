@@ -7,7 +7,7 @@ interface Props {
   onChange: (value: string) => void;
 }
 
-const Search = ({ onChange, value }: Props) => {
+function Search({ onChange, value }: Props) {
   const updateValue = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.value),
     [onChange]
@@ -16,11 +16,11 @@ const Search = ({ onChange, value }: Props) => {
   return (
     <div className={rootStyle}>
       <img
+        alt=""
         className={imageStyle}
         height={20}
         src="/search.svg"
         width={20}
-        alt=""
       />
       <input
         className={inputStyle}
@@ -30,6 +30,6 @@ const Search = ({ onChange, value }: Props) => {
       />
     </div>
   );
-};
+}
 
 export default Search;

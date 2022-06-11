@@ -5,13 +5,13 @@ import AlbumsByYearSelector from "components/AlbumsByYearSelector";
 import { Spacer } from "components/Spacer";
 import { useFindAlbumsQuery } from "generated/graphql";
 
-const YearsPage = () => {
+function YearsPage() {
   const router = useRouter();
 
   const year = parseInt(
-    typeof router.query.year === "object"
-      ? router.query.year.join("")
-      : router.query.year || ""
+    typeof router.query["year"] === "object"
+      ? router.query["year"].join("")
+      : router.query["year"] || ""
   );
 
   const { data } = useFindAlbumsQuery({
@@ -26,6 +26,6 @@ const YearsPage = () => {
       {data ? <AlbumList albums={data.albums} /> : null}
     </>
   );
-};
+}
 
 export default YearsPage;

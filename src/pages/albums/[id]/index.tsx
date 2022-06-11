@@ -6,7 +6,7 @@ import Text from "components/Text";
 import { useLogin } from "data/login";
 import { useGetAlbumQuery, useUpdateAlbumMutation } from "generated/graphql";
 
-const AlbumPage = () => {
+function AlbumPage() {
   const router = useRouter();
   const { id } = router.query;
   const { isLoggedIn } = useLogin();
@@ -55,6 +55,6 @@ const AlbumPage = () => {
       submitError={submitError}
     />
   );
-};
+}
 
 export default AlbumPage;
