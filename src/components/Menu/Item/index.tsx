@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -32,7 +32,7 @@ function Item({ children, href, onClick }: Props) {
       {/* @ts-ignore https://github.com/framer/motion/pull/1573 */}
       <AnimatePresence>
         {current ? (
-          <motion.div
+          <m.div
             animate={{ width: "100%" }}
             className={barStyle}
             exit={{ width: 0 }}

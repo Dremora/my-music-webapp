@@ -1,4 +1,4 @@
-import { motion, transform } from "framer-motion";
+import { m, transform } from "framer-motion";
 import { memo, useCallback } from "react";
 
 import { grey, lightGrey, lighterGrey } from "styles/colors.css";
@@ -33,7 +33,7 @@ function Year({
   );
 
   return (
-    <motion.div
+    <m.div
       animate="animate"
       className={rootStyle}
       initial="initial"
@@ -49,7 +49,7 @@ function Year({
       }}
       whileHover="hover"
     >
-      <motion.div
+      <m.div
         className={barStyle}
         variants={{
           animate: {
@@ -68,7 +68,7 @@ function Year({
           },
         }}
       />
-    </motion.div>
+    </m.div>
   );
 }
 

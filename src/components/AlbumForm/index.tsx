@@ -1,5 +1,5 @@
 import { ApolloError } from "@apollo/client";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { useCallback, useState } from "react";
 
 import Button from "components/Button";
@@ -192,7 +192,7 @@ function AlbumForm({
       {/* @ts-ignore https://github.com/framer/motion/pull/1573 */}
       <AnimatePresence>
         {album.sources.map((source, i) => (
-          <motion.div
+          <m.div
             animate={{ height: "auto" }}
             exit={{ height: 0 }}
             initial={{ height: isFirstRender ? "auto" : 0 }}
@@ -208,7 +208,7 @@ function AlbumForm({
               onUpdate={onSourceUpdate}
               source={source}
             />
-          </motion.div>
+          </m.div>
         ))}
       </AnimatePresence>
       <div className={buttonsStyle}>

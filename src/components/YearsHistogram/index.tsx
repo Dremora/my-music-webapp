@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { useCallback, useMemo, useState } from "react";
 import { IBounds, useLayer } from "react-laag";
 
@@ -104,7 +104,7 @@ function YearsHistogram({ data, onYearClick }: Props) {
         // @ts-ignore https://github.com/framer/motion/pull/1573
         <AnimatePresence>
           {isOpen && layerProps.style.left ? (
-            <motion.div
+            <m.div
               animate={{ opacity: 1, left: layerProps.style.left }}
               exit={{ opacity: 0 }}
               initial={{ opacity: 0, left: layerProps.style.left }}
@@ -116,7 +116,7 @@ function YearsHistogram({ data, onYearClick }: Props) {
               <Text color="grey" weight="bold">
                 {selectedYear}
               </Text>
-            </motion.div>
+            </m.div>
           ) : (
             <div
               key="year_popup_invisible"

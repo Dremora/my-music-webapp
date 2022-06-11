@@ -1,6 +1,7 @@
 import "styles/global.css";
 
 import { ApolloProvider } from "@apollo/client";
+import { LazyMotion, domAnimation } from "framer-motion";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 
@@ -21,11 +22,13 @@ export default function MyMusicApp({ Component }: AppProps) {
         <title>My Music</title>
       </Head>
       <ApolloProvider client={client}>
-        <LoginProvider>
-          <Layout>
-            <Component />
-          </Layout>
-        </LoginProvider>
+        <LazyMotion features={domAnimation}>
+          <LoginProvider>
+            <Layout>
+              <Component />
+            </Layout>
+          </LoginProvider>
+        </LazyMotion>
       </ApolloProvider>
     </>
   );

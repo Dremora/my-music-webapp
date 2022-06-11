@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { useCallback, useState } from "react";
 
 import Input from "components/Input";
@@ -133,7 +133,7 @@ function FirstPlayedField({ disabled, onChange, value }: Props) {
         </label>
       </div>
 
-      <motion.div
+      <m.div
         animate={{ height: firstPlayedMode === "unknown" ? 0 : "auto" }}
         initial={{ height: firstPlayedMode === "unknown" ? 0 : "auto" }}
         transition={{ type: "tween" }}
@@ -142,7 +142,7 @@ function FirstPlayedField({ disabled, onChange, value }: Props) {
         {/* @ts-ignore https://github.com/framer/motion/pull/1573 */}
         <AnimatePresence exitBeforeEnter>
           {firstPlayedMode !== "unknown" && (
-            <motion.div
+            <m.div
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               initial={{ opacity: isFirstRender ? 1 : 0 }}
@@ -190,10 +190,10 @@ function FirstPlayedField({ disabled, onChange, value }: Props) {
                   </div>
                 </div>
               )}
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
-      </motion.div>
+      </m.div>
     </div>
   );
 }
