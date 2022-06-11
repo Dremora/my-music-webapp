@@ -51,16 +51,20 @@ jobs:
           path: .next/analyze/__bundle_analysis.json
 
       - name: Download base branch bundle stats
+        if: success()
         uses: dawidd6/action-download-artifact@v2
         with:
           workflow: ci.yml
-          branch: ${{ github.event.push.base.ref }}
+          workflow_conclusion: completed
+          commit: ${{ github.event.before }}
           path: .next/analyze/base
 
       - name: Compare with base branch bundle
-        run: ls -laR .next/analyze/base && npx -p nextjs-bundle-analysis compare
+        if: success()
+        run: ls -laR .next/analyze/base && pnpm exec compare
 
       - name: Get comment body
+        if: success()
         id: get-comment-body
         run: |
           body=$(cat .next/analyze/__bundle_analysis_comment.txt)
@@ -69,7 +73,8 @@ jobs:
           body="${body//$'\r'/'%0D'}"
           echo ::set-output name=body::$body
 
-      - name: Create commit comment
+      - name: Create comment
+        if: success()
         uses: peter-evans/commit-comment@v2
         with:
           body: ${{ steps.get-comment-body.outputs.body }}
