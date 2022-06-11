@@ -4,7 +4,7 @@
 // This file is generated, do not change this manually.
 // To regenerate it, run `pnpm types:generate:graphql`
 //
-import { gql } from "@apollo/client";
+import { DocumentNode } from "graphql";
 import * as Apollo from "@apollo/client";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -377,54 +377,252 @@ export type GetAlbumQuery = {
   };
 };
 
-export const CreateAlbumDocument = gql`
-  mutation CreateAlbum(
-    $title: String!
-    $artist: String!
-    $comments: String
-    $year: Int
-    $firstPlayed: FirstPlayedInput
-    $sources: [NewSourceInput!]!
-  ) {
-    createAlbum(
-      title: $title
-      artist: $artist
-      comments: $comments
-      year: $year
-      firstPlayed: $firstPlayed
-      sources: $sources
-    ) {
-      id
-      artist
-      title
-      comments
-      year
-      firstPlayed {
-        ... on FirstPlayedTime {
-          timestamp
-        }
-        ... on FirstPlayedDate {
-          year
-          month
-          day
-        }
-      }
-      sources {
-        id
-        accurateRip
-        comments
-        cueIssues
-        discs
-        download
-        edition
-        format
-        location
-        mbid
-        tagIssues
-      }
-    }
-  }
-`;
+export const CreateAlbumDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "CreateAlbum" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "title" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "artist" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "comments" },
+          },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "year" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "firstPlayed" },
+          },
+          type: {
+            kind: "NamedType",
+            name: { kind: "Name", value: "FirstPlayedInput" },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "sources" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "ListType",
+              type: {
+                kind: "NonNullType",
+                type: {
+                  kind: "NamedType",
+                  name: { kind: "Name", value: "NewSourceInput" },
+                },
+              },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "createAlbum" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "title" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "title" },
+                },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "artist" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "artist" },
+                },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "comments" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "comments" },
+                },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "year" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "year" },
+                },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "firstPlayed" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "firstPlayed" },
+                },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "sources" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "sources" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "artist" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "comments" } },
+                { kind: "Field", name: { kind: "Name", value: "year" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "firstPlayed" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "InlineFragment",
+                        typeCondition: {
+                          kind: "NamedType",
+                          name: { kind: "Name", value: "FirstPlayedTime" },
+                        },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "timestamp" },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "InlineFragment",
+                        typeCondition: {
+                          kind: "NamedType",
+                          name: { kind: "Name", value: "FirstPlayedDate" },
+                        },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "year" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "month" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "day" },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "sources" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "accurateRip" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "comments" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "cueIssues" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "discs" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "download" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "edition" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "format" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "location" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "mbid" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "tagIssues" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode;
 export type CreateAlbumMutationFn = Apollo.MutationFunction<
   CreateAlbumMutation,
   CreateAlbumMutationVariables
@@ -473,11 +671,51 @@ export type CreateAlbumMutationOptions = Apollo.BaseMutationOptions<
   CreateAlbumMutation,
   CreateAlbumMutationVariables
 >;
-export const LoginDocument = gql`
-  mutation Login($password: String!) {
-    login(password: $password)
-  }
-`;
+export const LoginDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "Login" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "password" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "login" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "password" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "password" },
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode;
 export type LoginMutationFn = Apollo.MutationFunction<
   LoginMutation,
   LoginMutationVariables
@@ -518,56 +756,268 @@ export type LoginMutationOptions = Apollo.BaseMutationOptions<
   LoginMutation,
   LoginMutationVariables
 >;
-export const UpdateAlbumDocument = gql`
-  mutation UpdateAlbum(
-    $id: UUID!
-    $title: String!
-    $artist: String!
-    $comments: String
-    $year: Int
-    $firstPlayed: FirstPlayedInput
-    $sources: [SourceInput!]!
-  ) {
-    updateAlbum(
-      id: $id
-      title: $title
-      artist: $artist
-      comments: $comments
-      year: $year
-      firstPlayed: $firstPlayed
-      sources: $sources
-    ) {
-      id
-      artist
-      title
-      comments
-      year
-      firstPlayed {
-        ... on FirstPlayedTime {
-          timestamp
-        }
-        ... on FirstPlayedDate {
-          year
-          month
-          day
-        }
-      }
-      sources {
-        id
-        accurateRip
-        comments
-        cueIssues
-        discs
-        download
-        edition
-        format
-        location
-        mbid
-        tagIssues
-      }
-    }
-  }
-`;
+export const UpdateAlbumDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "UpdateAlbum" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "UUID" } },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "title" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "artist" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "comments" },
+          },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "year" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "firstPlayed" },
+          },
+          type: {
+            kind: "NamedType",
+            name: { kind: "Name", value: "FirstPlayedInput" },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "sources" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "ListType",
+              type: {
+                kind: "NonNullType",
+                type: {
+                  kind: "NamedType",
+                  name: { kind: "Name", value: "SourceInput" },
+                },
+              },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "updateAlbum" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "id" },
+                },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "title" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "title" },
+                },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "artist" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "artist" },
+                },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "comments" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "comments" },
+                },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "year" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "year" },
+                },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "firstPlayed" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "firstPlayed" },
+                },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "sources" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "sources" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "artist" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "comments" } },
+                { kind: "Field", name: { kind: "Name", value: "year" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "firstPlayed" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "InlineFragment",
+                        typeCondition: {
+                          kind: "NamedType",
+                          name: { kind: "Name", value: "FirstPlayedTime" },
+                        },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "timestamp" },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "InlineFragment",
+                        typeCondition: {
+                          kind: "NamedType",
+                          name: { kind: "Name", value: "FirstPlayedDate" },
+                        },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "year" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "month" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "day" },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "sources" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "accurateRip" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "comments" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "cueIssues" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "discs" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "download" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "edition" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "format" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "location" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "mbid" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "tagIssues" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode;
 export type UpdateAlbumMutationFn = Apollo.MutationFunction<
   UpdateAlbumMutation,
   UpdateAlbumMutationVariables
@@ -617,14 +1067,32 @@ export type UpdateAlbumMutationOptions = Apollo.BaseMutationOptions<
   UpdateAlbumMutation,
   UpdateAlbumMutationVariables
 >;
-export const AlbumPerFirstPlayedYearCountDocument = gql`
-  query AlbumPerFirstPlayedYearCount {
-    albumPerFirstPlayedYearCount {
-      year
-      count
-    }
-  }
-`;
+export const AlbumPerFirstPlayedYearCountDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "AlbumPerFirstPlayedYearCount" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "albumPerFirstPlayedYearCount" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "year" } },
+                { kind: "Field", name: { kind: "Name", value: "count" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode;
 
 /**
  * __useAlbumPerFirstPlayedYearCountQuery__
@@ -675,14 +1143,32 @@ export type AlbumPerFirstPlayedYearCountQueryResult = Apollo.QueryResult<
   AlbumPerFirstPlayedYearCountQuery,
   AlbumPerFirstPlayedYearCountQueryVariables
 >;
-export const AlbumPerYearCountDocument = gql`
-  query AlbumPerYearCount {
-    albumPerYearCount {
-      year
-      count
-    }
-  }
-`;
+export const AlbumPerYearCountDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "AlbumPerYearCount" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "albumPerYearCount" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "year" } },
+                { kind: "Field", name: { kind: "Name", value: "count" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode;
 
 /**
  * __useAlbumPerYearCountQuery__
@@ -733,26 +1219,109 @@ export type AlbumPerYearCountQueryResult = Apollo.QueryResult<
   AlbumPerYearCountQuery,
   AlbumPerYearCountQueryVariables
 >;
-export const FindAlbumsDocument = gql`
-  query FindAlbums($filter: AlbumFilterInput!) {
-    albums(filter: $filter) {
-      id
-      artist
-      title
-      year
-      firstPlayed {
-        ... on FirstPlayedTime {
-          timestamp
-        }
-        ... on FirstPlayedDate {
-          year
-          month
-          day
-        }
-      }
-    }
-  }
-`;
+export const FindAlbumsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "FindAlbums" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "filter" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "AlbumFilterInput" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "albums" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "filter" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "filter" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "artist" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "year" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "firstPlayed" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "InlineFragment",
+                        typeCondition: {
+                          kind: "NamedType",
+                          name: { kind: "Name", value: "FirstPlayedTime" },
+                        },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "timestamp" },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "InlineFragment",
+                        typeCondition: {
+                          kind: "NamedType",
+                          name: { kind: "Name", value: "FirstPlayedDate" },
+                        },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "year" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "month" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "day" },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode;
 
 /**
  * __useFindAlbumsQuery__
@@ -802,40 +1371,148 @@ export type FindAlbumsQueryResult = Apollo.QueryResult<
   FindAlbumsQuery,
   FindAlbumsQueryVariables
 >;
-export const GetAlbumDocument = gql`
-  query GetAlbum($id: UUID!) {
-    album(id: $id) {
-      id
-      artist
-      title
-      comments
-      year
-      firstPlayed {
-        ... on FirstPlayedTime {
-          timestamp
-        }
-        ... on FirstPlayedDate {
-          year
-          month
-          day
-        }
-      }
-      sources {
-        id
-        accurateRip
-        comments
-        cueIssues
-        discs
-        download
-        edition
-        format
-        location
-        mbid
-        tagIssues
-      }
-    }
-  }
-`;
+export const GetAlbumDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetAlbum" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "UUID" } },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "album" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "id" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "artist" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "comments" } },
+                { kind: "Field", name: { kind: "Name", value: "year" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "firstPlayed" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "InlineFragment",
+                        typeCondition: {
+                          kind: "NamedType",
+                          name: { kind: "Name", value: "FirstPlayedTime" },
+                        },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "timestamp" },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "InlineFragment",
+                        typeCondition: {
+                          kind: "NamedType",
+                          name: { kind: "Name", value: "FirstPlayedDate" },
+                        },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "year" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "month" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "day" },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "sources" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "accurateRip" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "comments" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "cueIssues" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "discs" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "download" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "edition" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "format" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "location" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "mbid" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "tagIssues" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode;
 
 /**
  * __useGetAlbumQuery__

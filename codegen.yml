@@ -20,7 +20,8 @@ generates:
       - "typescript"
       - "typescript-operations":
           arrayInputCoercion: false
-      - "typescript-react-apollo"
+      - "typescript-react-apollo":
+          documentMode: documentNode
       - add:
           content:
             - "/* eslint-disable */"
