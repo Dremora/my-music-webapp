@@ -1,6 +1,5 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import React from "react";
 
 import AlbumForm from "components/AlbumForm";
 import Text from "components/Text";

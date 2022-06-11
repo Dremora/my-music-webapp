@@ -1,5 +1,3 @@
-import React from "react";
-
 import Album from "components/Album";
 import { FindAlbums } from "queries/FindAlbums/types/FindAlbums";
 

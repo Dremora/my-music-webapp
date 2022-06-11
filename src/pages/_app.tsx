@@ -3,7 +3,7 @@ import "styles/global.css";
 import { ApolloProvider } from "@apollo/client";
 import App from "next/app";
 import Head from "next/head";
-import React from "react";
+import { StrictMode } from "react";
 
 import Layout from "components/Layout";
 import { LoginProvider } from "data/login";
@@ -13,7 +13,7 @@ class MyMusic extends App {
   render() {
     const { Component, pageProps } = this.props;
     return (
-      <React.StrictMode>
+      <StrictMode>
         <Head>
           <title>My Music</title>
         </Head>
@@ -24,7 +24,7 @@ class MyMusic extends App {
             </Layout>
           </LoginProvider>
         </ApolloProvider>
-      </React.StrictMode>
+      </StrictMode>
     );
   }
 }

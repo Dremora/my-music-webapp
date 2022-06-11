@@ -1,7 +1,7 @@
 import { ApolloError } from "@apollo/client";
 import { AnimatePresence, motion } from "framer-motion";
 import { ExecutionResult } from "graphql";
-import React, { useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 
 import Button from "components/Button";
 import FirstPlayedField from "components/FirstPlayedField";

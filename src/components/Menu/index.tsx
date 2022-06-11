@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useLayer } from "react-laag";
 
 import BurgerIcon from "components/BurgerIcon";

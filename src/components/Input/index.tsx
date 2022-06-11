@@ -1,5 +1,3 @@
-import React from "react";
-
 import { Input as StyledInput, Textarea } from "./styles";
 
 interface Props {

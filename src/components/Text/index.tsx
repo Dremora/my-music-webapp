@@ -1,5 +1,3 @@
-import React from "react";
-
 import * as colors from "styles/colors";
 
 import StyledText from "./styles";

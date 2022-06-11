@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 
 import YearsHistogram from "components/YearsHistogram";
 import ALBUM_PER_YEAR_COUNT from "queries/AlbumPerYearCount";

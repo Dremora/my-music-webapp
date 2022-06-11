@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import React, { useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 
 import Input from "components/Input";
 import Text from "components/Text";

@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 
 import { imageStyle, inputStyle, rootStyle } from "./styles.css";
 

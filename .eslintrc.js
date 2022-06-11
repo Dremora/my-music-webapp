@@ -20,6 +20,7 @@ module.exports = {
   extends: [
     "eslint:recommended",
     "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
     "plugin:prettier/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:jsx-a11y/strict",

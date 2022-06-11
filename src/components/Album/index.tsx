@@ -1,5 +1,4 @@
 import Link from "next/link";
-import React from "react";
 
 import Text from "components/Text";
 import { useLogin } from "data/login";

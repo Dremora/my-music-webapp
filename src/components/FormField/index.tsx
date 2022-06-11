@@ -1,5 +1,3 @@
-import React from "react";
-
 import Text from "components/Text";
 
 import { containerStyle, contentsStyle, labelStyle } from "./styles.css";

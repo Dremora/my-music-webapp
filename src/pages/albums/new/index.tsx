@@ -1,6 +1,6 @@
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import { useState } from "react";
 
 import AlbumForm from "components/AlbumForm";
 import { useLogin } from "data/login";

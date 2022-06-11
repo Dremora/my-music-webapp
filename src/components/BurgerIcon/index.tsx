@@ -1,5 +1,3 @@
-import React from "react";
-
 import { barStyle, containerStyle } from "./styles.css";
 
 const BurgerIcon = () => {

@@ -1,5 +1,3 @@
-import React from "react";
-
 import { useLogin } from "data/login";
 
 import Item from "../Item";

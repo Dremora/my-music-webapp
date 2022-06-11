@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from "react";
+import { memo, useCallback } from "react";
 
 import Button from "components/Button";
 import FormField from "components/FormField";

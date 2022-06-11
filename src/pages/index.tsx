@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import React, { useState } from "react";
+import { useState } from "react";
 
 import AlbumList from "components/AlbumList";
 import Search from "components/Search";

@@ -1,6 +1,5 @@
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import React from "react";
 
 import AlbumList from "components/AlbumList";
 import AlbumsByYearSelector from "components/AlbumsByYearSelector";
