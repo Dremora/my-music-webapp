@@ -8,7 +8,7 @@ import Text from "components/Text";
 import { Format, Location, SourceInput } from "types/graphql";
 import { formatInteger, parseInteger, parseOptionalString } from "utils";
 
-import { Hr, Title } from "./styles";
+import { hrStyle, titleStyle } from "./styles.css";
 import { parseMbid } from "./utils";
 
 const locations: { id: Location; label: string }[] = [
@@ -135,15 +135,15 @@ const Source = ({ disabled, index, onRemove, onUpdate, source }: Props) => {
 
   return (
     <>
-      <Hr />
-      <Title>
+      <hr className={hrStyle} />
+      <div className={titleStyle}>
         <Text color="grey" size="medium" weight="bold">
           Source {index + 1}
         </Text>
         <Button onClick={remove} size="small">
           Delete source
         </Button>
-      </Title>
+      </div>
       <FormField label="Location">
         <Select<Location>
           disabled={disabled}

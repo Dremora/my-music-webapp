@@ -4,7 +4,11 @@ import { useLayer } from "react-laag";
 import BurgerIcon from "components/BurgerIcon";
 
 import MenuItems from "./MenuItems";
-import { LargeScreen, MenuButton, SmallScreen } from "./styles";
+import {
+  largeScreenStyle,
+  menuButtonStyle,
+  smallScreenStyle,
+} from "./styles.css";
 
 const Menu = () => {
   const [isOpen, setOpen] = useState(false);
@@ -19,20 +23,24 @@ const Menu = () => {
 
   return (
     <>
-      <SmallScreen>
-        <MenuButton {...triggerProps} onClick={() => setOpen(!isOpen)}>
+      <div className={smallScreenStyle}>
+        <button
+          className={menuButtonStyle}
+          {...triggerProps}
+          onClick={() => setOpen(!isOpen)}
+        >
           <BurgerIcon />
-        </MenuButton>
+        </button>
         {isOpen &&
           renderLayer(
             <div {...layerProps}>
               <MenuItems closeMenu={() => setOpen(false)} />
             </div>
           )}
-      </SmallScreen>
-      <LargeScreen>
+      </div>
+      <div className={largeScreenStyle}>
         <MenuItems />
-      </LargeScreen>
+      </div>
     </>
   );
 };

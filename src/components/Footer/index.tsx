@@ -11,7 +11,7 @@ import {
   LoginVariables,
 } from "mutations/Login/types/Login";
 
-import { LoginLink, Root, Spacer } from "./styles";
+import { loginLinkStyle, rootStyle, spacerStyle } from "./styles.css";
 
 const Footer = () => {
   const { isLoggedIn, onLoggedIn, onLoggedOut } = useLogin();
@@ -56,7 +56,7 @@ const Footer = () => {
   };
 
   return (
-    <Root>
+    <div className={rootStyle}>
       {showingLogin ? (
         <>
           <Input
@@ -71,26 +71,26 @@ const Footer = () => {
             type="password"
             value={passwordInput}
           />
-          <Spacer />
+          <div className={spacerStyle} />
           <Button disabled={loading} onClick={cancelLogin}>
             Cancel
           </Button>
-          <Spacer />
+          <div className={spacerStyle} />
           <Button disabled={loading || !passwordInput} onClick={login}>
             Login
           </Button>
         </>
       ) : (
-        <LoginLink
-          disabled={loading}
+        <button
+          className={loginLinkStyle({ disabled: loading })}
           onClick={isLoggedIn ? onLoggedOut : showLogin}
         >
           <Text color="lighterGrey" size="small">
             {loading ? "Loading…" : isLoggedIn ? "Log out" : "Login"}
           </Text>
-        </LoginLink>
+        </button>
       )}
-    </Root>
+    </div>
   );
 };
 

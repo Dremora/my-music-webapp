@@ -1,9 +1,9 @@
-import { transform } from "framer-motion";
+import { motion, transform } from "framer-motion";
 import React, { memo, useCallback } from "react";
 
 import { grey, lightGrey, lighterGrey } from "styles/colors";
 
-import { Bar, Root } from "./styles";
+import { barStyle, rootStyle } from "./styles.css";
 
 interface Props {
   year: number;
@@ -33,7 +33,8 @@ const Year = ({
   );
 
   return (
-    <Root
+    <motion.div
+      className={rootStyle}
       animate="animate"
       initial="initial"
       onClick={onClickWithYear}
@@ -48,7 +49,8 @@ const Year = ({
       }}
       whileHover="hover"
     >
-      <Bar
+      <motion.div
+        className={barStyle}
         variants={{
           animate: {
             backgroundColor: transform(
@@ -66,7 +68,7 @@ const Year = ({
           },
         }}
       />
-    </Root>
+    </motion.div>
   );
 };
 

@@ -4,7 +4,7 @@ import { useLogin } from "data/login";
 
 import Item from "../Item";
 
-import { Items } from "./styles";
+import { itemsStyle } from "./styles.css";
 
 interface Props {
   closeMenu?: () => void;
@@ -14,7 +14,7 @@ const MenuItems = ({ closeMenu }: Props) => {
   const { isLoggedIn } = useLogin();
 
   return (
-    <Items>
+    <ul className={itemsStyle}>
       <Item href="/first-played" onClick={closeMenu}>
         First played
       </Item>
@@ -26,7 +26,7 @@ const MenuItems = ({ closeMenu }: Props) => {
           New album
         </Item>
       )}
-    </Items>
+    </ul>
   );
 };
 

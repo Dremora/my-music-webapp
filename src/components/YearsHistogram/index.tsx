@@ -5,7 +5,7 @@ import { IBounds, useLayer } from "react-laag";
 import Text from "components/Text";
 import { AlbumPerYearCount_albumPerYearCount as Data } from "queries/AlbumPerYearCount/types/AlbumPerYearCount";
 
-import { Root } from "./styles";
+import { rootStyle } from "./styles.css";
 import Year from "./Year";
 
 const getMaxValue = (numbers: number[]): number =>
@@ -82,7 +82,7 @@ const YearsHistogram = ({ data, onYearClick }: Props) => {
 
   return (
     <>
-      <Root>
+      <div className={rootStyle}>
         {yearsWithoutGaps.map((year) => (
           <Year
             count={yearMap[year] || 0}
@@ -94,7 +94,7 @@ const YearsHistogram = ({ data, onYearClick }: Props) => {
             year={year}
           />
         ))}
-      </Root>
+      </div>
 
       {renderLayer(
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
