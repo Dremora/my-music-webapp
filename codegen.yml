@@ -1,11 +1,11 @@
 overwrite: true
 schema: "../my-music-api/src/schema.graphql"
 documents: "src/{queries,mutations}/**/*.{ts,gql}"
+hooks:
+  afterOneFileWrite:
+    - prettier --write
 generates:
   src/generated/graphql.ts:
-    hooks:
-      afterOneFileWrite:
-        - prettier --write
     config:
       avoidOptionals:
         field: true
@@ -21,6 +21,18 @@ generates:
       - "typescript-operations":
           arrayInputCoercion: false
       - "typescript-react-apollo"
+      - add:
+          content:
+            - "/* eslint-disable */"
+            - "//"
+            - "// NOTE:"
+            - "// This file is generated, do not change this manually."
+            - "// To regenerate it, run `pnpm types:generate:graphql`"
+            - "// "
+  src/possibleTypes.ts:
+    plugins:
+      - fragment-matcher:
+          useExplicitTyping: true
       - add:
           content:
             - "/* eslint-disable */"

@@ -1,7 +1,7 @@
 import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 
-import possibleTypes from "possibleTypes.json";
+import introspection from "possibleTypes";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -19,7 +19,7 @@ const authLink = setContext((_, { headers }) => {
 
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
-  cache: new InMemoryCache({ possibleTypes }),
+  cache: new InMemoryCache({ possibleTypes: introspection.possibleTypes }),
 });
 
 export default client;

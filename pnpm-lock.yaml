@@ -4,6 +4,7 @@ specifiers:
   '@apollo/client': 3.6.6
   '@graphql-codegen/add': ^3.1.1
   '@graphql-codegen/cli': ^2.6.2
+  '@graphql-codegen/fragment-matcher': ^3.2.1
   '@graphql-codegen/typescript': ^2.5.1
   '@graphql-codegen/typescript-operations': ^2.4.2
   '@graphql-codegen/typescript-react-apollo': ^3.2.16
@@ -32,7 +33,6 @@ specifiers:
   graphql: 16.5.0
   graphql-tag: 2.12.6
   next: 12.1.6
-  node-fetch: 2.6.1
   normalize.css: 8.0.1
   polished: 4.2.2
   prettier: 2.6.2
@@ -53,7 +53,6 @@ dependencies:
   graphql: 16.5.0
   graphql-tag: 2.12.6_graphql@16.5.0
   next: 12.1.6_ef5jwxihqo6n7gxfmzogljlgcm
-  node-fetch: 2.6.1
   normalize.css: 8.0.1
   polished: 4.2.2
   react: 18.1.0
@@ -63,6 +62,7 @@ dependencies:
 devDependencies:
   '@graphql-codegen/add': 3.1.1_graphql@16.5.0
   '@graphql-codegen/cli': 2.6.2_twdjvmx5enwfmntmh5iacc5lky
+  '@graphql-codegen/fragment-matcher': 3.2.1_graphql@16.5.0
   '@graphql-codegen/typescript': 2.5.1_graphql@16.5.0
   '@graphql-codegen/typescript-operations': 2.4.2_graphql@16.5.0
   '@graphql-codegen/typescript-react-apollo': 3.2.16_ubrtutz2urcxyhwqr2zvlqjzha
@@ -834,6 +834,16 @@ packages:
       '@graphql-codegen/plugin-helpers': 2.4.2_graphql@16.5.0
       '@graphql-tools/schema': 8.3.14_graphql@16.5.0
       '@graphql-tools/utils': 8.6.13_graphql@16.5.0
+      graphql: 16.5.0
+      tslib: 2.3.1
+    dev: true
+
+  /@graphql-codegen/fragment-matcher/3.2.1_graphql@16.5.0:
+    resolution: {integrity: sha512-Hy7tgp5dqDHSUFAfePsK7h5qNk1JWCljpR9gqeY2hnTYzI4YI4jdvH19RiSJ97Px5Ykd15KHzSgj9g0SHm4l8A==}
+    peerDependencies:
+      graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+    dependencies:
+      '@graphql-codegen/plugin-helpers': 2.4.2_graphql@16.5.0
       graphql: 16.5.0
       tslib: 2.3.1
     dev: true
@@ -4278,11 +4288,6 @@ packages:
     resolution: {integrity: sha512-/jKZoMpw0F8GRwl4/eLROPA3cfcXtLApP0QzLmUT/HuPCZWyB7IY9ZrMeKw2O/nFIqPQB3PVM9aYm0F312AXDQ==}
     engines: {node: '>=10.5.0'}
     dev: true
-
-  /node-fetch/2.6.1:
-    resolution: {integrity: sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==}
-    engines: {node: 4.x || >=6.0.0}
-    dev: false
 
   /node-fetch/2.6.7:
     resolution: {integrity: sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ==}
