@@ -54,7 +54,7 @@
     "build": "next build",
     "lint": "eslint src --ext js,ts,tsx",
     "lint:fix": "eslint src --ext js,ts,tsx --fix",
-    "types:check": "tsc --noEmit",
+    "types:check:watch": "tsc --noEmit --watch",
     "types:generate:graphql": "graphql-codegen --config codegen.yml",
     "postinstall": "patch-package"
   },

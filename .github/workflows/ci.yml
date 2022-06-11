@@ -35,9 +35,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Run typecheck
-        run: pnpm types:check
-
       - name: Run ESLint
         run: pnpm lint
 
