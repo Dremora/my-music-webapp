@@ -8,12 +8,6 @@ const common = css`
   -webkit-font-smoothing: antialiased;
 `;
 
-export const large = css`
-  ${common};
-  font-size: 21px;
-  font-weight: 400;
-`;
-
 export const medium = css`
   ${common};
   font-size: 18px;
@@ -24,11 +18,5 @@ export const medium = css`
 export const base = css`
   ${common};
   font-size: 16px;
-  font-weight: 400;
-`;
-
-export const small = css`
-  ${common};
-  font-size: 12px;
   font-weight: 400;
 `;

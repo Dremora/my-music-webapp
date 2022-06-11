@@ -1,6 +1,6 @@
-import * as colors from "styles/colors";
+import * as colors from "styles/colors.css";
 
-import StyledText from "./styles";
+import { textStyle } from "./styles.css";
 
 type Color = keyof typeof colors;
 
@@ -11,10 +11,8 @@ interface Props {
   weight?: "normal" | "bold";
 }
 
-const Text = ({ children, color, size = "base", weight = "normal" }: Props) => (
-  <StyledText color={color} size={size} weight={weight}>
-    {children}
-  </StyledText>
+const Text = ({ children, color, size, weight }: Props) => (
+  <span className={textStyle({ color, size, weight })}>{children}</span>
 );
 
 export default Text;

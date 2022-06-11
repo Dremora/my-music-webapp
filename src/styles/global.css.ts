@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-unused-modules
 import { globalStyle } from "@vanilla-extract/css";
 
-import { whiteSmoke } from "./colors";
+import { whiteSmoke } from "./colors.css";
 
 globalStyle("body", {
   margin: 0,

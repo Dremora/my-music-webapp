@@ -1,6 +1,6 @@
 import { style } from "@vanilla-extract/css";
 
-import { platinum } from "styles/colors";
+import { platinum } from "styles/colors.css";
 
 export const anchorStyle = style({
   textDecoration: "none",

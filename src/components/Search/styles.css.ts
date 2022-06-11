@@ -1,6 +1,6 @@
 import { style } from "@vanilla-extract/css";
 
-import { grey, lightGrey, white } from "styles/colors";
+import { grey, lightGrey, white } from "styles/colors.css";
 import { size } from "styles/typography.css";
 
 export const rootStyle = style({

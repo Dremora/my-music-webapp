@@ -1,7 +1,7 @@
 import { motion, transform } from "framer-motion";
 import { memo, useCallback } from "react";
 
-import { grey, lightGrey, lighterGrey } from "styles/colors";
+import { grey, lightGrey, lighterGrey } from "styles/colors.css";
 
 import { barStyle, rootStyle } from "./styles.css";
 

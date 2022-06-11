@@ -1,6 +1,6 @@
 import { style } from "@vanilla-extract/css";
 
-import { vermilion } from "styles/colors";
+import { vermilion } from "styles/colors.css";
 import { size } from "styles/typography.css";
 
 export const pageStyle = style({

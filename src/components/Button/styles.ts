@@ -7,7 +7,7 @@ import {
   grey,
   vermilion,
   white,
-} from "styles/colors";
+} from "styles/colors.css";
 import { base, medium } from "styles/fonts";
 
 interface Props {

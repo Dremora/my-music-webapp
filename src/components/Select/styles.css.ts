@@ -1,6 +1,6 @@
 import { style } from "@vanilla-extract/css";
 
-import { darkPlatinum, darkerPlatinum, platinum } from "styles/colors";
+import { darkPlatinum, darkerPlatinum, platinum } from "styles/colors.css";
 import { size } from "styles/typography.css";
 
 export const selectStyle = style([
