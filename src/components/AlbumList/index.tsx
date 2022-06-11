@@ -1,8 +1,8 @@
 import Album from "components/Album";
-import { FindAlbums } from "queries/FindAlbums/types/FindAlbums";
+import { FindAlbumsQuery } from "generated/graphql";
 
 type Props = {
-  albums: FindAlbums["albums"];
+  albums: FindAlbumsQuery["albums"];
 };
 
 const AlbumList = ({ albums }: Props) => (

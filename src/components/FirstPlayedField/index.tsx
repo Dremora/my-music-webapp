@@ -4,7 +4,7 @@ import { useCallback, useState } from "react";
 import Input from "components/Input";
 import Text from "components/Text";
 import useIsFirstRender from "data/useIsFirstRender";
-import { FirstPlayedInput } from "types/graphql";
+import { FirstPlayedInput } from "generated/graphql";
 import { formatInteger, parseInteger } from "utils";
 
 import {

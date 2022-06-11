@@ -1,16 +1,14 @@
-import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
-import AlbumForm from "components/AlbumForm";
+import AlbumForm, { Props as AlbumFormProps } from "components/AlbumForm";
 import { useLogin } from "data/login";
-import CREATE_ALBUM from "mutations/CreateAlbum";
 import {
-  CreateAlbum,
-  CreateAlbumVariables,
-} from "mutations/CreateAlbum/types/CreateAlbum";
+  CreateAlbumMutationVariables,
+  useCreateAlbumMutation,
+} from "generated/graphql";
 
-const createEmptyAlbum = (): CreateAlbumVariables => ({
+const createEmptyAlbum = (): CreateAlbumMutationVariables => ({
   title: "",
   artist: "",
   firstPlayed: { timestamp: Math.floor(new Date().getTime() / 1000) },
@@ -22,13 +20,21 @@ const NewAlbumPage = () => {
   const { isLoggedIn } = useLogin();
   const [emptyAlbum] = useState(createEmptyAlbum);
 
-  const [submit, { data, error, loading }] = useMutation<
-    CreateAlbum,
-    CreateAlbumVariables
-  >(CREATE_ALBUM, {
+  const [submit, { data, error, loading }] = useCreateAlbumMutation({
     onCompleted: ({ createAlbum: { id } }) =>
       router.replace("/albums/[id]", `/albums/${id}`),
   });
+
+  const handleSubmit = useCallback(
+    (values: Parameters<AlbumFormProps["onSubmit"]>[0]) => {
+      return submit({
+        variables: {
+          ...values,
+        },
+      });
+    },
+    [submit]
+  );
 
   if (!isLoggedIn) {
     return null;
@@ -39,7 +45,7 @@ const NewAlbumPage = () => {
       initialValues={data?.createAlbum ? data.createAlbum : emptyAlbum}
       isNew={!data}
       isSubmitting={loading}
-      onSubmit={submit}
+      onSubmit={handleSubmit}
       submitError={error}
     />
   );

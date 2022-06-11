@@ -1,24 +1,17 @@
-import { useMutation } from "@apollo/client";
 import { useState } from "react";
 
 import Button from "components/Button";
 import Input from "components/Input";
 import Text from "components/Text";
 import { useLogin } from "data/login";
-import LOGIN from "mutations/Login";
-import {
-  Login as LoginType,
-  LoginVariables,
-} from "mutations/Login/types/Login";
+import { useLoginMutation } from "generated/graphql";
 
 import { loginLinkStyle, rootStyle, spacerStyle } from "./styles.css";
 
 const Footer = () => {
   const { isLoggedIn, onLoggedIn, onLoggedOut } = useLogin();
 
-  const [loginRequest, { loading }] = useMutation<LoginType, LoginVariables>(
-    LOGIN
-  );
+  const [loginRequest, { loading }] = useLoginMutation();
 
   const [passwordInput, setPasswordInput] = useState("");
   const [showingLogin, setShowingLogin] = useState(false);

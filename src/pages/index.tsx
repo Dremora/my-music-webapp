@@ -1,18 +1,13 @@
-import { useQuery } from "@apollo/client";
 import { useState } from "react";
 
 import AlbumList from "components/AlbumList";
 import Search from "components/Search";
-import FIND_ALBUMS from "queries/FindAlbums";
-import {
-  FindAlbums,
-  FindAlbumsVariables,
-} from "queries/FindAlbums/types/FindAlbums";
+import { useFindAlbumsQuery } from "generated/graphql";
 
 const IndexPage = () => {
   const [searchText, setSearchText] = useState("");
 
-  const { data } = useQuery<FindAlbums, FindAlbumsVariables>(FIND_ALBUMS, {
+  const { data } = useFindAlbumsQuery({
     skip: !searchText,
     variables: { filter: { query: searchText } },
   });

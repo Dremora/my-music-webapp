@@ -1,14 +1,8 @@
-import { useQuery } from "@apollo/client";
-
 import YearsHistogram from "components/YearsHistogram";
-import ALBUM_PER_FIRST_PLAYED_YEAR_COUNT from "queries/AlbumPerFirstPlayedYearCount";
-import { AlbumPerFirstPlayedYearCount } from "queries/AlbumPerFirstPlayedYearCount/types/AlbumPerFirstPlayedYearCount";
+import { useAlbumPerFirstPlayedYearCountQuery } from "generated/graphql";
 
 const FirstPlayedYearsPage = () => {
-  const { data, error, loading } = useQuery<
-    AlbumPerFirstPlayedYearCount,
-    undefined
-  >(ALBUM_PER_FIRST_PLAYED_YEAR_COUNT);
+  const { data, error, loading } = useAlbumPerFirstPlayedYearCountQuery();
 
   if (loading || error || !data) {
     return null;

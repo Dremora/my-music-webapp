@@ -1,0 +1,31 @@
+overwrite: true
+schema: "../my-music-api/src/schema.graphql"
+documents: "src/{queries,mutations}/**/*.{ts,gql}"
+generates:
+  src/generated/graphql.ts:
+    hooks:
+      afterOneFileWrite:
+        - prettier --write
+    config:
+      avoidOptionals:
+        field: true
+      enumsAsConst: true
+      scalars:
+        UUID: string
+      namingConvention:
+        enumValues: change-case-all#upperCase
+      immutableTypes: true
+      nonOptionalTypename: true
+    plugins:
+      - "typescript"
+      - "typescript-operations":
+          arrayInputCoercion: false
+      - "typescript-react-apollo"
+      - add:
+          content:
+            - "/* eslint-disable */"
+            - "//"
+            - "// NOTE:"
+            - "// This file is generated, do not change this manually."
+            - "// To regenerate it, run `pnpm types:generate:graphql`"
+            - "// "

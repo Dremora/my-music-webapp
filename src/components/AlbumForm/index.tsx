@@ -11,40 +11,36 @@ import Source from "components/Source";
 import Text from "components/Text";
 import useIsFirstRender from "data/useIsFirstRender";
 import {
-  CreateAlbum,
-  CreateAlbumVariables,
-} from "mutations/CreateAlbum/types/CreateAlbum";
-import {
-  UpdateAlbum,
-  UpdateAlbumVariables,
-} from "mutations/UpdateAlbum/types/UpdateAlbum";
-import {
-  GetAlbum_album,
-  GetAlbum_album_sources,
-} from "queries/GetAlbum/types/GetAlbum";
-import { FirstPlayedInput, Location, NewSourceInput } from "types/graphql";
+  CreateAlbumMutation,
+  CreateAlbumMutationVariables,
+  FirstPlayedInput,
+  GetAlbumQuery,
+  Location,
+  NewSourceInput,
+  UpdateAlbumMutation,
+  UpdateAlbumMutationVariables,
+} from "generated/graphql";
 import { formatInteger, parseInteger, parseOptionalString } from "utils";
 
 import { buttonsStyle, formStyle } from "./styles.css";
 
-interface Props {
-  initialValues: CreateAlbumVariables | GetAlbum_album;
+export interface Props {
+  initialValues: CreateAlbumMutationVariables | GetAlbumQuery["album"];
   isNew?: boolean;
   isSubmitting: boolean;
   onSubmit:
-    | ((data: {
-        variables?: CreateAlbumVariables;
-      }) => Promise<ExecutionResult<CreateAlbum>>)
-    | ((data: {
-        variables?: UpdateAlbumVariables;
-      }) => Promise<ExecutionResult<UpdateAlbum>>);
+    | ((
+        data: CreateAlbumMutationVariables
+      ) => Promise<ExecutionResult<CreateAlbumMutation>>)
+    | ((
+        data: Omit<UpdateAlbumMutationVariables, "id">
+      ) => Promise<ExecutionResult<UpdateAlbumMutation>>);
   submitError?: ApolloError;
 }
 
-type AlbumSource = NewSourceInput | GetAlbum_album_sources;
+type AlbumSource = NewSourceInput | GetAlbumQuery["album"]["sources"][number];
 
-type FormData = Omit<CreateAlbumVariables, "sources"> & {
-  id?: string | undefined;
+type FormData = Omit<CreateAlbumMutationVariables, "sources"> & {
   firstPlayed?:
     | (FirstPlayedInput & {
         __typename?: string;
@@ -70,33 +66,30 @@ const AlbumForm = ({
     e.preventDefault();
 
     onSubmit({
-      variables: {
-        id: "id" in album ? album.id : undefined,
-        title: album.title,
-        artist: album.artist,
-        comments: album.comments,
-        year: album.year,
-        sources: album.sources.map((source) => {
-          if ("__typename" in source) {
-            const { __typename, ...rest } = source;
+      title: album.title,
+      artist: album.artist,
+      comments: album.comments,
+      year: album.year,
+      sources: album.sources.map((source) => {
+        if ("__typename" in source) {
+          const { __typename, ...rest } = source;
+          return rest;
+        } else {
+          return source;
+        }
+      }),
+      firstPlayed: (() => {
+        if (album.firstPlayed) {
+          if ("__typename" in album.firstPlayed) {
+            const { __typename, ...rest } = album.firstPlayed;
             return rest;
-          } else {
-            return source;
-          }
-        }),
-        firstPlayed: (() => {
-          if (album.firstPlayed) {
-            if ("__typename" in album.firstPlayed) {
-              const { __typename, ...rest } = album.firstPlayed;
-              return rest;
-            } else {
-              return album.firstPlayed;
-            }
           } else {
             return album.firstPlayed;
           }
-        })(),
-      },
+        } else {
+          return album.firstPlayed;
+        }
+      })(),
     });
   };
 

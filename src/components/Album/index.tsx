@@ -2,7 +2,8 @@ import Link from "next/link";
 
 import Text from "components/Text";
 import { useLogin } from "data/login";
-import { FirstPlayed as FirstPlayedType, formatFirstPlayed } from "utils";
+import { FindAlbumsQuery } from "generated/graphql";
+import { formatFirstPlayed } from "utils";
 
 import {
   anchorStyle,
@@ -14,13 +15,7 @@ import {
 } from "./styles.css";
 
 interface Props {
-  album: {
-    id: string;
-    artist: string;
-    year: number | null;
-    title: string;
-    firstPlayed: FirstPlayedType;
-  };
+  album: FindAlbumsQuery["albums"][number];
 }
 
 const Album = ({ album }: Props) => {

@@ -5,7 +5,7 @@ import FormField from "components/FormField";
 import Input from "components/Input";
 import Select from "components/Select";
 import Text from "components/Text";
-import { Format, Location, SourceInput } from "types/graphql";
+import { Format, Location, SourceInput } from "generated/graphql";
 import { formatInteger, parseInteger, parseOptionalString } from "utils";
 
 import { hrStyle, titleStyle } from "./styles.css";
@@ -160,7 +160,7 @@ const Source = ({ disabled, index, onRemove, onUpdate, source }: Props) => {
       <FormField label="MBID">
         <Input
           disabled={disabled}
-          value={source.mbid}
+          value={source.mbid ?? ""}
           onChange={onMbidChange}
         />
       </FormField>

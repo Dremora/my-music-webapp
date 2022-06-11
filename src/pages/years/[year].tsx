@@ -1,14 +1,9 @@
-import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 
 import AlbumList from "components/AlbumList";
 import AlbumsByYearSelector from "components/AlbumsByYearSelector";
 import { Spacer } from "components/Spacer";
-import FIND_ALBUMS from "queries/FindAlbums";
-import {
-  FindAlbums,
-  FindAlbumsVariables,
-} from "queries/FindAlbums/types/FindAlbums";
+import { useFindAlbumsQuery } from "generated/graphql";
 
 const YearsPage = () => {
   const router = useRouter();
@@ -19,7 +14,7 @@ const YearsPage = () => {
       : router.query.year || ""
   );
 
-  const { data } = useQuery<FindAlbums, FindAlbumsVariables>(FIND_ALBUMS, {
+  const { data } = useFindAlbumsQuery({
     skip: isNaN(year),
     variables: { filter: { year } },
   });

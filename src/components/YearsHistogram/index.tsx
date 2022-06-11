@@ -3,7 +3,7 @@ import { useCallback, useMemo, useState } from "react";
 import { IBounds, useLayer } from "react-laag";
 
 import Text from "components/Text";
-import { AlbumPerYearCount_albumPerYearCount as Data } from "queries/AlbumPerYearCount/types/AlbumPerYearCount";
+import { AlbumPerYearCount } from "generated/graphql";
 
 import { rootStyle } from "./styles.css";
 import Year from "./Year";
@@ -22,7 +22,7 @@ const range = (start: number, stop: number): number[] =>
   Array.from({ length: stop - start + 1 }, (_, i) => start + i);
 
 interface Props {
-  data: ReadonlyArray<Data>;
+  data: ReadonlyArray<AlbumPerYearCount>;
   onYearClick?: (year: number) => void;
 }
 

@@ -1,10 +1,8 @@
-import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useCallback } from "react";
 
 import YearsHistogram from "components/YearsHistogram";
-import ALBUM_PER_YEAR_COUNT from "queries/AlbumPerYearCount";
-import { AlbumPerYearCount } from "queries/AlbumPerYearCount/types/AlbumPerYearCount";
+import { useAlbumPerYearCountQuery } from "generated/graphql";
 
 const AlbumsByYearSelector = () => {
   const router = useRouter();
@@ -16,9 +14,7 @@ const AlbumsByYearSelector = () => {
     [router]
   );
 
-  const { data, error, loading } = useQuery<AlbumPerYearCount, undefined>(
-    ALBUM_PER_YEAR_COUNT
-  );
+  const { data, error, loading } = useAlbumPerYearCountQuery();
 
   if (loading || error || !data) {
     return null;

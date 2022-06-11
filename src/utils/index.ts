@@ -18,7 +18,7 @@ interface Timestamp {
   timestamp: number;
 }
 
-export type FirstPlayed = Date | Timestamp | null;
+type FirstPlayed = Date | Timestamp | null;
 
 export function formatFirstPlayed(val: FirstPlayed): string {
   if (!val) {
