@@ -43,3 +43,36 @@ jobs:
 
       - name: Run build
         run: pnpm build
+
+      - name: Analyze bundle
+        run: pnpm exec report
+
+      - name: Upload bundle
+        uses: actions/upload-artifact@v2
+        with:
+          name: bundle
+          path: .next/analyze/__bundle_analysis.json
+
+      - name: Download base branch bundle stats
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: ci.yml
+          branch: ${{ github.event.push.base.ref }}
+          path: .next/analyze/base
+
+      - name: Compare with base branch bundle
+        run: ls -laR .next/analyze/base && npx -p nextjs-bundle-analysis compare
+
+      - name: Get comment body
+        id: get-comment-body
+        run: |
+          body=$(cat .next/analyze/__bundle_analysis_comment.txt)
+          body="${body//'%'/'%25'}"
+          body="${body//$'\n'/'%0A'}"
+          body="${body//$'\r'/'%0D'}"
+          echo ::set-output name=body::$body
+
+      - name: Create commit comment
+        uses: peter-evans/commit-comment@v2
+        with:
+          body: ${{ steps.get-comment-body.outputs.body }}

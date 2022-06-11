@@ -35,6 +35,7 @@ specifiers:
   graphql: 16.5.0
   graphql-tag: 2.12.6
   next: 12.1.6
+  nextjs-bundle-analysis: ^0.4.0
   normalize.css: 8.0.1
   polished: 4.2.2
   prettier: 2.6.2
@@ -85,6 +86,7 @@ devDependencies:
   eslint-plugin-react: 7.30.0_eslint@8.17.0
   eslint-plugin-react-hooks: 4.5.0_eslint@8.17.0
   eslint-plugin-sort-destructure-keys: 1.4.0_eslint@8.17.0
+  nextjs-bundle-analysis: 0.4.0
   prettier: 2.6.2
   typescript: 4.7.3
 
@@ -2619,7 +2621,6 @@ packages:
 
   /duplexer/0.1.2:
     resolution: {integrity: sha512-jtD6YG370ZCIi/9GTaJKQxWTZD045+4R4hTk/x1UyoqadyJ9x9CgSi1RlVDQF8U2sxLLSnFkCaMihqljHIWgMg==}
-    dev: false
 
   /duplexer3/0.1.4:
     resolution: {integrity: sha512-CEj8FwwNA4cVH2uFCoHUrmojhYh1vmCdOaneKJXwkeY1i9jnlslVo9dx+hQ5Hl9GnH/Bwy/IjxAyOePyPKYnzA==}
@@ -3145,6 +3146,11 @@ packages:
       flat-cache: 3.0.4
     dev: true
 
+  /filesize/7.0.0:
+    resolution: {integrity: sha512-Wsstw+O1lZ9gVmOI1thyeQvODsaoId2qw14lCqIzUhoHKXX7T2hVpB7BR6SvgodMBgWccrx/y2eyV8L7tDmY6A==}
+    engines: {node: '>= 0.4.0'}
+    dev: true
+
   /fill-range/7.0.1:
     resolution: {integrity: sha512-qOo9F+dMUmC2Lcb4BbVvnKJxTPjCm+RRpe4gDuGrzkL7mEVl/djYSu2OdQ2Pa302N4oqkSg9ir6jaLWJ2USVpQ==}
     engines: {node: '>=8'}
@@ -3467,7 +3473,6 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       duplexer: 0.1.2
-    dev: false
 
   /has-ansi/2.0.0:
     resolution: {integrity: sha512-C8vBJ8DwUCx19vhm7urhTuUsr4/IyP6l4VzNQDv+ryHQObW3TTTp9yB68WpYgRe2bbaGuZ/se74IqFeVnMnLZg==}
@@ -4394,6 +4399,17 @@ packages:
       - babel-plugin-macros
     dev: false
 
+  /nextjs-bundle-analysis/0.4.0:
+    resolution: {integrity: sha512-0dBfl80w9bvpqHuRMMPNsl3X5shUeGuNB1MC7gOFFWptz0rQojXE1YElys74hkmRCaoV5IsoT3o5kcgj0xT8VA==}
+    hasBin: true
+    dependencies:
+      filesize: 7.0.0
+      gzip-size: 6.0.0
+      inquirer: 8.2.4
+      mkdirp: 1.0.4
+      number-to-words: 1.2.4
+    dev: true
+
   /no-case/3.0.4:
     resolution: {integrity: sha512-fgAN3jGAh+RoxUGZHTSOLJIqUc2wmoBwGR4tbpNAKmmovFoWq0OdRkb0VkldReO2a2iBT/OEulG9XSUc10r3zg==}
     dependencies:
@@ -4453,6 +4469,10 @@ packages:
   /number-is-nan/1.0.1:
     resolution: {integrity: sha512-4jbtZXNAsfZbAHiiqjLPBiCl16dES1zI4Hpzzxw61Tk+loF+sBDBKx1ICKKKwIqQ7M0mFn1TmkN7euSncWgHiQ==}
     engines: {node: '>=0.10.0'}
+    dev: true
+
+  /number-to-words/1.2.4:
+    resolution: {integrity: sha512-/fYevVkXRcyBiZDg6yzZbm0RuaD6i0qRfn8yr+6D0KgBMOndFPxuW10qCHpzs50nN8qKuv78k8MuotZhcVX6Pw==}
     dev: true
 
   /object-assign/4.1.1:
