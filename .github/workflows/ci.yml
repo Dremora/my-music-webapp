@@ -21,6 +21,17 @@ jobs:
         with:
           version: 7.1.9
 
+      - uses: actions/cache@v3
+        name: Setup pnpm and build cache
+        with:
+          path: |
+            ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+            ${{ github.workspace }}/.next/cache
+          key: pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          restore-keys: |
+            pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}-
+            pnpm-store-
+
       - name: Install dependencies
         run: pnpm install
 
