@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 
-import StyledSelect from "./styles";
+import { selectStyle } from "./styles.css";
 
 interface Props<T extends string> {
   children: React.ReactNode;
@@ -18,7 +18,12 @@ function Select<T extends string>({ onChange, value, ...props }: Props<T>) {
   );
 
   return (
-    <StyledSelect value={value || ""} {...props} onChange={onChangeHtmlEvent} />
+    <select
+      className={selectStyle}
+      value={value || ""}
+      {...props}
+      onChange={onChangeHtmlEvent}
+    />
   );
 }
 

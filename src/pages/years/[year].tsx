@@ -1,19 +1,15 @@
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import React from "react";
-import styled from "styled-components";
 
 import AlbumList from "components/AlbumList";
 import AlbumsByYearSelector from "components/AlbumsByYearSelector";
+import { Spacer } from "components/Spacer";
 import FIND_ALBUMS from "queries/FindAlbums";
 import {
   FindAlbums,
   FindAlbumsVariables,
 } from "queries/FindAlbums/types/FindAlbums";
-
-export const Spacer = styled.div`
-  height: 10px;
-`;
 
 const YearsPage = () => {
   const router = useRouter();

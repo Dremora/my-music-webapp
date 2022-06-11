@@ -1,4 +1,4 @@
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
@@ -6,7 +6,7 @@ import React from "react";
 import Text from "components/Text";
 import useIsFirstRender from "data/useIsFirstRender";
 
-import { Anchor, Bar, ListItem } from "./styles";
+import { anchorStyle, barStyle, listItemStyle } from "./styles.css";
 
 interface Props {
   href: string;
@@ -20,19 +20,21 @@ const Item = ({ children, href, onClick }: Props) => {
 
   const current = router.pathname.startsWith(href);
   return (
-    <ListItem>
+    <li className={listItemStyle}>
       <Link href={href} passHref>
-        <Anchor onClick={onClick}>
+        {/* eslint-disable-next-line */}
+        <a className={anchorStyle} onClick={onClick}>
           <Text color="grey" size="medium" weight="bold">
             {children}
           </Text>
-        </Anchor>
+        </a>
       </Link>
       {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
       {/* @ts-ignore https://github.com/framer/motion/pull/1573 */}
       <AnimatePresence>
         {current && (
-          <Bar
+          <motion.div
+            className={barStyle}
             animate={{ width: "100%" }}
             exit={{ width: 0 }}
             initial={{ width: isFirstRender ? "100%" : 0 }}
@@ -41,7 +43,7 @@ const Item = ({ children, href, onClick }: Props) => {
           />
         )}
       </AnimatePresence>
-    </ListItem>
+    </li>
   );
 };
 

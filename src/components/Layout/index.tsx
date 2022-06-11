@@ -4,7 +4,13 @@ import React from "react";
 import Footer from "components/Footer";
 import Menu from "components/Menu";
 
-import { GlobalStyles, H1, Header, HomeLink, Page, Section } from "./styles";
+import {
+  h1Style,
+  headerStyle,
+  homeLinkStyle,
+  pageStyle,
+  sectionStyle,
+} from "./styles.css";
 
 interface Props {
   children: React.ReactNode;
@@ -12,26 +18,26 @@ interface Props {
 
 const Layout = ({ children }: Props) => {
   return (
-    <Page>
-      <GlobalStyles />
+    <div className={pageStyle}>
       <div>
-        <Section>
-          <Header>
+        <div className={sectionStyle}>
+          <header className={headerStyle}>
             <Link href="/" passHref>
-              <HomeLink>
+              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+              <a className={homeLinkStyle}>
                 <img alt="Logo" height={48} src="/logo.svg" />
-                <H1>My Music</H1>
-              </HomeLink>
+                <h1 className={h1Style}>My Music</h1>
+              </a>
             </Link>
             <Menu />
-          </Header>
-        </Section>
-        <Section>{children}</Section>
+          </header>
+        </div>
+        <div className={sectionStyle}>{children}</div>
       </div>
-      <Section>
+      <div className={sectionStyle}>
         <Footer />
-      </Section>
-    </Page>
+      </div>
+    </div>
   );
 };
 

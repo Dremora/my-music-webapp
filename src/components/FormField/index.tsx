@@ -2,7 +2,7 @@ import React from "react";
 
 import Text from "components/Text";
 
-import { Container, Contents, Label } from "./styles";
+import { containerStyle, contentsStyle, labelStyle } from "./styles.css";
 
 interface Props {
   label: string;
@@ -10,14 +10,14 @@ interface Props {
 }
 
 const FormField = ({ children, label }: Props) => (
-  <Container>
-    <Label>
+  <label className={containerStyle}>
+    <div className={labelStyle}>
       <Text color="darkPlatinum" weight="bold">
         {label}
       </Text>
-    </Label>
-    <Contents>{children}</Contents>
-  </Container>
+    </div>
+    <div className={contentsStyle}>{children}</div>
+  </label>
 );
 
 export default FormField;

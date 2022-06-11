@@ -1,4 +1,4 @@
-// import 'normalize.css';
+import "styles/global.css";
 
 import { ApolloProvider } from "@apollo/client";
 import App from "next/app";
