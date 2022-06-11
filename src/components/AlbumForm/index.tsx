@@ -25,7 +25,7 @@ import {
 import { FirstPlayedInput, Location, NewSourceInput } from "types/graphql";
 import { formatInteger, parseInteger, parseOptionalString } from "utils";
 
-import { Buttons, Form as StyledForm } from "./styles";
+import { buttonsStyle, formStyle } from "./styles.css";
 
 interface Props {
   initialValues: CreateAlbumVariables | GetAlbum_album;
@@ -161,7 +161,7 @@ const AlbumForm = ({
   );
 
   return (
-    <StyledForm onSubmit={submitForm}>
+    <form className={formStyle} onSubmit={submitForm}>
       <Text color="grey" size="large" weight="bold">
         {isNew ? "Create album" : "Edit album"}
       </Text>
@@ -222,7 +222,7 @@ const AlbumForm = ({
           </motion.div>
         ))}
       </AnimatePresence>
-      <Buttons>
+      <div className={buttonsStyle}>
         {/* eslint-disable-next-line react/jsx-no-bind */}
         <Button onClick={onSourceAdd} palette="link" size="small">
           Add source
@@ -230,9 +230,9 @@ const AlbumForm = ({
         <Button disabled={isSubmitting} type="submit">
           Submit
         </Button>
-      </Buttons>
+      </div>
       {submitError && <Text color="vermilion">{submitError.message}</Text>}
-    </StyledForm>
+    </form>
   );
 };
 

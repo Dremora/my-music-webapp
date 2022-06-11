@@ -5,7 +5,14 @@ import Text from "components/Text";
 import { useLogin } from "data/login";
 import { FirstPlayed as FirstPlayedType, formatFirstPlayed } from "utils";
 
-import { Anchor, Column1, Column2, Column3, FirstPlayed, Root } from "./styles";
+import {
+  anchorStyle,
+  column1Style,
+  column2Style,
+  column3Style,
+  firstPlayedStyle,
+  rootStyle,
+} from "./styles.css";
 
 interface Props {
   album: {
@@ -23,36 +30,37 @@ const Album = ({ album }: Props) => {
 
   const contents = (
     <>
-      <Column1>
+      <div className={column1Style}>
         <Text color="lighterGrey" size="small">
           {album.year}
         </Text>
-      </Column1>
-      <Column2>
+      </div>
+      <div className={column2Style}>
         <Text color="grey" size="large" weight="bold">
           {album.title}
         </Text>
 
         <Text color="grey">{album.artist}</Text>
-      </Column2>
-      <Column3>
-        <FirstPlayed>
+      </div>
+      <div className={column3Style}>
+        <div className={firstPlayedStyle}>
           <Text color="lighterGrey" size="small">
             {firstPlayedFormatted ? (
               <span>ADDED: {firstPlayedFormatted}</span>
             ) : null}
           </Text>
-        </FirstPlayed>
-      </Column3>
+        </div>
+      </div>
     </>
   );
 
   return isLoggedIn ? (
     <Link as={`/albums/${album.id}`} href="/albums/[id]">
-      <Anchor>{contents}</Anchor>
+      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+      <a className={anchorStyle}>{contents}</a>
     </Link>
   ) : (
-    <Root>{contents}</Root>
+    <div className={rootStyle}>{contents}</div>
   );
 };
 

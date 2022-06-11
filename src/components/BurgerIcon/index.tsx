@@ -1,14 +1,14 @@
 import React from "react";
 
-import { Bar, Container } from "./styles";
+import { barStyle, containerStyle } from "./styles.css";
 
 const BurgerIcon = () => {
   return (
-    <Container>
-      <Bar />
-      <Bar />
-      <Bar />
-    </Container>
+    <div className={containerStyle}>
+      <div className={barStyle} />
+      <div className={barStyle} />
+      <div className={barStyle} />
+    </div>
   );
 };
 

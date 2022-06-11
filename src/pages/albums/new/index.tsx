@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 
 import AlbumForm from "components/AlbumForm";
-import Text from "components/Text";
 import { useLogin } from "data/login";
 import CREATE_ALBUM from "mutations/CreateAlbum";
 import {

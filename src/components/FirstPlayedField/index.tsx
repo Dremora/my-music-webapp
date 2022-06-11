@@ -8,15 +8,15 @@ import { FirstPlayedInput } from "types/graphql";
 import { formatInteger, parseInteger } from "utils";
 
 import {
-  Container,
-  DateInputContainer,
-  Label,
-  MonthDayField,
-  RadioGroup,
-  RadioInput,
-  RadioLabel,
-  YearInputField,
-} from "./styles";
+  containerStyle,
+  dateInputContainerStyle,
+  labelStyle,
+  monthDayFieldStyle,
+  radioGroupStyle,
+  radioInputStyle,
+  radioLabelStyle,
+  yearInputFieldStyle,
+} from "./styles.css";
 
 type Props = {
   disabled: boolean;
@@ -88,15 +88,16 @@ const FirstPlayedField = ({ disabled, onChange, value }: Props) => {
   );
 
   return (
-    <Container>
-      <Label>
+    <div className={containerStyle}>
+      <div className={labelStyle}>
         <Text color="darkPlatinum" weight="bold">
           First played {firstPlayedMode}
         </Text>
-      </Label>
-      <RadioGroup>
-        <RadioLabel>
-          <RadioInput
+      </div>
+      <div className={radioGroupStyle}>
+        <label className={radioLabelStyle}>
+          <input
+            className={radioInputStyle}
             checked={firstPlayedMode === "timestamp"}
             disabled={disabled}
             name="firstPlayedMode"
@@ -105,9 +106,10 @@ const FirstPlayedField = ({ disabled, onChange, value }: Props) => {
             value="timestamp"
           />
           <Text color="darkPlatinum">Timestamp</Text>
-        </RadioLabel>
-        <RadioLabel>
-          <RadioInput
+        </label>
+        <label className={radioLabelStyle}>
+          <input
+            className={radioInputStyle}
             checked={firstPlayedMode === "date"}
             disabled={disabled}
             name="firstPlayedMode"
@@ -116,9 +118,10 @@ const FirstPlayedField = ({ disabled, onChange, value }: Props) => {
             value="date"
           />
           <Text color="darkPlatinum">At a specific date</Text>
-        </RadioLabel>
-        <RadioLabel>
-          <RadioInput
+        </label>
+        <label className={radioLabelStyle}>
+          <input
+            className={radioInputStyle}
             checked={firstPlayedMode === "unknown"}
             disabled={disabled}
             name="firstPlayedMode"
@@ -127,8 +130,8 @@ const FirstPlayedField = ({ disabled, onChange, value }: Props) => {
             value="unknown"
           />
           <Text color="darkPlatinum">Unknown</Text>
-        </RadioLabel>
-      </RadioGroup>
+        </label>
+      </div>
 
       <motion.div
         animate={{ height: firstPlayedMode === "unknown" ? 0 : "auto" }}
@@ -147,18 +150,18 @@ const FirstPlayedField = ({ disabled, onChange, value }: Props) => {
               transition={{ type: "tween", duration: 0.15 }}
             >
               {firstPlayedMode === "timestamp" && (
-                <DateInputContainer>
+                <div className={dateInputContainerStyle}>
                   <Input
                     disabled={disabled}
                     value={formatInteger(value?.timestamp ?? null)}
                     onChange={onTimestampChange}
                   />
-                </DateInputContainer>
+                </div>
               )}
 
               {firstPlayedMode === "date" && (
-                <DateInputContainer>
-                  <YearInputField>
+                <div className={dateInputContainerStyle}>
+                  <div className={yearInputFieldStyle}>
                     <Input
                       disabled={disabled}
                       placeholder="YYYY"
@@ -166,8 +169,8 @@ const FirstPlayedField = ({ disabled, onChange, value }: Props) => {
                       value={formatInteger(value?.year ?? null)}
                       onChange={onYearChange}
                     />
-                  </YearInputField>
-                  <MonthDayField>
+                  </div>
+                  <div className={monthDayFieldStyle}>
                     <Input
                       disabled={disabled}
                       placeholder="MM"
@@ -175,8 +178,8 @@ const FirstPlayedField = ({ disabled, onChange, value }: Props) => {
                       value={formatInteger(value?.month ?? null)}
                       onChange={onMonthChange}
                     />
-                  </MonthDayField>
-                  <MonthDayField>
+                  </div>
+                  <div className={monthDayFieldStyle}>
                     <Input
                       disabled={disabled}
                       placeholder="DD"
@@ -184,14 +187,14 @@ const FirstPlayedField = ({ disabled, onChange, value }: Props) => {
                       value={formatInteger(value?.day ?? null)}
                       onChange={onDayChange}
                     />
-                  </MonthDayField>
-                </DateInputContainer>
+                  </div>
+                </div>
               )}
             </motion.div>
           )}
         </AnimatePresence>
       </motion.div>
-    </Container>
+    </div>
   );
 };
 
