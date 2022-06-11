@@ -22,7 +22,7 @@ export default function MyMusicApp({ Component }: AppProps) {
         <title>My Music</title>
       </Head>
       <ApolloProvider client={client}>
-        <LazyMotion features={domAnimation}>
+        <LazyMotion features={domAnimation} strict>
           <LoginProvider>
             <Layout>
               <Component />
