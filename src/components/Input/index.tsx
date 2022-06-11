@@ -1,4 +1,4 @@
-import { Input as StyledInput, Textarea } from "./styles";
+import { inputStyle } from "./styles.css";
 
 interface Props {
   autoFocus?: boolean;
@@ -14,9 +14,9 @@ interface Props {
 
 const Input = ({ multiline = false, type = "text", value, ...props }: Props) =>
   multiline ? (
-    <Textarea value={value || ""} {...props} />
+    <textarea className={inputStyle} value={value || ""} {...props} />
   ) : (
-    <StyledInput type={type} value={value || ""} {...props} />
+    <input className={inputStyle} type={type} value={value || ""} {...props} />
   );
 
 export default Input;
