@@ -1,6 +1,11 @@
 import { style } from "@vanilla-extract/css";
 
-import { darkPlatinum, darkerPlatinum, platinum } from "styles/colors.css";
+import {
+  darkPlatinum,
+  darkerPlatinum,
+  platinum,
+  white,
+} from "styles/colors.css";
 import { size } from "styles/typography.css";
 
 export const selectStyle = style([
@@ -14,7 +19,7 @@ export const selectStyle = style([
     flexShrink: 1,
     color: darkPlatinum,
     transition: "all 0.2s",
-    background: "white",
+    background: white,
     borderRadius: 0,
     width: "auto",
     appearance: "none",

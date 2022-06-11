@@ -1,4 +1,4 @@
-import StyledButton from "./styles";
+import { buttonStyle } from "./styles.css";
 
 interface Props {
   children: React.ReactNode;
@@ -7,15 +7,21 @@ interface Props {
   type?: "button" | "submit";
   palette?: "primary" | "secondary" | "link";
   size?: "medium" | "small";
+  full?: boolean;
 }
 
 const Button = ({
-  palette = "primary",
+  full,
+  palette,
   size = "medium",
   type = "button",
   ...props
 }: Props) => (
-  <StyledButton palette={palette} size={size} type={type} {...props} />
+  <button
+    className={buttonStyle({ full, disabled: props.disabled, size, palette })}
+    type={type}
+    {...props}
+  />
 );
 
 export default Button;

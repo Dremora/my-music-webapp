@@ -140,7 +140,7 @@ const Source = ({ disabled, index, onRemove, onUpdate, source }: Props) => {
         <Text color="grey" size="medium" weight="bold">
           Source {index + 1}
         </Text>
-        <Button onClick={remove} size="small">
+        <Button onClick={remove} disabled={disabled} size="small">
           Delete source
         </Button>
       </div>

@@ -1,6 +1,11 @@
 import { style } from "@vanilla-extract/css";
 
-import { darkPlatinum, darkerPlatinum, platinum } from "styles/colors.css";
+import {
+  darkPlatinum,
+  darkerPlatinum,
+  platinum,
+  white,
+} from "styles/colors.css";
 import { size } from "styles/typography.css";
 
 export const inputStyle = style([
@@ -15,7 +20,7 @@ export const inputStyle = style([
     flexShrink: 1,
     color: darkPlatinum,
     transition: "all 0.2s",
-    background: "white",
+    background: white,
 
     // TODO don't use type=number https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/
     selectors: {
