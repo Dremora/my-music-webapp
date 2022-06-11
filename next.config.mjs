@@ -1,5 +1,5 @@
-const bundleAnalyzer = require("@next/bundle-analyzer");
-const { createVanillaExtractPlugin } = require("@vanilla-extract/next-plugin");
+import bundleAnalyzer from "@next/bundle-analyzer";
+import { createVanillaExtractPlugin } from "@vanilla-extract/next-plugin";
 
 const withVanillaExtract = createVanillaExtractPlugin();
 
@@ -7,7 +7,7 @@ const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === "true",
 });
 
-module.exports = withVanillaExtract(
+export default withVanillaExtract(
   withBundleAnalyzer({
     ignoreDuringBuilds: true,
     async rewrites() {
