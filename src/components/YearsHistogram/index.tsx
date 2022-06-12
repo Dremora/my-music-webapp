@@ -1,4 +1,7 @@
-import { offset, useFloating } from "@floating-ui/react-dom-interactions";
+import {
+  FloatingPortal,
+  useFloating,
+} from "@floating-ui/react-dom-interactions";
 import { AnimatePresence, m } from "framer-motion";
 import { useCallback, useMemo, useState } from "react";
 
@@ -32,7 +35,7 @@ function YearsHistogram({ data, onYearClick }: Props) {
 
   const { floating, reference, strategy, x, y } = useFloating({
     placement: "bottom",
-    middleware: [offset(1)], // not doing so causes helicopter effect
+    // middleware: [offset(1)], // not doing so causes helicopter effect
   });
 
   const dataWithYear = useMemo(
@@ -95,39 +98,41 @@ function YearsHistogram({ data, onYearClick }: Props) {
         ))}
       </div>
 
-      <AnimatePresence>
-        {isOpen ? (
-          <m.div
-            animate={{ opacity: 1, left: x ?? 0 }}
-            exit={{ opacity: 0 }}
-            initial={{ opacity: 0, left: x ?? 0 }}
-            ref={floating}
-            style={{
-              position: strategy,
-              top: y ?? 0,
-            }}
-            transition={{ ease: "easeOut", duration: 0.1 }}
-          >
-            <Text color="grey" weight="bold">
-              {selectedYear}
-            </Text>
-          </m.div>
-        ) : (
-          <div
-            ref={floating}
-            style={{
-              visibility: "hidden",
-              position: strategy,
-              left: x ?? 0,
-              top: y ?? 0,
-            }}
-          >
-            <Text color="grey" weight="bold">
-              {selectedYear}
-            </Text>
-          </div>
-        )}
-      </AnimatePresence>
+      <FloatingPortal>
+        <AnimatePresence>
+          {isOpen ? (
+            <m.div
+              animate={{ opacity: 1, left: x ?? 0 }}
+              exit={{ opacity: 0 }}
+              initial={{ opacity: 0, left: x ?? 0 }}
+              ref={floating}
+              style={{
+                position: strategy,
+                top: y ?? 0,
+              }}
+              transition={{ ease: "easeOut", duration: 0.1 }}
+            >
+              <Text color="grey" weight="bold">
+                {selectedYear}
+              </Text>
+            </m.div>
+          ) : (
+            <div
+              ref={floating}
+              style={{
+                visibility: "hidden",
+                position: strategy,
+                left: x ?? 0,
+                top: y ?? 0,
+              }}
+            >
+              <Text color="grey" weight="bold">
+                {selectedYear}
+              </Text>
+            </div>
+          )}
+        </AnimatePresence>
+      </FloatingPortal>
     </>
   );
 }
