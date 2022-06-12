@@ -32,6 +32,8 @@
   },
   "dependencies": {
     "@apollo/client": "3.6.7",
+    "@floating-ui/dom": "^0.5.2",
+    "@floating-ui/react-dom-interactions": "^0.6.3",
     "@next/bundle-analyzer": "12.1.6",
     "@vanilla-extract/css": "^1.7.2",
     "@vanilla-extract/next-plugin": "^2.0.2",
@@ -45,8 +47,7 @@
     "normalize.css": "8.0.1",
     "polished": "4.2.2",
     "react": "18.1.0",
-    "react-dom": "18.1.0",
-    "react-laag": "2.0.4"
+    "react-dom": "18.1.0"
   },
   "scripts": {
     "dev": "next",

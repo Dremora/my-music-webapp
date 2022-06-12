@@ -1,6 +1,6 @@
+import { offset, useFloating } from "@floating-ui/react-dom-interactions";
 import { AnimatePresence, m } from "framer-motion";
 import { useCallback, useMemo, useState } from "react";
-import { IBounds, useLayer } from "react-laag";
 
 import Text from "components/Text";
 import { AlbumPerYearCount } from "generated/graphql";
@@ -29,19 +29,13 @@ interface Props {
 function YearsHistogram({ data, onYearClick }: Props) {
   const [selectedYear, setSelectedYear] = useState<number>();
   const [isOpen, setIsOpen] = useState(false);
-  const [triggerBounds, setTriggerBounds] = useState<IBounds | null>(null);
 
-  const { layerProps, renderLayer } = useLayer({
-    isOpen,
-    placement: "bottom-center",
-    trigger: triggerBounds
-      ? {
-          getBounds: () => triggerBounds,
-        }
-      : undefined,
+  const { floating, reference, strategy, x, y } = useFloating({
+    placement: "bottom",
+    middleware: [offset(1)], // not doing so causes helicopter effect
   });
 
-  const dataWithYear = useMemo<typeof data>(
+  const dataWithYear = useMemo(
     () => data.filter(({ year }) => year !== 0),
     [data]
   );
@@ -71,17 +65,19 @@ function YearsHistogram({ data, onYearClick }: Props) {
       setSelectedYear(year);
 
       if (e.currentTarget instanceof HTMLElement) {
-        const currentTarget = e.currentTarget;
-        setTriggerBounds(currentTarget.getBoundingClientRect());
+        reference(e.currentTarget);
         setIsOpen(true);
       }
     },
-    []
+    [reference]
   );
 
   const hideYear = useCallback(() => {
+    reference(null);
     setIsOpen(false);
-  }, []);
+  }, [reference]);
+
+  console.log({ x, isOpen });
 
   return (
     <>
@@ -99,37 +95,39 @@ function YearsHistogram({ data, onYearClick }: Props) {
         ))}
       </div>
 
-      {renderLayer(
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore https://github.com/framer/motion/pull/1573
-        <AnimatePresence>
-          {isOpen && layerProps.style.left ? (
-            <m.div
-              animate={{ opacity: 1, left: layerProps.style.left }}
-              exit={{ opacity: 0 }}
-              initial={{ opacity: 0, left: layerProps.style.left }}
-              key="year_popup"
-              ref={layerProps.ref}
-              style={layerProps.style}
-              transition={{ ease: "easeOut", duration: 0.1 }}
-            >
-              <Text color="grey" weight="bold">
-                {selectedYear}
-              </Text>
-            </m.div>
-          ) : (
-            <div
-              key="year_popup_invisible"
-              ref={layerProps.ref}
-              style={{ visibility: "hidden", ...layerProps.style }}
-            >
-              <Text color="grey" weight="bold">
-                {selectedYear}
-              </Text>
-            </div>
-          )}
-        </AnimatePresence>
-      )}
+      <AnimatePresence>
+        {isOpen ? (
+          <m.div
+            animate={{ opacity: 1, left: x ?? 0 }}
+            exit={{ opacity: 0 }}
+            initial={{ opacity: 0, left: x ?? 0 }}
+            ref={floating}
+            style={{
+              position: strategy,
+              top: y ?? 0,
+            }}
+            transition={{ ease: "easeOut", duration: 0.1 }}
+          >
+            <Text color="grey" weight="bold">
+              {selectedYear}
+            </Text>
+          </m.div>
+        ) : (
+          <div
+            ref={floating}
+            style={{
+              visibility: "hidden",
+              position: strategy,
+              left: x ?? 0,
+              top: y ?? 0,
+            }}
+          >
+            <Text color="grey" weight="bold">
+              {selectedYear}
+            </Text>
+          </div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

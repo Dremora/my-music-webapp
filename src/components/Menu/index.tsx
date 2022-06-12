@@ -1,5 +1,12 @@
+import { autoUpdate, offset } from "@floating-ui/dom";
+import {
+  FloatingPortal,
+  useClick,
+  useDismiss,
+  useFloating,
+  useInteractions,
+} from "@floating-ui/react-dom-interactions";
 import { useCallback, useState } from "react";
-import { useLayer } from "react-laag";
 
 import BurgerIcon from "components/BurgerIcon";
 
@@ -13,36 +20,53 @@ import {
 function Menu() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const { layerProps, renderLayer, triggerProps } = useLayer({
-    containerOffset: 16,
-    isOpen,
-    onOutsideClick: () => setIsOpen(false),
+  const { context, floating, reference, strategy, x, y } = useFloating({
     placement: "bottom-end",
-    triggerOffset: 12,
+    middleware: [offset(12)],
+    whileElementsMounted: autoUpdate,
+    onOpenChange: setIsOpen,
+    open: isOpen,
   });
 
+  const { getFloatingProps, getReferenceProps } = useInteractions([
+    useDismiss(context),
+    useClick(context),
+  ]);
+
   const closeMenu = useCallback(() => setIsOpen(false), []);
-  const toggleMenu = useCallback(() => setIsOpen((open) => !open), []);
 
   return (
     <>
       <div className={smallScreenStyle}>
         <button
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          {...getReferenceProps({
+            ref: reference,
+          })}
           className={menuButtonStyle}
-          onClick={toggleMenu}
-          ref={triggerProps.ref}
           type="button"
         >
           <BurgerIcon />
         </button>
-        {isOpen
-          ? renderLayer(
-              <div ref={layerProps.ref} style={layerProps.style}>
-                <MenuItems closeMenu={closeMenu} />
-              </div>
-            )
-          : null}
+        <FloatingPortal>
+          {isOpen ? (
+            <div
+              // eslint-disable-next-line react/jsx-props-no-spreading
+              {...getFloatingProps({
+                ref: floating,
+                style: {
+                  position: strategy,
+                  top: y ?? 0,
+                  left: x ?? 0,
+                },
+              })}
+            >
+              <MenuItems closeMenu={closeMenu} />
+            </div>
+          ) : null}
+        </FloatingPortal>
       </div>
+
       <div className={largeScreenStyle}>
         <MenuItems />
       </div>
