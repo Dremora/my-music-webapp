@@ -13,12 +13,6 @@ export default function MyMusicApp({ Component }: AppProps) {
   return (
     <>
       <Head>
-        <link href="/favicon.ico" rel="icon" />
-        <link
-          href="https://fonts.googleapis.com/css?family=Lato:400,700&amp;subset=latin-ext"
-          rel="stylesheet"
-        />
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=ResizeObserver" />
         <title>My Music</title>
       </Head>
       <ApolloProvider client={client}>
