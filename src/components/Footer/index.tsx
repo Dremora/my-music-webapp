@@ -48,7 +48,10 @@ function Footer() {
   }, [loginRequest, onLoggedIn, passwordInput]);
 
   const submit = useCallback(
-    () => (isLoggedIn ? onLoggedOut() : setShowingLogin(true)),
+    (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      isLoggedIn ? onLoggedOut() : setShowingLogin(true);
+    },
     [isLoggedIn, onLoggedOut]
   );
 
