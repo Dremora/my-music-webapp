@@ -66,25 +66,25 @@ function FirstPlayedField({ disabled, onChange, value }: Props) {
   const onYearChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       const year = parseInteger(e.target.value);
-      onChange({ year });
+      onChange({ year, month: value?.month, day: value?.day });
     },
-    [onChange]
+    [onChange, value?.day, value?.month]
   );
 
   const onMonthChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       const month = parseInteger(e.target.value);
-      onChange({ month });
+      onChange({ year: value?.year, month, day: value?.day });
     },
-    [onChange]
+    [onChange, value?.day, value?.year]
   );
 
   const onDayChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       const day = parseInteger(e.target.value);
-      onChange({ day });
+      onChange({ year: value?.year, month: value?.month, day });
     },
-    [onChange]
+    [onChange, value?.month, value?.year]
   );
 
   return (
